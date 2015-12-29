@@ -1,0 +1,109 @@
+// UI
+$darkenu:   #F5BF36
+$accent:    #6C6792
+$contrib:   #ffe091
+$protest:   #FFF402
+
+$uiWarn:        #f3462f
+$uiGrowth:      #73dc73
+$uiConfirm:     #396aff
+$uiGrey:        #ECECEC
+$topBarMenu:    #9b9b9b
+$explain:       #6D6D6D
+$miscHeadlines: #4C4C4C
+
+$tokenBorder:   #B1B1B1
+$tokenBack:     #FCFCFC
+
+$defaultLink:   #1a0dab
+
+// Brands
+$facebook:  #3b5998
+$google:    #dd4b39
+$twitter:   #55acee
+$linkedin:  #0976b4
+
+// Group Categories
+
+$orange:    #f7921e
+$purple:    #B06BE2
+$blue:      #90BAC7
+$green:     #71BF45
+$aqua:      #00B0F0
+$yellow:    #D5B463
+$bordo:     #F1553E
+$sky:       #01B9BB
+$pink:      #D14B7D
+
+@mixin generate-colored-back($colors)
+	@each $color in $colors
+
+@mixin back-color($color)
+	background-color: lighten($color, 7%)
+	&.chosen
+		background-color: $color
+
+@mixin side-border-color($color, $side: right, $size: 7px)
+	border:
+		radius: $size - 2px
+		#{$side}: $size solid $color
+
+@mixin text-color($color)
+	color: $color
+
+.back-orange
+	@include back-color($orange)
+.back-purple
+	@include back-color($purple)
+.back-blue
+	@include back-color($blue)
+.back-green
+	@include back-color($green)
+.back-aqua
+	@include back-color($aqua)
+.back-yellow
+	@include back-color($yellow)
+.back-bordo
+	@include back-color($bordo)
+.back-sky
+	@include back-color($sky)
+.back-pink
+	@include back-color($pink)
+
+.border-orange
+	@include side-border-color($orange)
+.border-purple
+	@include side-border-color($purple)
+.border-blue
+	@include side-border-color($blue)
+.border-green
+	@include side-border-color($green)
+.border-aqua
+	@include side-border-color($aqua)
+.border-yellow
+	@include side-border-color($yellow)
+.border-bordo
+	@include side-border-color($bordo)
+.border-sky
+	@include side-border-color($sky)
+.border-pink
+	@include side-border-color($pink)
+
+.text-color-orange
+	@include text-color($orange)
+.text-color-purple
+	@include text-color($purple)
+.text-color-blue
+	@include text-color($blue)
+.text-color-green
+	@include text-color($green)
+.text-color-aqua
+	@include text-color($aqua)
+.text-color-yellow
+	@include text-color($yellow)
+.text-color-bordo
+	@include text-color($bordo)
+.text-color-sky
+	@include text-color($sky)
+.text-color-pink
+	@include text-color($pink)

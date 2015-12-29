@@ -1,0 +1,29 @@
+@mixin moz-webkit-o($prop,$value)
+	-o-#{$prop}: $value
+	-moz-#{$prop}: $value
+	-webkit-#{$prop}: $value
+	#{$prop}: $value
+@mixin moz-webkit-ms($prop,$value)
+	-ms-#{$prop}: $value
+	-moz-#{$prop}: $value
+	-webkit-#{$prop}: $value
+	#{$prop}: $value
+@mixin moz-webkit($prop,$value)
+	-moz-#{$prop}: $value
+	-webkit-#{$prop}: $value
+	#{$prop}: $value
+
+@mixin boxShadow($props)
+	@include moz-webkit(box-shadow, $props)
+
+@mixin transition($prop, $timing)
+	@include moz-webkit-ms($prop, $timing)
+
+@mixin radius($px, $dir: all)
+	@include moz-webkit(border-radius,$px)
+
+@mixin clearFix()
+	&:after
+		content: ''
+		display: table
+		clear: both

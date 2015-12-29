@@ -1,0 +1,279 @@
+state-single-group
+
+	$idBarBreakPoint: $desktop
+
+	$heroHeight: 25rem
+	$bigLogo: 7em
+	$smallLogo: 5em
+
+	.heroHolder
+		position: relative
+
+		height: $heroHeight
+		margin-bottom: 5rem
+
+		&.placeholding
+			height: auto
+			margin-bottom: 0
+
+	.hero
+		position: relative
+		height: 100%
+		margin: 0 auto
+		background:
+			position: center
+			size: cover
+			repeat: no-repeat
+
+	.uploadNewHero
+		float: left
+		margin: 15px
+
+	.placeholding
+
+		.id
+			position: static
+			margin-top: 7em
+
+		.logo
+			top: -3.2rem
+
+		@media (min-width: $idBarBreakPoint)
+			margin-top: 8em
+
+			.logo
+				top: -4rem
+
+		.uploadNewHero
+			position: absolute
+			top: -4em
+			left: 0
+			float: none
+
+	.id
+		position: absolute
+		bottom: -2.5rem
+		top: unset
+
+		background-color: $darkenu
+		padding-left: .5em
+
+		@media (min-width: $idBarBreakPoint)
+			bottom: unset
+			top: $heroHeight - 1rem
+			padding-bottom: .3em
+
+		@media (min-width: $tv) and (max-width: $plasma - 1px)
+			padding-right: 15%
+
+		@media (min-width: $plasma)
+			padding-right: 20%
+
+		.logo
+			@include logo
+
+			position: absolute
+			top: -2.8rem
+			float: right
+
+			width: $smallLogo
+			height: $smallLogo
+			margin: 0 1em
+
+			.uploadNewLogo
+				display: block
+				margin: 35px auto
+
+			@media (min-width: $idBarBreakPoint)
+				top: -3.2rem
+				width: $bigLogo
+				height: $bigLogo
+
+		.acticons
+			display: inline-block
+			line-height: 2em
+			padding: 0em 1.2em .5em
+
+	h1.displayName
+		display: inline-block
+		margin-right: 5em
+
+		padding: .4em 0 .5em
+		font-size: 1.5rem
+		font-weight: bold
+		color: white
+
+		@media (min-width: $idBarBreakPoint)
+			font-size: 2rem
+
+	.starThisGroup
+		cursor: pointer
+		color: white
+
+		&:hover
+			color: $darkenu
+
+	social-links .fa, .starThisGroup
+		padding: .5em .4em
+		border-radius: 100%
+		font-size: 1.2em
+
+		&:hover
+			background-color: white
+
+	button.claimGroup
+		float: left
+		margin: 0
+
+	.description
+		padding-bottom: 2em
+
+		p:last-of-type
+			margin-bottom: 0
+
+		@media (max-width: $tablet - 1px)
+			text-align: justify
+
+	.editDescription
+		display: block
+		margin: 2em auto 0
+
+	.singleEvent
+		@include clearFix
+
+		.date, .title
+			@include elemental
+
+			padding:
+				right: 0
+				left: 0
+
+		.date
+			display: inline-block
+			width: 3rem
+			color: #A0A0A0
+
+		.title
+			font-weight: bold
+			text-decoration: none
+
+			&:hover
+				text-decoration: underline
+
+		button
+			float: left
+
+	.contacts
+
+		a
+			color: darken($darkenu, 25%)
+			text-decoration: none
+			&:hover
+				text-decoration: underline
+
+		.singleContact
+			@include clearFix
+
+			position: relative
+			display: inline-block
+			vertical-align: top
+
+			width: 85%
+			min-width: 217px
+
+			@media (min-width: $tablet)
+				width: 40%
+
+			margin: .2rem 3%
+			padding: .5rem
+
+		.channel
+			@include radius(100%)
+
+			float: right
+			width: 30px
+			height: 30px
+
+			background-color: #EEE
+			margin: .2rem 0 .2rem 10px
+
+			line-height: 1.7rem
+			text-align: center
+			color: darken($darkenu, 15%)
+
+		.details
+			float: right
+			margin-bottom: 20px
+			font-size: .9rem
+
+		.editContact
+			float: left
+			margin: 5px 10px
+
+		.nameOfContact label
+			color: rgba(black, .5)
+			margin-left: 0.5em
+
+	fa-sharing-buttons
+		display: block
+		text-align: center
+
+		@media (min-width: $mobile)
+			text-align: left
+
+	.relatedGroups
+		text-align: center
+
+		h2, .singleRelatedGroup
+			text-align: right
+
+		.singleRelatedGroup
+
+			@media (max-width: $tablet - 1px)
+				margin-top: 2.5rem
+
+			@media (min-width: $tablet)
+				vertical-align: top
+				display: inline-block
+				width: 30%
+
+				&:nth-of-type(2)
+					margin: 0 25px
+
+		.logo
+			cursor: pointer
+			display: inline-block
+			float: right
+			background:
+				size: contain
+				position: center
+				repeat: no-repeat
+			width: 4rem
+			height: 4rem
+			margin: 0 0 .5rem 1rem
+
+			@media (min-width: $tablet)
+				float: none
+				background-size: cover
+				width: 100%
+				height: 5rem
+				margin: 0 auto .75rem
+
+
+		.displayName
+			cursor: pointer
+
+			font:
+				size: 1.1rem
+				weight: bold
+			color: $miscHeadlines
+			text-decoration: none
+
+			&:hover
+				text-decoration: underline
+
+		.desc
+			margin-top: .5rem
+			font-size: .8rem
+			text-align: justify
+			color: #676767

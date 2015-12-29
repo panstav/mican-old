@@ -1,0 +1,56 @@
+.modal.taskVolunteer(
+modal-sizer, stop-propagation
+ng-controller="taskVolunteerCtrl as taskV"
+)
+	header
+		h2 התנדבות למשימה
+		.fa.fa-close(ng-click="modal.reset()")
+			
+	main
+		.form(
+		ng-form="taskVolunteerForm"
+		ng-class="taskV.showValidation ? 'showValidation' : ''"
+		)
+
+			div(
+			ng-if="taskV.anonForm"
+			)
+
+				input(
+				name="fullName" required
+				type="text"
+				ng-model="taskV.volunteer.fullName"
+				placeholder="איך לקרוא לך?"
+				ng-maxlength="50"
+				)
+
+				p.explain(
+				ng-show="taskVolunteerForm.fullName.$error.maxlength"
+				) מקסימום 50 תווים.
+
+				.fa-wrapper.fa.fa-fw.fa-envelope
+					input(
+					name="email" type="email"
+					ng-model="taskV.volunteer.email"
+					placeholder="כתובת מייל"
+					required
+					)
+
+			p.explain(
+			ng-if="!taskV.anonForm"
+			) על מנת שיוכלו ליצור איתך קשר - נשלח ליוזמה את הפרטים הבאים: שמך, כתובת המייל שלך ואת ההודעה הבאה:
+
+			textarea.verbose(
+			name="message" required
+			placeholder="הודעה למנהלי אישית למנהלי המשימה.\n\nזה המקום שלך להתבטא - לספר על עצמך ולהביע כל דבר. תודה על הרצון הטוב."
+			ng-model="taskV.volunteer.message"
+			ng-maxlength="800"
+			)
+
+			p.explain(
+			ng-show="taskVolunteerForm.message.$error.maxlength"
+			) מקסימום 800 תווים.
+
+	footer
+		span.validation(ng-show="taskV.showValidation") {{ modal.prompts.invalidField }}
+		button.submit.silent(ng-click="taskV.submit()") {{ modal.prompts.saveButton }}

@@ -1,0 +1,26 @@
+title(ng-bind="head.title")
+
+// build:noIndex
+// endbuild
+
+// Google
+meta(name="description" content="{{ head.description }}")
+// build:google
+// endbuild
+
+// Twitter Cards
+meta(name="twitter:card" content="{{ head.twitter.card }}")
+meta(name="twitter:site" content="{{ head.twitter.handle }}")
+meta(name="twitter:title" content="{{ head.title }}")
+meta(name="twitter:description" content="{{ head.description }}")
+meta(name="twitter:creator" content="{{ head.twitter.creator }}")
+meta(name="twitter:image" content="{{ head.image }}")
+
+// Open Graph
+meta(property="og:site_name" content="Darkenu.net")
+meta(property="og:locale" content="he_IL")
+meta(property="og:title" content="{{ head.title }}")
+meta(property="og:type" content="website")
+meta(property="og:url" content="{{ head.domain + head.path }}")
+meta(property="og:image" content="{{ head.image }}")
+meta(property="og:description" content="{{ head.description }}")

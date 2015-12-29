@@ -1,0 +1,142 @@
+.modalHolder(
+ng-if="main.modal.url"
+ng-click="main.modal.reset()"
+class="animate enter-fadeIn exit-fadeOut speed-300"
+)
+	modal(url="main.modal.url")
+
+header.userTopBar.dontbreak
+
+	.prompt(
+	ng-show="main.prompt.toggle"
+	ng-style="{ 'background-color': main.prompt.backgroundColor || 'white' }"
+	class="animate enter-fadeInDown exit-fadeOutUp speed-300"
+	)
+
+		span.fa(
+		ng-hide="!main.prompt.fa"
+		ng-class="'fa-' + main.prompt.fa"
+		ng-style="{ 'color': main.prompt.color || 'black' }"
+		)
+
+		span.message(
+		ng-bind="main.prompt.message"
+		ng-style="{ 'color': main.prompt.color || 'black' }"
+		)
+
+	.fa.fa-bars(
+	ng-click="main.menuOpen = !main.menuOpen"
+	ng-style="main.menuOpen ? { 'background-color': 'white' } : ''"
+	title="תפריט"
+	)
+		
+	.logo(
+	ui-sref="homepage"
+	ui-sref-opts="{ reload: true }"
+	) דרכנו
+
+	span.tagline יוזמות חברתיות
+
+	button.silent.signIn.fa.fa-cloud-download(
+	ng-if="main.user.isAnon()"
+	ng-click="main.modal.open('login')"
+	) התחבר/י
+
+	.actions(
+	ng-if="main.acticons.list.length"
+	)
+
+		.action.fa.fa-fw(
+		ng-repeat="acticon in main.acticons.list"
+		ng-class="'fa-' + acticon.fa + ' ' + (acticon.toggled ? 'active' : '')"
+		ng-click="acticon.action()"
+		title="{{ acticon.title }}"
+		)
+
+.mainMenuContainer(
+class="animate enter-slideInRight exit-slideOutRight speed-300"
+ng-show="main.menuOpen"
+ng-swipe-right="main.menuOpen = false"
+)
+
+	nav.menu
+
+		.registry
+
+			.loggedInUser(
+			ng-if="!main.user.isAnon()"
+			)
+
+				.profileImage(
+				ng-style="{ 'background-image': 'url(' + main.user.getProfileUrl() + ')' }"
+				)
+
+				.displayName(ng-bind="main.user.getDisplayName()")
+
+				button.tiny.editProfile(
+				ng-click="main.user.editProfile()"
+				) עריכת פרופיל
+
+				.admining(
+				ng-if="main.user.admining.length"
+				)
+
+					h3.fa(
+					ng-class="main.ui.adminingToggle ? 'fa-angle-up' : 'fa-angle-down'"
+					ng-click="main.ui.adminingToggle = !main.ui.adminingToggle"
+					) יוזמות בניהולך
+
+					.singleAdmined(
+					ng-show="main.ui.adminingToggle"
+					ng-repeat="admined in main.user.admining"
+					)
+						a(
+						ui-sref="singleGroup({ groupID: admined.link, editingMode: true })"
+						ui-sref-opts="{ reload: true }"
+						ng-bind="admined.displayName"
+						)
+
+				.following(
+				ng-if="main.user.following.length"
+				)
+
+					h3.fa(
+					ng-class="main.ui.followingToggle ? 'fa-angle-up' : 'fa-angle-down'"
+					ng-click="main.ui.followingToggle = !main.ui.followingToggle"
+					) יוזמות שסימנת
+
+					.singleFollowed(
+					ng-show="main.ui.followingToggle"
+					ng-repeat="followed in main.user.following"
+					)
+						a(
+						ui-sref="singleGroup({ groupID: followed.link })"
+						ui-sref-opts="{ reload: true }"
+						ng-bind="followed.displayName"
+						)
+
+				button.tiny.logout(
+				ng-click="main.user.logout()"
+				) יציאה
+
+		a.menuItem.fa.fa-hand-peace-o(
+		ui-sref="about"
+		) אודות המיזם
+
+		a.menuItem.fa.fa-book(
+		ui-sref="groups({ category: '' })"
+		) כל היוזמות
+
+		a.menuItem.fa.fa-bullhorn(
+		ui-sref="tasks({ category: '' })"
+		) צריכים אותך
+
+		a.menuItem.fa.fa-map-o(
+		ui-sref="polimap"
+		) מפת היוזמות 2014
+
+		a.menuItem.fa.fa-pencil-square-o(
+		ng-click="main.modal.open('feedback')"
+		) שלחו לנו פידבק
+
+main(ui-view="main")

@@ -1,0 +1,109 @@
+.paper.full.develop(
+ng-if="main.user.isAdmin"
+)
+	admin-homepage
+
+.paper.full.topHero
+
+	h1.topline
+		|הגיע הזמן להתארגן ברשת
+
+	h2.groupsSum
+		span.num {{ homeState.groupsSum + ' ' }}
+		span.sumOf יוזמות חברתיות
+
+.paper.full.whatsUp
+
+	header.lineThrough
+		span מה קורה פה בעצם?
+
+	.paras
+
+		p
+			|דרכנו נוסדה רעיונית איפשהו שם בתחילת 2013 כסוג של ניסוי כלים. הרבה מים עברו מתחת לגשר, וכך או אחרת - היוזמה נמצאת מאז בפיתוח תמידי.
+			br
+			i כמטרת על
+			|, דרכנו שואפת להיות במה מסודרת העונה על זוג צרכים בסיסיים - הנגשת מידע וגיוס משאבים ומתנדבים.
+
+		p בשלב זה המערכת מאפשרת ליוזמות חברתיות להחזיק ולנהל באופן עצמאי עמוד פרופיל ולפרסם בו פרטי קשר והצעות פתוחות להתנדבות. בעתיד אנחנו מקווים לחקור, לגלות ולענות על צרכים נוספים של יזמות חברתיות בארץ.
+
+		a.button.silent.accent(ui-sref="about") אודותינו
+
+.paper.full.homeActions
+
+	header.lineThrough
+		span מה אפשר לעשות?
+
+	.actions
+
+		.action.registerGroup
+			img(
+			src="//s3.eu-central-1.amazonaws.com/darkenu/graphics/homeActions/homeAction03.png"
+			)
+			span לרשום יוזמה חדשה
+			span.smaller בקרוב..
+
+		a.action.volunteer(
+		ui-sref="tasks"
+		)
+			img(
+			src="//s3.eu-central-1.amazonaws.com/darkenu/graphics/homeActions/homeAction02.png"
+			)
+			span לעזור ליוזמה
+
+		a.action.findGroup(
+		ui-sref="groups"
+		)
+			img(
+			src="//s3.eu-central-1.amazonaws.com/darkenu/graphics/homeActions/homeAction01.png"
+			)
+			span למצוא יוזמה במאגר
+
+.paper.full.groupCategories
+
+	header.lineThrough
+		span זירות העשייה
+
+	.categories
+
+		a.singleCategory(
+		ng-repeat="(color, catTitle) in main.categories"
+		ng-class="'back-' + color"
+		ui-sref="groups({ category: main.engCatSlug(color) })"
+		)
+			img(ng-src="{{ '//s3.eu-central-1.amazonaws.com/darkenu/graphics/categories/' + color + '.png' }}")
+			span {{ catTitle }}
+
+.paper.full.newsletter
+
+	header.lineThrough
+		span שמרו על קשר
+
+	input(
+	type="email"
+	ng-model="home.subscriberEmail"
+	placeholder="כתובת מייל"
+	)
+	button.confirm(
+	ng-click="home.subscribe()"
+	) שלח לי עידכונים
+
+	.newsletter-assurances
+		span מיילים מועטים, עידכונים עיקריים.
+		span.lesser בלי פרסומות או ספאם מיותר.
+
+footer
+
+	.nets
+		a.fa.fa-fw.fa-twitter(
+		href="https://twitter.com/darkenunet"
+		title="הצייצת של דרכנו"
+		target="_blank"
+		)
+		a.fa.fa-fw.fa-github(
+		href="https://github.com/panstav/darkenu.net"
+		title="הקוד-פתוח של דרכנו"
+		target="_blank"
+		)
+
+	.made-in מייד-אין ראשון לציון ומצפה רמון.

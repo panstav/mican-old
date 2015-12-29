@@ -1,0 +1,77 @@
+.modal.groupEvent(
+modal-sizer, stop-propagation
+ng-controller="groupEventCtrl as gEvent"
+)
+	header
+		h2 {{ (gEvent.editingExistingEvent ? 'עריכת' : 'הוספת') + ' אירוע' }}
+		.fa.fa-close(ng-click="modal.reset()")
+			
+	main
+		.form(
+		ng-form="groupEventForm"
+		ng-class="gEvent.showValidation ? 'showValidation' : ''"
+		)
+
+			p.explain כל האירועים הינם ציבוריים. כלומר - עדיף להעלות כאן רק אירועים שמתאימים לקהל הרחב.
+
+			input(
+			name="title" required
+			type="text"
+			ng-model="gEvent.event.title"
+			placeholder="שם האירוע"
+			ng-maxlength="50"
+			)
+
+			p.explain.explicit(
+			ng-show="groupEventForm.title.$error.maxlength"
+			) מקסימום 50 תווים.
+
+			.datePicker
+
+				select(
+				name="eventDay" required
+				ng-model="gEvent.day"
+				ng-options="monthDay for monthDay in gEvent.dates.days"
+				ng-change="gEvent.dates.validateDate()"
+				)
+					option(value="") יום
+
+				select(
+				name="eventMonth" required
+				ng-model="gEvent.month"
+				ng-options="gEvent.dates.monthStrings[yearMonth-1] for yearMonth in gEvent.dates.months"
+				ng-change="gEvent.dates.validateDate()"
+				)
+					option(value="") חודש
+
+				select(
+				name="eventYear" required
+				ng-model="gEvent.year"
+				ng-options="year for year in gEvent.dates.years"
+				ng-change="gEvent.dates.validateDate()"
+				)
+					option(value="") שנה
+
+				p.explicit.explain(
+				ng-show="groupEventForm.eventDay.$error.daysInMonth && gEvent.dates.numberOfDays(gEvent.year, gEvent.month) && gEvent.day"
+				) ישנם רק {{ gEvent.dates.numberOfDays(gEvent.year, gEvent.month) }} ימים בחודש זה.
+
+				p.explicit.explain(
+				ng-show="gEvent.showValidation && groupEventForm.eventDay.$error.dateInPast && !groupEventForm.eventDay.$error.daysInMonth"
+				) מועד האירוע חייב להיות תאריך עתידי.
+
+			input(
+			name="link" required
+			type="url"
+			ng-model="gEvent.event.link"
+			placeholder="לינק לעמוד האירוע"
+			)
+
+			p.explain(
+			valid-url
+			ng-class="groupEventForm.link.$invalid ? 'explicit' : ''"
+			)
+
+	footer
+		span.validation(ng-show="gEvent.showValidation") {{ modal.prompts.invalidField }}
+		button.submit.silent(ng-click="gEvent.submit()") {{ modal.prompts.saveButton }}

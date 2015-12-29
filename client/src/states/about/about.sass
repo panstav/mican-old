@@ -1,0 +1,118 @@
+state-about
+
+	.hero
+		background-image: url("https://s3.eu-central-1.amazonaws.com/darkenu/graphics/heroes/about.jpg")
+		border-bottom: 1px solid #8A8A8A
+
+	.paper
+		padding: 2em 1.5em
+
+		@media (min-width: $mobile)
+			padding: 3em
+
+	h1
+		color: white
+		text-shadow: 2px 2px black
+
+		@media (min-width: $desktop)
+			font-size: 3em
+
+	.goals p
+		margin: 1em 0
+
+		&:not(:last-of-type)
+			margin-bottom: 2em
+
+		&.emphasized
+			font-size: 1.2em
+			text-align: center
+			color: $accent
+
+	.win
+
+		@media (max-width: $mobile - 1px)
+			&+.paper
+				padding-top: 3.5em
+
+		.imgContainer
+			background-color: white
+			margin-bottom: -10px
+
+		img
+			width: 100%
+
+		.credit
+			float: left
+			font-size: .8em
+			padding: 0.3em 1em
+			font-style: italic
+
+	.aid
+
+		li
+			margin-top: 2em
+
+	.contributers
+
+		p
+			margin-bottom: 2em
+
+		li
+			cursor: default
+			display: inline-block
+			background-color: $contrib
+
+			border-radius: 0.8em
+			margin: .2em
+			padding: .2em .8em
+
+	.mainTech
+		text-align: center
+		padding-top: 2em
+
+		li
+			display: inline-block
+			vertical-align: top
+			width: 100%
+
+			margin-bottom: 3em
+			padding: 0 2%
+			
+			@media (min-width: $mobile)
+				width: 45%
+				
+
+		img
+			width: 100%
+
+		.title, p
+			text-align: left
+			direction: ltr
+
+		p
+			margin: 0
+			font-size: .8em
+			color: $explain
+
+		.title
+			display: block
+			color: $miscHeadlines
+			font-weight: bold
+			text-decoration: none
+
+	.restTech
+		margin-top: 1em
+
+		button
+			font-weight: normal
+
+		ul
+			direction: ltr
+			font-size: .8em
+
+		li
+			display: inline-block
+			background-color: $uiGrey
+			margin: 0.4em
+			padding: 0.2em 0.5em
+			border-radius: 5px

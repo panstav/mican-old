@@ -1,0 +1,16 @@
+# Webstorm
+/.idea/
+
+# Nodejs & npm
+/node_modules/
+/npm-debug.log
+
+# Log
+/.sass-cache
+/webpack-stats.json
+
+# Private
+/graphics/
+/assets.7z
+/env.json
+/server/localID.js

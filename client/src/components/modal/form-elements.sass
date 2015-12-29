@@ -1,0 +1,75 @@
+[ng-form]
+
+	&.showValidation
+
+		.ng-invalid
+			background-color: rgba($uiWarn, .2)
+			border-color: rgba(243, 70, 47, 0.5)
+
+		.explicit
+			color: $uiWarn
+
+	.inputBlock
+		margin-top: 20px
+
+	[required]
+		border-bottom-width: 3px
+
+.fa-wrapper
+	position: relative
+	width: 100%
+
+	&:before
+		position: absolute
+		top: 1.5rem
+		right: 0.7rem
+		width: 1rem
+		color: $explain
+
+	input
+		font-family : "Alef Hebrew", serif !important
+		padding-right: 1.75em
+
+[type="url"], [type="tel"], [type="text"], [type="email"], textarea, select
+	box-sizing: border-box
+
+	width: 100%
+	margin: .5em 0
+	padding: 4px
+
+	line-height: 1.5em
+	font-size: 20px
+
+textarea
+	resize: none
+	height: 5em
+
+	&.verbose
+		height: 15rem
+		font-size: 1rem
+
+.explain
+	margin: 0 0 15px 0
+	font-size: .8em
+	color: $explain
+
+.charsLeft
+	direction: ltr
+	float: left
+	margin-left: 1em
+
+.submit
+	@include button
+	color: #6091BE
+
+.datePicker, .timePicker
+	text-align: center
+
+	select
+		width: auto
+		height: 30px
+		padding: 0 5px
+		font-size: 14px
+
+	span
+		margin: 0 8px 0 3px

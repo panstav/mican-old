@@ -1,0 +1,73 @@
+.modal.completeTask(
+modal-sizer, stop-propagation
+ng-controller="completeTaskCtrl as compT"
+)
+	header
+		h2 השלמת משימה
+		.fa.fa-close(ng-click="modal.reset()")
+
+	main
+
+		.form(
+		ng-form="completeTaskForm"
+		ng-class="compT.showValidation ? 'showValidation' : ''"
+		)
+			
+			p.explain(
+			ng-if="compT.volunteers.length"
+			)
+				|הודעה על השלמת המשימה תשלח באופן אוטומטי לכל המתנדבים שבחרו להשאר מעודכנים לגבי משימה זו.
+
+			input(
+			name="sharingStory"
+			type="checkbox"
+			ng-model="compT.sharingStory"
+			)
+			label(
+			for="sharingStory"
+			ng-click="compT.sharingStory = !compT.sharingStory"
+			) הייתי רוצה לשתף את סיפור העשייה.
+
+			textarea.verbose(
+			ng-show="compT.sharingStory" ng-required="compT.sharingStory"
+			name="story"
+			ng-model="compT.story"
+			ng-maxlength="1500"
+			)
+
+			p.explain(
+			ng-show="compT.sharingStory"
+			) כאוות נפשכם, עד 1500 תווים.
+
+			.delimiter
+
+			div(
+			ng-if="compT.volunteers.length"
+			)
+
+				label ביחרו את המתנדבים שהשתתפו בעשייה:
+
+				.volunteerBox
+
+					.singleVolunteer(
+					ng-repeat="volunteer in compT.volunteers"
+					ng-class="volunteer.participated ? 'participated' : ''"
+					ng-click="volunteer.participated = !volunteer.participated"
+					)
+
+						.profileImage(
+						ng-style="{ 'background-image': 'url(' + volunteer.profilePhotoUrl + ')' }"
+						)
+
+						.displayName {{ volunteer.displayName || volunteer.anonFullName }}
+
+						input(
+						stop-propagation
+						name="participated"
+						type="checkbox"
+						ng-model="volunteer.participated"
+						)
+
+	footer
+		span.validation(ng-show="compT.showValidation") {{ modal.prompts.invalidField }}
+		button.submit.silent(ng-click="compT.submit()") {{ modal.prompts.saveButton }}

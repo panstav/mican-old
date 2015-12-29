@@ -1,0 +1,134 @@
+state-groups
+
+	$shadow: 0 0 10px #012E43
+
+	.hero
+		background-image: url('https://s3.eu-central-1.amazonaws.com/darkenu/graphics/heroes/groups-overview.jpg')
+
+	h1
+		color: #fafafa
+		text-shadow: $shadow
+
+	.searchBar
+		position: relative
+		box-sizing: border-box
+		width: 100%
+		padding: .2em .4em
+
+		input, input:focus
+			border: 0
+
+		input
+			box-sizing: border-box
+			width: 100%
+
+			font-size: 1.5em
+
+		.fa-times
+			cursor: pointer
+			position: absolute
+			top: 0
+			left: 0
+
+			font-size: 1.2em
+			color: darken($uiGrey, 10%)
+			padding: .6em
+
+			&:hover
+				color: black
+
+	button.showAllCategories
+		float: left
+		color: #8A8A8A
+		
+		&:before
+			padding-left: .5em
+
+	.catTitle
+		background-repeat: no-repeat
+		background-size: 2em
+		background-position: 0.3em center
+		clear: both
+
+		padding: 0.9em 0.8em .9em 2.5em
+
+		border-top-left-radius: 7px
+		border-top-right-radius: 7px
+
+		color: #FFF
+		font-size: 2em
+		font-weight: bold
+
+		@media (min-width: $tablet)
+			padding: 0.9em 0.8em .9em 3.5em
+			background-position: 0.8em center
+
+	a.singleGroup
+		text-decoration: none
+
+	.singleGroup
+		@include clearFix
+
+		display: block
+		margin: 1em 0
+
+		background-color: #fafafa
+		border-bottom: 2px solid #f2f2f2
+
+		@media (min-width: $mobile)
+			margin: 1em 0
+
+		.profile
+			float: right
+
+		.logo
+			@include logo
+
+			width: 5em
+			height: 5em
+
+			margin: .4em .8em .5em .8em
+
+			@media (min-width: $mobile)
+				width: 6em
+				height: 6em
+
+				margin: 0.8em 1.2em
+
+		.melel
+			padding: .6em .8em
+			
+		.title
+			color: black
+			font-size: 1.2em
+
+		.desc
+			padding-top: .5em
+			text-align: justify
+			color: lighten($explain, 15%)
+
+		&:hover
+			background-color: lighten($uiGrey, 3%)
+
+	.categories
+		padding: 0 .3em
+
+		.singleCategory, img, label
+			cursor: pointer
+
+		.singleCategory
+			display: inline-block
+			border-radius: 2em
+			padding: .5em .5em .1em
+
+			&:not(:hover)
+				background-color: transparent
+
+		img
+			width: 1.5em
+
+		label
+			display: inline-block
+			vertical-align: top
+			margin: .2em
+			font-size: .8em

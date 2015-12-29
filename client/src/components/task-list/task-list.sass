@@ -1,0 +1,249 @@
+task-list
+
+	$mainColor: #0C0C0C
+	$secondaryColor: #A0A0A0
+
+	.token .fa, .token .value, .desc p, .importance p, .singleRequirement, .singleLink
+		color: $mainColor
+
+	h3, .createdAt, .loader
+		color: $secondaryColor
+
+	.loader
+		display: none
+		margin: .5rem
+
+		float: left
+		text-shadow: 0 0 1px rgba(255, 255, 255, 0.5)
+		color: #686868
+
+		&.loading
+			display: inline-block
+
+	.singleTask
+		@include clearFix
+		@include radius(2px)
+
+		margin: .5rem 0
+		padding: .2rem
+		background-color: #F0EEEE
+		border:
+			left: 1px solid #DFDFDF
+			bottom: 1px solid #DFDFDF
+			right: 5px solid
+
+		&:first-of-type
+			margin-top: 0
+
+		&.last
+			margin-bottom: 20px
+
+		.titleBar
+			cursor: pointer
+
+		.title
+			display: inline-block
+
+	.createdAt
+		float: left
+		margin: .25em
+		color: #A0A0A0
+
+	.numVolunteers
+		cursor: default
+		display: inline-block
+		border-radius: 3px
+		background-color: $tokenBack
+		width: 2em
+
+		margin: 4px
+		border:
+			left: 1px solid $tokenBorder
+			bottom: 1px solid $tokenBorder
+
+		line-height: 1.5em
+		text-align: center
+		color: #2B2B2B
+
+	.details
+		padding: .5rem
+
+	.createdBy
+		display: inline-block
+		background-color: #FAFAFA
+
+		margin: .5rem 0
+		padding: 5px 12px
+		font-size: .8rem
+
+		span
+			color: #747474
+
+		a
+			margin-right: .5rem
+			text-decoration: none
+
+			&:hover
+				text-decoration: underline
+
+	.designated
+		@include clearFix
+
+	.token
+		@include clearFix
+		@include radius(3px)
+
+		@media (min-width: $mobile)
+			float: right
+			display: inline-block
+
+			.value, a.value
+				min-width: 139px
+
+		margin: 0.5rem
+		padding-right: .1rem
+		border-bottom: 1px solid $tokenBorder
+		background-color: #D8D8D8
+
+		.fa, .value
+			line-height: 1rem
+
+		.fa
+			float: right
+			width: 1.4rem
+
+			padding: .5rem .3rem
+
+			font-size: 1.5em
+			text-align: center
+			text-shadow: -1px 1px 0 $tokenBorder
+			color: $tokenBack
+
+		.value, a.value
+			display: block
+			margin-right: 2.2rem
+			padding: .5rem .7rem
+
+			font-size: .9rem
+			border-right: 1px solid $tokenBorder
+			background-color: $tokenBack
+
+	h3
+		font-weight: bold
+
+	.desc
+		margin-top: .5rem
+
+	.importance, .requirements, .designated, .volunteers
+		margin-top: 1.5rem
+
+	.desc p, .importance p, .singleRequirement, .singleLink
+		font-size: .9rem
+		margin: .75rem 0
+
+	.desc p, .importance p
+		margin-right: 1.5rem
+
+	.requirements ul
+		list-style: disc
+		margin: .5rem 1.8rem
+
+	.links
+		margin: 1rem 0
+
+	.singleLink
+
+		padding: 0.2rem .5rem
+
+		&:first-of-type
+			margin-top: .5rem
+
+		.fa
+			font-size: .8rem
+			margin-left: .5rem
+
+		a
+			font-size: .75rem
+
+	.removeTask
+		float: left
+
+	.volunteer, .editTask, .taskCompleted
+		margin: .5rem 0
+		width: 100%
+		line-height: 1.5em
+		font-weight: bold
+
+		@media (min-width: $mobile)
+			width: auto
+			margin: 0.5rem
+			float: left
+
+	.singleVolunteer
+		@include radius(5px)
+
+		background-color: #FFF
+		border-bottom: 1px solid $tokenBorder
+		margin: 2rem 0
+
+		@media (min-width: $mobile)
+			margin: 2rem 1rem
+
+		&:first-of-type
+			margin-top: 1rem
+
+		.profileImage
+			width: 50px
+			height: 50px
+
+		.details, .tokens
+			@include clearFix
+
+		.message
+			margin: 1em
+
+		a.value
+			background-color: #EEE
+
+task-list, .modal.completeTask
+
+	.singleVolunteer
+		@include clearFix
+
+		.profileImage
+			@include radius(100%)
+
+			float: right
+			background-size: cover
+			margin-left: .8em
+
+		.displayName
+			float: right
+			line-height: 50px
+			font-size: 1.2em
+
+.modal.completeTask
+
+	.volunteerBox
+		overflow-y: auto
+		overflow-x: hidden
+		max-height: 20rem
+
+		padding: 0 .5rem
+		margin-top: 1rem
+
+	.singleVolunteer
+		cursor: pointer
+		padding: .5rem 1rem .5rem 0
+
+		&.participated
+			background-color: lighten($darkenu, 10%)
+
+		.profileImage
+			width: 46px
+			height: 46px
+			border: 2px solid #FFF
+
+	input[name="participated"]
+		float: left
+		margin: 1rem

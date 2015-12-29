@@ -1,0 +1,59 @@
+.modal.editLinks(
+modal-sizer, stop-propagation
+ng-controller="groupLinksCtrl as gLinks"
+)
+	
+	header
+		h2 עריכת לינקים
+		.fa.fa-close(ng-click="modal.reset()")
+			
+	main
+
+		p.explain הוסיפו את עמוד הבית של היוזמה ואת הכתובות לעמודים ברשתות החברתיות.
+
+		.form(
+		ng-form="groupLinksForm"
+		ng-class="gLinks.showValidation ? 'showValidation' : ''"
+		)
+
+			.fa-wrapper.fa.fa-fw.fa-home
+				input(
+				name="homepage" type="url"
+				ng-model="gLinks.links.homepage"
+				placeholder="כתובת עמוד הבית"
+				ng-change="gLinks.validateLinks('homepage')"
+				)
+
+			.fa-wrapper.fa.fa-fw.fa-facebook
+				input(
+				name="facebook" type="url"
+				ng-model="gLinks.links.facebook"
+				placeholder="כתובת עמוד / קבוצת פייסבוק"
+				ng-change="gLinks.validateLinks('facebook')"
+				)
+
+			.fa-wrapper.fa.fa-fw.fa-twitter
+				input(
+				name="twitter" type="url"
+				ng-model="gLinks.links.twitter"
+				placeholder="כתובת חשבון הטוויטר"
+				ng-change="gLinks.validateLinks('twitter')"
+				)
+
+			.fa-wrapper.fa.fa-fw.fa-google-plus
+				input(
+				name="google" type="url"
+				ng-model="gLinks.links.google"
+				placeholder="כתובת חשבון הגוגל+"
+				ng-change="gLinks.validateLinks('google')"
+				)
+
+			p.explain(
+			valid-url
+			ng-class="groupLinksForm.$error.url ? 'explicit' : ''"
+			)
+			
+	footer
+
+		span.validation(ng-show="gLinks.showValidation") {{ modal.prompts.invalidField }}
+		button.submit.silent(ng-click="gLinks.submit()") {{ modal.prompts.saveButton }}

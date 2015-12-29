@@ -1,0 +1,21 @@
+.modal.confirmAction(
+modal-sizer, stop-propagation
+ng-controller="confirmActionCtrl as confirmAction"
+)
+
+	header
+
+		h2 {{ confirmAction.genderizedAssurance }}
+		.fa.fa-close(ng-click="modal.reset()")
+
+	main
+
+		p {{ confirmAction.effect }}
+
+		button.confirm(
+		ng-click="confirmAction.approve()"
+		) אישור
+
+		button.cancel(
+		ng-click="confirmAction.cancel()"
+		) ביטול

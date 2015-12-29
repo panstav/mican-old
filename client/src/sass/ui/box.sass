@@ -1,0 +1,14 @@
+@mixin box
+	@include clearFix
+	width: 100%
+	margin: auto
+	padding: .5rem
+	box-sizing: border-box
+
+	@media (min-width: $desktop) and (max-width: $tv - 1px)
+		width: $desktop
+	@media (min-width: $tv)
+		width: 1024px
+
+section, .content-wrap
+	@include box

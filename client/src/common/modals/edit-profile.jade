@@ -1,0 +1,52 @@
+.modal.editProfile(
+modal-sizer, stop-propagation
+ng-controller="editProfileCtrl as eProfile"
+)
+
+	header
+
+		h2 עריכת פרופיל
+		.fa.fa-close(ng-click="modal.reset()")
+
+	main
+
+		.form(
+		ng-form="userProfileForm"
+		ng-class="eProfile.showValidation ? 'showValidation' : ''"
+		)
+
+			.profileImage(
+			ng-style="{ 'background-image': 'url(' + eProfile.user.profilePhotoUrl + ')' }"
+			)
+
+			button.uploadNewProfile(
+			ng-file-select="eProfile.uploadProfileImage($files)"
+			ng-multiple="false"
+			accept="image/*"
+			resetOnClick="true"
+			) העלה תמונה מהמחשב
+
+			p.explain.explicit(
+			ng-show="userProfileForm.$error.imageTooBig"
+			) התמונה שבחרת גדולה מדי. (עד 300KB)
+
+			input(
+			name="displayName" required
+			type="text"
+			ng-model="eProfile.user.displayName"
+			ng-maxlength="25"
+			)
+			p.explain באמצעות שם או כינוי זה יוכלו גולשים אחרים לזהות אתכם באתר.
+			p.explain.explicit(
+			ng-show="userProfileForm.displayName.$error.maxlength"
+			) מקסימום 25 תווים.
+
+			select(
+			ng-model="eProfile.user.gender"
+			ng-options="gender.key as gender.value for gender in eProfile.genders"
+			)
+			p.explain לא יוצג לגולשים באתר. משמש אך ורק לייחוס נכון של הניסוח.
+
+	footer
+		span.validation(ng-show="eProfile.showValidation") {{ modal.prompts.invalidField }}
+		button.submit.silent(ng-click="eProfile.submit()") {{ modal.prompts.saveButton }}

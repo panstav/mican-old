@@ -1,0 +1,89 @@
+.tasksOverview.content-wrap
+
+	.paper
+
+		.categoryFilter
+
+			label הצג משימות מ-
+
+			select(
+			name="categoryFilter"
+			ng-model="tOverview.categoryFilter"
+			ng-options="color as category for ( color, category ) in main.categories"
+			)
+				option(value="") כל הקטגוריות
+
+		.sorter
+
+			label סדר לפי
+
+			span
+				input(
+				id="radio-createdAt"
+				type="radio"
+				name="sorter"
+				ng-model="tOverview.sorter"
+				value="createdAt"
+				)
+				label(for="radio-createdAt") יצירת המשימה
+
+			span
+				input(
+				id="radio-designated"
+				type="radio"
+				name="sorter"
+				ng-model="tOverview.sorter"
+				value="designatedTime"
+				)
+				label(for="radio-designated") מועד המשימה
+
+			span
+				input(
+				id="radio-views"
+				type="radio"
+				name="sorter"
+				ng-model="tOverview.sorter"
+				value="viewed"
+				)
+				label(for="radio-views") מס' צפיות
+
+		.novolunteers
+			input(
+			id="novolunteers"
+			type="checkbox"
+			ng-model="tOverview.novolunteers"
+			)
+			label(for="novolunteers") הצג רק משימות שלא התנדבו להן
+
+		.center
+			button.applyQuery(
+			ng-click="tOverview.applyQuery()"
+			)
+				.fa.fa-search
+				span חיפוש
+
+	.paper(
+	ng-show="tOverview.searchedOnce"
+	)
+
+		label.noneFound(ng-if="!tOverview.tasks.length") {{ tOverview.emptyListPrompt.value }}
+
+			div(
+			ng-if="main.user.isAnon()"
+			)
+				a(
+				href="javascript:void(0)"
+				ng-click="main.modal.open('login')"
+				)
+					|התחברו
+				|&nbsp;על מנת לראות את המשימות למשתמשים רשומים.
+
+		task-list(
+		tasks="tOverview.tasks"
+		include-volunteers="false"
+		)
+
+		button.loadMore(
+		ng-hide="tOverview.lastBatch"
+		ng-click="tOverview.loadMore()"
+		) הצג עוד משימות

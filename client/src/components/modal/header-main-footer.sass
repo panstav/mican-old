@@ -1,0 +1,58 @@
+$headerBackColor: #DADADA
+
+header
+	$fontSize: 1.5rem
+	$sidePadding: .5rem
+
+	box-sizing: border-box
+	position: absolute
+	top: 0
+	width: 100%
+
+	background-color: $headerBackColor
+	//padding: 0.4em $sidePadding*2 0.5em $sidePadding
+	text-align: right
+	font-size: $fontSize
+	line-height: 1em
+
+	h2
+		display: inline-block
+		float: right
+		margin: 0
+		padding: .35em .4em 0.4em
+		color: #4B4B4B
+
+	.fa-close
+		cursor: pointer
+		float: left
+		padding: .4em
+		font-size: $fontSize
+		color: white
+
+		&:hover
+			color: $uiWarn
+
+main
+	overflow-y: auto
+	margin: 55px 5px
+	height: 86%
+	box-sizing: border-box
+	padding: 5px 15px
+
+	.delimiter
+		box-sizing: border-box
+		height: 1px
+		width: 100%
+		margin: 30px 0
+		background-color: transparent
+
+footer
+	position: absolute
+	bottom: 0
+
+	width: 100%
+	background-color: white
+	border-top: 1px solid #DDD
+
+	.submit
+		float: left

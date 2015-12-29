@@ -1,0 +1,34 @@
+.modal.editGroupDesc(
+modal-sizer, stop-propagation
+ng-controller="editGroupDescCtrl as editGD"
+)
+
+   header
+      h2 עריכת תיאור היוזמה
+      .fa.fa-close(ng-click="modal.reset()")
+
+   main
+
+      .form(
+      ng-form="editGroupDescForm"
+      ng-class="editGD.showValidation ? 'showValidation' : ''"
+      )
+
+         textarea.verbose(
+         name="newGroupDesc"
+         placeholder="כמה מילים על היוזמה.."
+         ng-model="editGD.desc"
+         ng-maxlength="800" required
+         )
+
+         p.explain כאוות נפשכם, עד 800 תווים.
+
+            span.charsLeft(
+            ng-show="editGD.showValidation"
+            ng-class="editGroupDescForm.newGroupDesc.$error.maxlength ? 'explicit' : ''"
+            ) נותרו עוד {{ 800 - ( editGroupDescForm.newGroupDesc.$error.maxlength ? 800 : editGD.desc.length ) }}
+
+   footer
+
+      span.validation(ng-show="editGD.showValidation") {{ modal.prompts.invalidField }}
+      button.submit.silent(ng-click="editGD.submit()") {{ modal.prompts.saveButton }}

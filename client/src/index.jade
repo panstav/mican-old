@@ -1,0 +1,25 @@
+doctype html
+html(lang="he", ng-app="app")
+	head
+
+		meta(name="test", test="#{test}")
+		base(href="/")
+		meta(name="fragment", content="!")
+		meta(name="viewport", content="width=device-width")
+		meta(charset="utf-8")
+		meta(name="referrer" content="always")
+		link(type="text/plain", rel="author", href="humans.txt")
+		link(ng-if="head.canonical" rel="canonical" href="{{ head.canonical }}")
+
+		include favicons
+		include seo
+
+		// build:css
+		// endbuild
+
+		// build:js
+		// endbuild
+
+	body(ng-class="$state.$current.name" step="loading")
+
+		include components/body/body

@@ -1,0 +1,275 @@
+.modal.groupTask(
+modal-sizer, stop-propagation
+ng-controller="groupTaskCtrl as gTask"
+)
+
+	header
+		h2 {{ (gTask.editingExistingTask ? 'עריכת' : 'הוספת') + ' משימה' }}
+		.fa.fa-close(ng-click="modal.reset()")
+
+	main
+
+		.form(
+		ng-form="groupTaskForm"
+		ng-class="gTask.showValidation ? 'showValidation' : ''"
+		)
+
+			p.explain(
+			ng-if="gTask.editingExistingTask"
+			) לאחר עידכון המשימה, אלו שכבר הציעו התנדבות - יקבלו מייל שיאפשר להם להתעדכן בפרטים החדשים שערכתם.
+			
+			input(
+			name="title" required
+			type="text"
+			ng-model="gTask.task.title"
+			placeholder="כותרת המשימה"
+			ng-maxlength="50"
+			)
+
+			p.explain(
+			ng-show="groupTaskForm.title.$error.maxlength"
+			) מקסימום 50 תווים.
+
+			textarea.verbose(
+			name="desc" placeholder="כמה מילים על המשימה"
+			ng-model="gTask.task.desc"
+			ng-maxlength="800" required
+			)
+
+			p.explain(
+			ng-show="groupTaskForm.desc.$error.maxlength"
+			) מקסימום 800 תווים.
+
+			textarea.verbose(
+			name="importance" placeholder="כמה מילים על החשיבות של משימה זו - רצוי, לא חובה."
+			ng-model="gTask.task.importance"
+			ng-maxlength="400"
+			)
+
+			p.explain(
+			ng-show="groupTaskForm.importance.$error.maxlength"
+			) מקסימום 400 תווים.
+
+			.delimiter
+
+			label דרישות
+			.singleRequirement(
+			ng-repeat="requirement in gTask.task.requirements"
+			)
+
+				button.silent.fa.fa-edit.editRequirement(
+				ng-click="gTask.editRequirement($index)"
+				title="ערוך דרישה"
+				)
+
+				button.silent.fa.fa-remove.removeRequirement(
+				ng-click="gTask.removeRequirement($index)"
+				title="מחק דרישה"
+				)
+
+				span {{ requirement }}
+
+			div(
+			ng-hide="gTask.task.requirements.length >= 5"
+			)
+
+				input(
+				name="newRequirement"
+				type="text"
+				ng-model="gTask.newRequirement"
+				placeholder="שמור דרישה"
+				ng-maxlength="150"
+				)
+
+				p.explain(
+				ng-show="groupTaskForm.newRequirement.$error.maxlength"
+				) מקסימום 150 תווים.
+
+				.center
+					button.addRequirement(
+					ng-click="gTask.addRequirement()"
+					) שמור דרישה
+
+			.delimiter
+
+			label מועד
+
+			.datePicker
+
+				select(
+				name="taskDay" ng-required="gTask.gotPartialDate()"
+				ng-model="gTask.taskDay"
+				ng-options="monthDay for monthDay in gTask.days"
+				ng-change="gTask.validateDate()"
+				)
+					option(value="") יום
+
+				select(
+				name="taskMonth" ng-required="gTask.gotPartialDate()"
+				ng-model="gTask.taskMonth"
+				ng-options="gTask.monthStrings[yearMonth-1] for yearMonth in gTask.months"
+				ng-change="gTask.validateDate()"
+				)
+					option(value="") חודש
+
+				select(
+				name="taskYear" ng-required="gTask.gotPartialDate()"
+				ng-model="gTask.taskYear"
+				ng-options="year for year in gTask.years"
+				ng-change="gTask.validateDate()"
+				)
+					option(value="") שנה
+
+				p.explicit.explain(
+				ng-show="groupTaskForm.taskDay.$error.daysInMonth && gTask.numberOfDays(gTask.taskYear, gTask.taskMonth) && gTask.taskDay"
+				) ישנם רק {{ gTask.numberOfDays(gTask.taskYear, gTask.taskMonth) }} ימים בחודש זה.
+
+				p.explicit.explain(
+				ng-show="gTask.showValidation && groupTaskForm.taskDay.$error.dateInPast && !groupTaskForm.taskDay.$error.daysInMonth"
+				) מועד המשימה חייב להיות תאריך עתידי.
+
+			.timePicker
+
+				select(
+				name="taskMinutes"
+				ng-model="gTask.taskMinutes"
+				ng-options="minute for minute in gTask.minutes"
+				)
+					option(value="") דקות
+
+				span :
+
+				select(
+				name="taskHour" ng-required="gTask.taskMinutes"
+				ng-model="gTask.taskHour"
+				ng-options="hour for hour in gTask.hours"
+				)
+					option(value="") שעה
+
+			p.explain(
+			ng-show="groupTaskForm.designatedTime.$error.maxlength"
+			) מקסימום 100 תווים.
+
+			input(
+			name="duration"
+			type="text"
+			ng-model="gTask.task.duration"
+			placeholder="משך"
+			ng-maxlength="100"
+			)
+
+			p.explain(
+			ng-show="groupTaskForm.duration.$error.maxlength"
+			) מקסימום 100 תווים.
+
+			input(
+			name="designatedPlace"
+			type="text"
+			ng-model="gTask.task.designatedPlace"
+			placeholder="מיקום"
+			ng-maxlength="100"
+			)
+
+			p.explain(
+			ng-show="groupTaskForm.designatedPlace.$error.maxlength"
+			) מקסימום 100 תווים.
+
+			.inputBlock
+
+				label לינקים רלוונטיים
+				.singleLink(
+				ng-repeat="link in gTask.task.links"
+				)
+
+					button.silent.fa.fa-edit.editLink(
+					ng-click="gTask.editLink($index)"
+					title="ערוך לינק"
+					)
+
+					button.silent.fa.fa-remove.removeLink(
+					ng-click="gTask.removeLink($index)"
+					title="מחק לינק"
+					)
+
+					span(
+					ng-show="link.title"
+					) {{ link.title + ' - ' }}
+					a(
+					ng-href="{{ link.value }}"
+					target="_blank"
+					) {{ link.value }}
+
+				.newLink(
+				ng-hide="gTask.task.links.length >= 5"
+				)
+
+					input(
+					name="newLinkTitle"
+					type="text"
+					ng-model="gTask.newLink.title"
+					placeholder="כותרת הלינק"
+					ng-maxlength="50"
+					)
+
+					p.explain(
+					ng-show="groupTaskForm.newLinkTitle.$error.maxlength"
+					) מקסימום 50 תווים.
+
+					.fa-wrapper.fa.fa-external-link
+						input(
+						name="newLinkValue" type="url"
+						ng-model="gTask.newLink.value"
+						placeholder="כתובת הלינק"
+						)
+
+					p.explain(valid-url)
+
+					.center
+						button.addLink(
+						ng-click="gTask.addLink()"
+						) שמור לינק
+
+			.delimiter
+
+			label נגישות
+
+			select(
+			name="publicity" required
+			ng-model="gTask.task.publicity"
+			ng-options="publicityType.name as publicityType.text for publicityType in gTask.publicityTypes"
+			)
+
+			div(
+			ng-switch="gTask.task.publicity"
+			)
+				p.explain(
+				ng-switch-when="public"
+				) גם גולשים אנונימיים יוכלו להתנדב למשימה זו.
+				p.explain(
+				ng-switch-when="registered"
+				) רק גולשים מזוהים יוכלו להתנדב למשימה זו.
+				p.explain(
+				ng-switch-when="followers"
+				) רק גולשים שעוקבים אחר היוזמה יוכלו להתנדב למשימה זו.
+
+			.inputBlock
+				input(
+				id="notifyEmail"
+				name="notifyEmail"
+				type="checkbox"
+				ng-model="gTask.task.notifyEmail.value"
+				)
+				labal(for="notifyEmail") שלח מייל כאשר ישנם מתנדבים למשימה זו.
+
+			p.explain(
+			ng-show="gTask.task.notifyEmail.value"
+			) לכל הצעת התנדבות יישלח מייל לכתובת - "{{ gTask.task.notifyEmail.target }}".
+
+			p.explain(
+			ng-show="!gTask.task.notifyEmail.value"
+			) כל הצעות ההתנדבות יופיעו בצורה מסודרת, במצב עריכה, כחלק מפרטי המשימה.
+
+	footer
+		span.validation(ng-show="gTask.showValidation") {{ modal.prompts.invalidField }}
+
+		button.submit.silent(ng-click="gTask.submit()") {{ modal.prompts.saveButton }}

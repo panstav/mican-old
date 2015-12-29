@@ -1,0 +1,182 @@
+.singleTask(
+ng-repeat="task in tasks"
+ng-class="$last ? 'last' : ''"
+ng-style="{ 'border-right-color': tList.hexColorByName[task.color] }"
+)
+
+	.titleBar(
+	ng-click="tList.toggleTaskDetails(task)"
+	)
+
+		.numVolunteers(
+		stop-propagation
+		title="הציעו להתנדב"
+		) {{ task.numVolunteers }}
+
+		.createdAt {{ task.createdAt }}
+
+		.title(
+		ng-style="task.open ? { 'font-size': '1.2rem' } : ''"
+		) {{ task.title }}
+
+		span.fa.fa-spin.fa-refresh.loader(
+		ng-class="task.loading ? 'loading' : ''"
+		)
+
+	.details(
+	ng-show="task.open"
+	class="animate enter-fadeInUp exit-fadeOutDown speed-250"
+	)
+
+		.createdBy(
+		ng-if="task.createdByToken"
+		)
+			span מבית היוזמה:
+			a(
+			ui-sref="singleGroup({ groupID: task.createdByToken.link })"
+			) {{ task.createdByToken.displayName }}
+
+		.desc(
+		ng-if="task.desc.length"
+		)
+			h3 תיאור המשימה
+			p(ng-repeat="paragraph in task.desc track by $index") {{ paragraph }}
+
+		.importance(
+		ng-if="task.importance.length"
+		)
+			h3 למה זה חשוב
+			p(ng-repeat="paragraph in task.importance track by $index") {{ paragraph }}
+
+		.requirements(
+		ng-if="task.requirements.length"
+		)
+			h3 דרישות
+
+			ul
+				li.singleRequirement(
+				ng-repeat="requirement in task.requirements track by $index"
+				) {{ requirement }}
+
+		.links(
+		ng-if="task.links.length"
+		)
+			h3 לינקים רלוונטיים
+
+			.singleLink(
+			ng-repeat="link in task.links track by $index"
+			)
+				.fa(
+				ng-class="tList.webOrFacebookIcon(link.value)"
+				)
+				span.label(
+				ng-if="link.title"
+				) {{ link.title + ' - ' }}
+				a(
+				ng-href="{{ link.value }}"
+				target="_blank"
+				) {{ tList.trimMax(link.value, 35) }}
+
+		.designated
+
+			.token.designatedTime(
+			ng-hide="!task.humanDesignatedTime"
+			title="מועד"
+			)
+				.fa.fa-fw.fa-clock-o
+				.value {{ task.humanDesignatedTime }}
+
+			.token.duration(
+			ng-hide="!task.duration"
+			title="משך"
+			)
+				.fa.fa-fw.fa-history
+				.value {{ task.duration }}
+
+			.token.designatedPlace(
+			ng-hide="!task.designatedPlace"
+			title="מיקום"
+			)
+				.fa.fa-fw.fa-map-marker
+				.value {{ task.designatedPlace }}
+
+			.token.viewed(
+			ng-hide="!task.viewed"
+			title="מס' צפיות"
+			)
+				.fa.fa-fw.fa-eye
+				.value {{ task.viewed }}
+
+		.volunteers(
+		ng-if="task.volunteers.length"
+		)
+
+			h3 מתנדבים
+
+			.singleVolunteer(
+			ng-repeat="volunteer in task.volunteers | orderBy: '-niceness'"
+			)
+
+				.details
+
+					.profileImage(
+					ng-style="{ 'background-image': 'url(' + volunteer.profilePhotoUrl + ')' }"
+					)
+
+					.displayName {{ volunteer.displayName || volunteer.anonFullName }}
+
+					.createdAt {{ volunteer.createdAt }}
+
+				.message
+					p(ng-repeat="paragraph in volunteer.message track by $index") {{ paragraph }}
+
+				.tokens
+
+					.token.email(
+					ng-show="volunteer.contact.channel === 'email'"
+					)
+						.fa.fa-fw.fa-envelope
+						a.value(
+						ng-href="{{ 'mailto:' + volunteer.contact.value }}"
+						) {{ volunteer.contact.value }}
+
+					.token.tel(
+					ng-show="volunteer.contact.channel === 'tel'"
+					)
+						.fa.fa-fw.fa-phone
+						a.value(
+						ng-href="{{ 'tel:' + volunteer.contact.value }}"
+						) {{ volunteer.contact.value }}
+
+		button.warn.silent.removeTask(
+		ng-show="editingMode"
+		ng-click="tList.removeTask(task._id)"
+		)
+
+			span.fa.fa-trash-o
+			|מחק
+
+		.clearFix
+
+			button.growth.taskCompleted(
+			ng-show="editingMode"
+			ng-click="tList.complete(task)"
+			)
+
+				span.fa.fa-check-square-o
+				|המשימה הושלמה!
+
+			button.develop.editTask(
+			ng-show="editingMode"
+			ng-click="tList.editTask(task)"
+			)
+
+				span.fa.fa-edit
+				|עריכת המשימה
+
+		button.growth.volunteer(
+		ng-hide="editingMode"
+		ng-click="tList.volunteer(task._id)"
+		)
+			span.fa.fa-thumbs-o-up
+			|התנדב!

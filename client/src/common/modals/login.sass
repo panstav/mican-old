@@ -1,0 +1,64 @@
+.modal.login
+
+	text-align: center
+
+	.paper
+		background-color: #F7F7F7
+		margin: 1rem auto
+
+	ul
+		text-align: right
+
+	.fa-check:before
+		padding-left: 10px
+
+	.viaFacebook, .viaGoogle, .anonymously
+
+		cursor: pointer
+		display: inline-block
+
+		width: 95%
+		margin: 4px auto
+		padding: 5px 0
+
+		text-decoration: none
+		color: #FFF
+
+		.fa-facebook, .fa-google
+			vertical-align: middle
+			margin: 0 .5em
+
+	.viaFacebook
+		background-color: $facebook
+
+	.viaGoogle
+		background-color: $google
+
+	.linkToMail
+		text-align: right
+
+		input
+			text-align: center
+			direction: ltr
+
+		button.send
+			float: left
+			margin: 0
+			padding: 1px 18px
+
+		.fa-envelope-o
+			margin-left: .5rem
+
+	.anonymously
+		width: 100%
+		background-color: #BBB
+		margin-top: 2em
+		padding: 1em 0
+
+		font-size: .9em
+		font-weight: bold
+		letter-spacing: 0.1em
+
+		&:hover
+			color: #BBB
+			background-color: transparent

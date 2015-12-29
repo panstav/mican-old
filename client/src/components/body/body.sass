@@ -1,0 +1,19 @@
+$fromTopSmall: 46px
+$fromTopBig: 66px
+
+body
+	background-color: $uiGrey
+	font-family: "Alef Hebrew", serif
+	overflow-x: hidden
+
+main
+	margin-bottom: 50px
+
+	// because menu-button size
+	margin-top: $fromTopSmall
+
+	@media (min-width: $tv)
+		margin-top: $fromTopBig
+
+@import "./user-top-bar"
+@import "./menu"

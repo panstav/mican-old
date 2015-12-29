@@ -1,0 +1,20 @@
+@mixin lineThrough($border-style, $top-correction, $side-correction)
+	position: relative
+	text-align: center
+
+	&:before
+		content: ''
+
+		position: absolute
+		top: $top-correction
+		right: 0
+		left: 0
+
+		border-top: $border-style
+
+		@media (min-width: $tablet)
+			right: $side-correction
+			left: $side-correction
+
+	span
+		position: relative

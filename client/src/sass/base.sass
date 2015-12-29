@@ -1,0 +1,88 @@
+body
+	direction: rtl
+	margin: 0
+
+.hero
+	background:
+		size: cover
+		position: center
+
+	> h1
+		text-align: center
+		padding: 1.2em
+
+		font-size: 2em
+		font-weight: bold
+		
+		@media (min-height: $mobile)
+			padding: 2em
+
+h2.fa:before
+	padding-left: .5em
+
+a.fa
+	text-decoration: none
+
+:not(a).link-like
+	cursor: pointer
+	color: $defaultLink
+
+.count
+	&.hebrew > li
+		list-style-type: hebrew
+	> li
+		margin-right: .5em
+
+// Forms
+
+@mixin normalizedFields
+	background-color: #FFF
+	border: 1px solid darken($uiGrey, 10%)
+	outline: 0
+
+	&[disabled]
+		background-color: lighten($uiGrey, 5%)
+
+input[type="email"], input[type="url"], input[type="text"], select, textarea
+	@include normalizedFields
+
+	&:focus
+		@include normalizedFields
+
+input[type="checkbox"], input[type="radio"]
+	margin: 0 .5em
+	vertical-align: middle
+
+input[type="url"]
+	text-align: left
+	direction: ltr
+
+	&::-webkit-input-placeholder
+		direction: rtl
+		text-align: right
+	&:-moz-placeholder
+		direction: rtl
+		text-align: right
+	&::-moz-placeholder
+		direction: rtl
+		text-align: right
+	&:-ms-input-placeholder
+		direction: rtl
+		text-align: right
+
+textarea
+	overflow-x: hidden
+
+label[for]
+	cursor: pointer
+
+select:disabled
+	cursor: default
+	color: #C0C0C0
+
+// FontAwesome vs. Alef fix
+h2.fa, a.fa, button.fa, li.fa
+	font-family: "Alef Hebrew", serif
+
+	&:before
+		font-family: FontAwesome

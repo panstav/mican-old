@@ -1,0 +1,79 @@
+.modal.addGroup(
+	modal-sizer, stop-propagation
+	ng-controller="addGroupCtrl as addG"
+)
+
+	header(ng-class="addG.newGroup.color")
+		h2 הוספת יוזמה חדשה
+
+		.fa.fa-close(ng-click="modal.reset()")
+
+	main
+		.form(
+		ng-form="newGroupForm"
+		ng-submit="addG.send(newGroupForm.$valid)"
+		ng-class="addG.showValidation ? 'showValidation' : ''"
+		)
+
+			input(
+			type="text" required
+			name="groupName"
+			ng-model="addG.newGroup.displayName"
+			placeholder="שם היוזמה"
+			)
+
+			textarea.verbose(
+			name="groupDesc" placeholder="כמה מילים על היוזמה.."
+			ng-model="addG.newGroup.desc"
+			ng-maxlength="800" required
+			)
+
+			p.explain כאוות נפשכם, עד 800 תווים.
+
+				span.charsLeft(
+				ng-show="addG.showValidation"
+				ng-class="newGroupForm.groupDesc.$error.maxlength ? 'explicit' : ''"
+				) נותרו עוד {{ 800 - ( newGroupForm.groupDesc.$error.maxlength ? 800 : addG.newGroup.desc.length ) }}
+
+			.delimiter
+
+			select(
+			ng-model="addG.newGroup.color"
+			name="groupField"
+			ng-options="color as title for (color, title) in modal.categories"
+			required
+			)
+
+				option(value="") התחום בו עוסקת היוזמה:
+
+			.inputBlock
+				input(
+				id="newGroupField"
+				type="checkbox"
+				ng-model="addG.newGroupField"
+				)
+				label(for="newGroupField") תחום אחר?
+
+				input(
+				type="text"
+				name="groupNewField"
+				ng-model="addG.newGroup.suggestedField"
+				placeholder="שם לתחום החדש"
+				ng-hide="!addG.newGroupField"
+				)
+
+			.delimiter
+
+			input(
+			id="amAdmin"
+			type="checkbox"
+			ng-model="addG.newGroup.amAdmin")
+
+			label(for="amAdmin") אני פעיל ביוזמה זו.
+
+			p.explain
+				|סמנו ב-וי אם תרצו לנהל את היוזמה באתר. השאירו ריק אם אתם רק ממליצים.
+
+	footer
+		span.validation(ng-show="addG.showValidation") שימו לב לשדות שלא מולאו כשורה.
+		button.submit.silent(ng-click="addG.send(newGroupForm.$valid)") {{ modal.prompts.sendForm }}

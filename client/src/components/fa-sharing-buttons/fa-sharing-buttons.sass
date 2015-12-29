@@ -1,0 +1,13 @@
+fa-sharing-buttons button
+	color: white
+
+	&.fa-facebook
+		@include playSilent($facebook)
+	&.fa-twitter
+		@include playSilent($twitter)
+	&.fa-google-plus
+		@include playSilent($google)
+
+	&:before
+		vertical-align: middle
+		padding-left: .5em

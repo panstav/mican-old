@@ -1,0 +1,95 @@
+.hero
+
+	h1 אודות המיזם
+
+.paper.goals
+	h2.fa.fa-flag-o יעדים
+
+	p
+		|מאז פרוץ המחאה החברתית בקיץ 2011, החלו להיווצר בשטח גופים חדשים.
+		br
+		|בימינו, יחד עם ארגונים חברתיים ותיקים, אלה מהווים אלטרנטיבה אזרחית למציאות הישראלית הקיימת.
+
+	p מדי יום צצות יוזמות וארגונים חדשים היוצרים יחד מארג שלם של שינוי בכל הרבדים המגוונים של החיים - תקשורת אלטרנטיבית, תודעה צרכנית, הכשרה וחינוך חברתי, קואופרטיבים, דיור ציבורי, רפורמה מוניטארית, מאבקים בתאגידים ובריכוזיות, פלטפורמות טכנולוגיות לשיתוף והעצמת הציבור ועוד.
+
+	p.emphasized קיים צורך חיוני לייעל את פעילות רשת היוזמות הקיימת ולחזקה באמצעות גיוס מתנדבים וחיבור בין רשתות קיימות ומתהוות - זו בדיוק הסיבה שלשמה אנו פועלים להקמת האתר.
+
+.paper.step.full.ish.win
+
+	.imgContainer
+		img(src="https://s3.eu-central-1.amazonaws.com/darkenu/graphics/win.jpg")
+		.credit
+			|צילום:&nbsp;
+			a(target="_blank" href="https://www.facebook.com/ProtestArt") אביבי אהרון - Protest Art
+
+.paper.step
+
+	p ברצוננו להעלות אל פני השטח את השינוי הכביר שמתחולל מתחת לפני המסך - להנגיש את הרשת הזו בצורה פשוטה ומעוררת השראה ולהניע לפעולה את כל מי שמאמין במאבק החברתי ורוצה לסייע ולא יודע מה קורה, היכן צריך או איך פועלים. כך - אנחנו מקווים - יקודם השינוי המיוחל בסדר היום של מדינת ישראל.
+
+.paper.limituer.aid
+	h2.fa.fa-heart עזרו לנו
+
+	ul.count.hebrew
+		li
+			|אם אתם יודעים לתכנת, יש אינסוף דברים שאפשר לעשות בקוד המקור.&nbsp;
+			a(href="#open-source") בסקשן הבא
+			|&nbsp;יש פרטים נוספים.
+		li
+			|היוזמות המופיעות באתר, הן לבטח קצה הקרחון של הפעילות החברתית בארץ. ספרו עלינו למעגלים שלכם:
+			br
+			fa-sharing-buttons(
+			share-text="about.shareText"
+			url="'https://www.darkenu.net'"
+			)
+		li
+			span.link-like(ng-click="main.modal.open('feedback')") שלחו לנו פידבק
+			|, אין כמוכם!
+
+.paper.step.contributers
+	h2.fa.fa-group תודות
+
+	p
+		|לכל מי שעזר לנו לאורך הדרך - בעזרתכם הפרוייקט הזה בכלל מתאפשר.
+		br
+		|הנה השמות של חלק מכם:
+
+	ul
+		li(ng-repeat="contrib in about.contributers") {{ contrib }}
+
+.paper.limituer
+	.hashtag-anchor#open-source
+
+	h2.fa.fa-github קוד פתוח
+
+	p
+		|רוב הקוד הפועל מאחורי האתר, השירותים שהאתר מספק והשרת שמנגיש את אלו הינו - קוד פתוח. כלומר, ניתן&nbsp;
+		a(target="_blank" href="https://github.com/panstav/darkenu.net") לצפות בו
+		|&nbsp;וב
+		a(target="_blank" href="https://github.com/panstav/darkenu.net/commits/master") תהליך הפיתוח שלו
+		|, וגם&nbsp;
+		a(target="_blank" href="https://github.com/panstav/darkenu.net/pulls") להגיש הצעות עריכה
+		|.
+
+.paper.step
+	h2.fa.fa-gears טכנולוגיות
+
+	p כל הטכנולוגיות שמוצגות כאן פועלות בבסיס האתר. חלקן ניתנות כקוד פתוח, חלקן מאפשרות שימוש חופשי בשירותיהן - כולן מונגשות באופן חינמי.
+
+	ul.mainTech
+
+		li(ng-repeat="tech in about.mainTechnologies")
+			a.title(target="_blank" ng-href="{{ tech.url }}") {{ tech.title }}
+
+			p {{ tech.desc }}
+
+	.restTech
+
+		button.small.develop(
+		ng-click="showRestTech = true"
+		ng-show="!showRestTech"
+		) הצג גם את כל שאר הטכנולוגיות בשימוש (בסך הכל {{ about.restTechnologies.length }})
+
+		ul(ng-show="showRestTech")
+			li(ng-repeat="tech in about.restTechnologies")
+				a(target="_blank" ng-href="{{ tech.url }}") {{ tech.title }}
+

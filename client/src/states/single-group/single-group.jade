@@ -1,0 +1,210 @@
+.singleGroup
+
+	.heroHolder(
+	ng-class="sGroup.group.profile.hero.url ? '' : 'placeholding'"
+	)
+
+		.paper.full.hero(
+		ng-style=" :: sGroup.styleHero(sGroup.group.profile.hero.url)"
+		)
+
+			button.small.develop.uploadNewHero(
+			ng-show="sGroup.dev()"
+			ng-file-select
+			ng-file-change="sGroup.uploadImage('hero', $files)"
+			ng-multiple="false"
+			accept="image/*"
+			resetOnClick="true"
+			) {{ sGroup.group.profile.hero.url ? 'החלף' : 'העלה' }} תמונת דגל
+
+			.id
+
+				.logo(
+				ng-style="sGroup.group.logo.url ? { 'background-image': 'url(' + sGroup.group.logo.url + ')' } : { 'background-color': + '#C4C4C4' }"
+				)
+
+					button.small.develop.uploadNewLogo(
+					ng-show="sGroup.dev()"
+					ng-file-select
+					ng-file-change="sGroup.uploadImage('logo', $files)"
+					ng-multiple="false"
+					accept="image/*"
+					resetOnClick="true"
+					) {{ sGroup.group.logo.url ? 'החלף' : 'העלה' }} לוגו
+
+				h1.displayName {{ sGroup.group.displayName }}
+
+				.acticons
+
+					.starThisGroup.fa.fa-fw(
+					ng-class="sGroup.group.starredByUser ? 'fa-star' : 'fa-star-o'"
+					ng-click="sGroup.starToggle()"
+					title="עקוב אחר יוזמה זו"
+					)
+
+					social-links(
+					links="sGroup.group.links"
+					)
+
+				button.small.develop.white.editLinks(
+				ng-show="sGroup.dev()"
+				ng-click="sGroup.editLinks()"
+				) עריכת לינקים
+
+	.paper.royal(ng-if="sGroup.group.pending && sGroup.group.userIsAdmin")
+
+		pending-group(group-id="sGroup.group._id")
+
+	.paper.limituer.description
+
+		h2.title מי אנחנו
+
+		p(ng-repeat="paragraph in sGroup.group.desc track by $index") {{ paragraph }}
+
+		button.small.develop.editDescription(
+		ng-show="sGroup.dev()"
+		ng-click="main.modal.open('edit-group-desc', { groupID: sGroup.group._id, editingDesc: sGroup.group.desc })"
+		) עריכת תיאור היוזמה
+
+	.paper.step.limituer.events(
+	ng-show="sGroup.group.profile.events.length"
+	)
+
+		h2.title מה קורה
+
+		.singleEvent(
+		ng-repeat="event in sGroup.group.profile.events"
+		)
+
+			button.develop.fa.fa-trash-o(
+			ng-show="sGroup.dev()"
+			ng-click="sGroup.removeEvent(event._id)"
+			)
+
+			button.develop.fa.fa-edit(
+			ng-show="sGroup.dev()"
+			ng-click="sGroup.editEvent(event)"
+			)
+
+			span.date {{ event.humanDate }}
+
+			a.title(
+			ng-href="{{ event.link }}"
+			target="_blank"
+			) {{ event.title }}
+
+		.center
+			button.small.develop.noContacts(
+			ng-show="sGroup.dev()"
+			ng-click="sGroup.addEvent()"
+			) הוספת אירוע
+
+	.paper.less.step.center.events(
+	ng-show="sGroup.dev() && !sGroup.group.profile.events.length"
+	)
+		button.big.develop.noContacts(
+		ng-click="sGroup.addEvent()"
+		) הוספת אירוע
+
+	.tasks.paper.step(
+	ng-show="sGroup.group.profile.tasks.length"
+	)
+
+		h2.title מה צריך
+
+		task-list(
+		tasks="sGroup.group.profile.tasks"
+		include-volunteers="sGroup.group.userIsAdmin"
+		show-edit-buttons="sGroup.dev()"
+		open-init="$state.params.taskid"
+		)
+
+		.center(
+		ng-show="sGroup.dev() && sGroup.group.profile.tasks.length"
+		)
+
+			button.small.develop(
+			ng-click="sGroup.addTask()"
+			) הוספת משימה נוספת
+
+	.paper.step.less.center(
+	ng-if="!sGroup.group.pending"
+	ng-show="sGroup.dev() && !sGroup.group.profile.tasks.length"
+	)
+
+		button.big.develop.noTasks(
+		ng-click="sGroup.addTask()"
+		) הוספת משימות
+
+	.paper.step.limituer.contacts.dontbreak(
+	ng-show="sGroup.group.profile.contacts.length"
+	)
+
+		h2.title יצירת קשר
+
+		.singleContact(ng-repeat="contact in sGroup.group.profile.contacts")
+
+			button.develop.editContact.fa.fa-edit(
+			ng-show="sGroup.dev()"
+			ng-click="sGroup.editContact(contact)"
+			)
+
+			.channel.fa(
+			ng-class="'fa-' + sGroup.contactChannelFaClass[contact.channel]"
+			title="{{ sGroup.contactChannelTitle[contact.channel] }}"
+			)
+
+			.details
+
+				a.value(
+				ng-href="{{ sGroup.formatLinkProtocol(contact.channel, contact.value) }}"
+				target="_blank"
+				) {{ contact.channel === 'link' ? sGroup.prettifyUrl(contact.value) : contact.value }}
+
+				.nameOfContact
+					label איש הקשר:
+					| {{ contact.nameOfContact }}
+
+		.center(
+		ng-show="sGroup.dev() && sGroup.group.profile.contacts.length"
+		)
+
+			button.small.develop(
+			ng-click="sGroup.addContact()"
+			) הוספת פרטי התקשרות נוספים
+
+	.paper.step.less.center(ng-show="sGroup.dev() && !sGroup.group.profile.contacts.length")
+		button.big.develop.noContacts(
+		ng-click="sGroup.addContact()"
+		) הוספת פרטי התקשרות
+
+	.paper.step.short
+
+		fa-sharing-buttons(
+		share-text="sGroup.group.displayName + ' - באתר דרכנו'"
+		)
+		
+	.paper.relatedGroups(
+	ng-if="sGroup.group.relatedGroups.length"
+	)
+
+		h2.title יוזמות נוספות ב-&nbsp;
+			a(
+			ui-sref="groups({ category: main.engCatSlug(sGroup.group.color) })"
+			) {{ main.categories[sGroup.group.color] }}
+
+		.singleRelatedGroup(
+		ng-repeat="relatedGroup in sGroup.group.relatedGroups"
+		)
+
+			a.logo(
+			ui-sref="singleGroup({ groupID: relatedGroup.link })"
+			ng-if="relatedGroup.logo.url"
+			ng-style="{ 'background-image': 'url(' + relatedGroup.logo.url + ')' }"
+			)
+
+			a.displayName(
+			ui-sref="singleGroup({ groupID: relatedGroup.link })"
+			) {{ relatedGroup.displayName }}
+
+			.desc {{ sGroup.trimMax(relatedGroup.desc, 140) }}

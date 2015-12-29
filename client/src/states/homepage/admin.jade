@@ -1,0 +1,18 @@
+h2.title ניהולית
+
+.pendingGroups
+	h3 יוזמות הממתינות לאישור
+
+	a(
+	ng-repeat="group in admin.pendingGroups"
+	ui-sref="singleGroup({ groupID: group.namespace })"
+	) {{ group.displayName }}
+
+.newFaces
+	h3 פרצופים חדשים באתר
+
+	img(
+	ng-repeat="face in admin.newFaces"
+	ng-src="{{ face.src }}"
+	title="{{ face.displayName }}"
+	)

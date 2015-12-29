@@ -1,0 +1,105 @@
+.modal.feedback(
+modal-sizer, stop-propagation
+ng-controller="feedbackCtrl as feedback"
+)
+	header
+	
+		h2 פידבק
+		.fa.fa-close(ng-click="modal.reset()")
+			
+	main
+	
+		.form(
+		ng-form="feedbackForm"
+		ng-class="feedback.showValidation ? 'showValidation' : ''"
+		)
+
+			.feedbackType
+				input(
+				id="opinion"
+				type="radio"
+				value="opinion"
+				ng-model="feedback.fdbkType"
+				)
+				label(for="opinion") רוצה להביע דעתי על..
+
+			.feedbackType
+				input(
+				id="bug"
+				type="radio"
+				value="bug"
+				ng-model="feedback.fdbkType"
+				)
+				label(for="bug") מצאתי באג/טעות!
+
+			.feedbackType
+				input(
+				id="idea"
+				type="radio"
+				value="idea"
+				ng-model="feedback.fdbkType"
+				)
+				label(for="idea") יש לי רעיון.
+
+			.selectedFeedbackType(
+			ng-switch="feedback.fdbkType"
+			)
+
+				.opinion(
+				ng-switch-when="opinion"
+				)
+
+					label(for="homepage") עמוד הבית
+					textarea(
+					id="homepage"
+					ng-model="feedback.opinion.homepage"
+					)
+
+					label(for="groups") לוח היוזמות
+					textarea(
+					id="groups"
+					ng-model="feedback.opinion.groups"
+					)
+
+					label(for="volunteering") מערך ההתנדבות
+					textarea(
+					id="volunteering"
+					ng-model="feedback.opinion.volunteering"
+					)
+
+					label(for="login") ההתחברות לאתר
+					textarea(
+					id="login"
+					ng-model="feedback.opinion.login"
+					)
+
+					label(for="misc") הערות נוספות
+					textarea(
+					id="misc"
+					ng-model="feedback.opinion.misc"
+					)
+
+				.bug(
+				ng-switch-when="bug"
+				)
+
+					p.explain נסו להסביר בדיוק היכן מצאתם את הטעות, או במה התעסקתם כאשר נתקלתם בבאג.
+					p.explain המערכת מתפתחת באופן תדיר ואנחנו מודים לכם על העזרה.
+
+					textarea.verbose(
+					ng-model="feedback.bug"
+					)
+
+				.idea(
+				ng-switch-when="idea"
+				)
+
+					p.explain רעיונות לדרכים חדשות לייצר חיבורים בין יוזמות-פעילים-מתנדבים תמיד מתקבלים בברכה!
+
+					textarea.verbose(
+					ng-model="feedback.idea"
+					)
+
+	footer
+
+		button.submit.silent(ng-click="feedback.submit()") {{ modal.prompts.saveButton }}

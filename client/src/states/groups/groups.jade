@@ -1,0 +1,65 @@
+.hero
+	h1 מאגר היוזמות
+
+.paper.tight
+
+	.searchBar
+		input(
+		type="text"
+		ng-model="overview.searchTerm"
+		ng-model-options="{ debounce: 500 }"
+		ng-blur="overview.keepTerm()"
+		placeholder="חיפוש"
+		)
+		span.fa.fa-times(
+		ng-show="overview.searchTerm"
+		ng-click="overview.searchTerm=''"
+		)
+
+.paper.step.tight.groupList(
+ng-hide="!overview.groups.length"
+)
+
+	label.noneFound(ng-show="overview.emptyGroupsList")
+		|לא נמצאו יוזמות המתאימות את תוצאות החיפוש.
+
+	h2.catTitle(
+	ng-repeat-start="group in overview.filteredOrderedGroups()"
+	ng-if="overview.categoryFilter && group.firstAtCat"
+	ng-class="'back-' + group.color"
+	ng-style="{ 'background-image': 'url(//s3.eu-central-1.amazonaws.com/darkenu/graphics/categories/' + group.color + '.png)' }"
+	) {{ overview.categoryName(group.color) }}
+
+	a.singleGroup(
+	ng-repeat-end
+	ui-sref="singleGroup({ groupID: group.namespace || group._id })"
+	ng-class="'border-' + group.color"
+	)
+
+		.profile
+
+			.logo(
+			ng-if="group.logo"
+			ng-style="{ 'background-image': 'url(' + group.logo.url + ')' }"
+			)
+
+		.melel
+
+			.title {{ group.displayName }}
+			.desc {{ overview.shortenDesc(group.desc) }}
+
+.paper.less.edgy
+
+	.categories
+
+		.singleCategory(
+		ng-repeat="(color, catTitle) in main.categories"
+		ng-click="overview.filterByCategory(color)"
+		ng-class=" 'back-' + color "
+		title="{{ main.categories[color] }}"
+		)
+			img(
+			ng-src="{{ '//s3.eu-central-1.amazonaws.com/darkenu/graphics/categories/' + color + '.png' }}"
+			)
+
+			label {{ main.categories[color] }}

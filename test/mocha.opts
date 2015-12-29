@@ -1,0 +1,4 @@
+--reporter list
+--recursive
+--timeout 10s
+--require ./env.js

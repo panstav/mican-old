@@ -1,0 +1,97 @@
+.modal.addGroupContacts(
+modal-sizer, stop-propagation
+ng-controller="groupContactCtrl as gContact"
+)
+
+	header
+		h2 {{ (gContact.editingExistingContact ? 'עריכת' : 'הוספת') + ' פרטי התקשרות' }}
+		.fa.fa-close(ng-click="modal.reset()")
+
+	main
+
+		.form(
+		ng-form="groupContactForm"
+		ng-class="gContact.showValidation ? 'showValidation' : ''"
+		)
+
+			input(
+			name="nameOfContact" required
+			type="text"
+			ng-model="gContact.contact.nameOfContact"
+			placeholder="שם איש הקשר"
+			)
+
+			div
+
+				select(
+				name="contactChannel" required
+				ng-model="gContact.contact.channel"
+				ng-options="contactChannel as contactStr for (contactChannel, contactStr) in gContact.contactChannels"
+				)
+					option(value="") סוג הקשר:
+
+				.fa-wrapper.fa.fa-fw.fa-envelope(
+				ng-show="gContact.contact.channel === 'mail'"
+				)
+					input(
+					name="email" type="email"
+					ng-model="gContact.contact.mail"
+					placeholder="{{ contactStr }}"
+					ng-required="gContact.contact.channel === 'mail'"
+					)
+
+				.fa-wrapper.fa.fa-fw.fa-phone(
+				ng-show="gContact.contact.channel === 'tel'"
+				)
+					input(
+					name="tel" type="tel"
+					ng-model="gContact.contact.tel"
+					placeholder="{{ contactStr }}"
+					ng-required="gContact.contact.channel === 'tel'"
+					)
+
+				.fa-wrapper.fa.fa-fw.fa-external-link(
+				ng-show="gContact.contact.channel === 'link'"
+				)
+					input(
+					name="link" type="url"
+					ng-model="gContact.contact.link"
+					placeholder="{{ contactStr }}"
+					ng-required="gContact.contact.channel === 'link'"
+					)
+
+				p.explain(
+				valid-url
+				ng-show="gContact.contact.channel === 'link'"
+				)
+
+			select(
+			name="contactPublicity" required
+			ng-model="gContact.contact.publicity"
+			ng-options="publicityType.name as publicityType.text for publicityType in gContact.publicityTypes"
+			)
+				option(value="") נגיש עבור:
+
+			p.explain(
+			ng-show="gContact.contact.publicity === 'public'"
+			) גם לגולשים אנונימיים תהיה גישה לאיש קשר זה.
+
+			p.explain(
+			ng-show="gContact.contact.publicity === 'registered'"
+			) רק לגולשים מזוהים תהיה גישה לאיש קשר זה.
+
+			p.explain(
+			ng-show="gContact.contact.publicity === 'followers'"
+			) רק לגולשים שסימנו את היוזמה בכוכב תהיה גישה לאיש קשר זה.
+
+	footer
+
+		span.validation(ng-show="gContact.showValidation") {{ modal.prompts.invalidField }}
+		.inputBlock
+
+			button.submit.silent(ng-click="gContact.submit()") {{ modal.prompts.saveButton }}
+
+			button.warn.silent(
+			ng-if="gContact.editingExistingContact"
+			ng-click="gContact.remove()"
+			) מחק

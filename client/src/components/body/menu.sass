@@ -1,0 +1,124 @@
+.mainMenuContainer
+	$menuBackground: lighten($uiGrey, 5%)
+	$menuWidth: 285px
+
+	z-index: $interface
+	position: fixed
+	bottom: 0
+	overflow: hidden
+	width: $menuWidth
+
+	top: $fromTopSmall
+
+	@media (min-width: $tv)
+		top: $fromTopBig
+
+	.menu
+		overflow-y: scroll
+		overflow-x: hidden
+
+		position: relative
+
+		width: $menuWidth
+		height: 100%
+		background-color: $menuBackground
+
+		.registry
+			@include clearFix
+
+			background-color: #FFF
+			border-bottom: 1px solid #E7E7E7
+
+		.loggedInUser
+			@include clearFix
+
+			padding: 20px
+
+		$profileImageSize: 50px
+
+		.profileImage
+			@include radius(100%)
+
+			float: right
+			background-size: cover
+			margin-left: .8em
+
+			width: $profileImageSize
+			height: $profileImageSize
+
+		.displayName
+			cursor: default
+			float: right
+			line-height: $profileImageSize
+			font-size: 1.2em
+
+		button.editProfile
+			float: left
+
+		.admining, .following
+			@include radius(3px)
+
+			clear: both
+			padding: 10px 6px
+			border-bottom: 1px solid #DFDFDF
+			margin-bottom: 6px
+
+			h3
+				cursor: pointer
+				display: block
+				font:
+					size: .75rem
+					style: italic
+				color: #A5A5A5
+				padding: 10px 0
+
+				&:before
+					float: left
+					font-style: normal
+
+		.singleAdmined, .singleFollowed
+
+			a
+				display: block
+				line-height: 1rem
+				padding: .5rem
+
+				color: #373737
+				font-size: 1rem
+				text-decoration: none
+
+				&:hover
+					text-decoration: underline
+
+		.singleAdmined
+			background-color: #DDEEFF
+
+		.singleFollowed
+			background-color: #E3FFDD
+
+		button.logout
+			float: left
+			clear: both
+
+		.menuItem
+			cursor: pointer
+			box-sizing: border-box
+			display: block
+			width: 100%
+
+			padding: 15px 25px
+			background-color: $menuBackground
+
+			text-align: right
+			font-size: 1.2rem
+			color: #858585
+
+			&:hover
+				background-color: $uiGrey
+				color: #535353
+
+			&:before
+				padding-left: .5em
+
+			&:first-of-type
+				padding-top: 20px

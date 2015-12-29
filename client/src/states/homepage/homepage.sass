@@ -1,0 +1,309 @@
+state-homepage
+
+	$accent: #6C6792
+
+	.paper
+
+		&.homeActions, &.groupCategories, &.newsletter
+			padding-top: 2rem
+
+			@media (min-width: $tablet)
+				font-size: 1.5em
+
+	.paper > header
+			margin-bottom: 2rem
+			font:
+				size: 1.5rem
+				weight: bold
+
+			@media (min-width: $tablet)
+				font-size: 2rem
+
+			span
+				padding: 0 1em
+
+	h1
+		color: white
+		font-size: 1.5em
+		font-weight: bold
+
+	header.lineThrough
+		@include lineThrough(1px solid $accent, 1em/4*3, 1em)
+
+		span
+			background-color: $uiGrey
+			color: $accent
+
+	.paper.topHero
+		background-color: $contrib
+		padding: 4em 1em
+
+		text-align: center
+		font:
+			size: 1rem
+			weight: bold
+
+		@media (min-width: $tablet)
+			padding: 1.5em 0
+		@media (min-width: $tv) and (max-width: $plasma - 1px) and (min-height: 800px)
+			padding: 3em 0
+
+		@media (min-width: $mobile) and (max-width: $tablet - 1px)
+			font-size: 1.35rem
+		@media (min-width: $tablet) and (max-width: $desktop - 1px)
+			font-size: 2rem
+		@media (min-width: $desktop) and (max-width: $tv - 1px)
+			font-size: 2.3rem
+		@media (min-width: $tv) and (max-width: $plasma - 1px)
+			font-size: 2.5rem
+		@media (min-width: $plasma)
+			font-size: 3.2rem
+
+		h2
+			margin: 1em auto 0.5em
+			color: $accent
+			font-size: 1.5em
+			font-weight: bold
+
+		.num
+			color: $accent
+			font-size: 3em
+			line-height: .6em
+			text-shadow: 0.02em 0 0 white
+
+		.sumOf
+			display: block
+			margin: 0.8em 0 0.2em
+
+			text-shadow: 0.04em 0 0 #FFF
+			color: $accent
+			letter-spacing: 0.12em
+
+	.paper.whatsUp
+		padding-top: 3em
+
+		.paras
+			@include clearFix
+
+			max-width: 35em
+			margin: auto
+
+		p
+			margin: 3em auto 2em
+			padding: 0 2em
+			text-align: justify
+
+			@media (min-width: $tv)
+				font-size: 1.25em
+
+		a
+			float: left
+			margin-left: 2em
+			border: 2px solid $accent
+			color: $accent
+
+			&:hover
+				background-color: $accent
+				color: white
+
+	.paper.homeActions
+		background-color: $uiGrey
+
+	.actions
+		text-align: center
+		padding-bottom: 5rem
+
+		@media (min-width: 750px)
+			padding: 3rem 0
+
+		a
+			text-decoration: none
+			color: $accent
+
+			&:hover span
+				text-decoration: underline
+				color: #565276
+
+		img
+			@include moz-webkit-o(transition, top 0.5s ease)
+
+			position: relative
+			top: 0
+
+			display: block
+			width: 85%
+			max-width: 12em
+			margin: auto
+
+			@media (min-width: $desktop)
+				width: 100%
+		span
+			display: block
+			margin-top: .5rem
+			text-align: center
+			font-size: 1.5rem
+
+			&.smaller
+				font-size: 1rem
+
+	.action
+		display: block
+		margin: 3.5em auto 0
+
+		&.registerGroup
+			color: #7B7B7B
+
+		@media (min-width: 750px)
+			display: inline-block
+			margin: 2em auto
+			vertical-align: top
+		@media (min-width: 750px) and (max-width: $desktop - 1px)
+			max-width: 240px
+		@media (min-width: $desktop)
+			max-width: 285px
+		@media (min-width: $tv)
+			padding: 0 2rem
+
+		&:hover
+			img
+				top: -10px
+
+	.paper.groupCategories
+		background-color: white
+		padding-bottom: 2em
+		border:
+			top: 2px solid #DADADA
+			bottom: 2px solid #DADADA
+
+		header span
+			background-color: white
+			color: #565276
+
+	.categories
+		@include radius(10px)
+		overflow: hidden
+
+		width: 90%
+		margin: 1em 5% 0
+
+	.singleCategory
+		display: inline-block
+
+		width: 100%
+		padding: 2.5em 0 1.5em
+		text-align: center
+
+		@media (min-width: $tablet) and (max-width: $desktop - 1px)
+			width: 50%
+
+			&:nth-child(3n+3)
+				width: 100%
+				
+		@media (min-width: $desktop)
+			width: 33%
+
+			&:nth-of-type(3n+2)
+				width: 34%
+
+		&:hover
+			img, span
+				opacity: 1
+
+		img, span
+			cursor: pointer
+			opacity: .8
+
+		img
+			display: block
+			margin: auto
+
+		span
+			display: inline-block
+			padding: .5em 0
+
+			color: white
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25)
+			font-size: 1.2em
+
+	.paper.newsletter
+
+		font-size: 1rem
+		text-align: center
+
+		.newsletter-assurances, input[type="email"], button.confirm
+			width: 85%
+			margin: .5rem auto
+
+		input[type="email"], button.confirm
+			display: block
+			max-width: 350px
+			height: 2rem
+
+		input[type="email"]
+			text-align: center
+
+		@media (min-width: 750px)
+			.newsletter-assurances
+				max-width: 500px
+				margin: 0 auto
+
+			input[type="email"], button.confirm
+				display: inline-block
+				margin: .5rem
+				vertical-align: middle
+
+			button.confirm
+				width: auto
+
+	.newsletter-assurances
+		max-width: 350px
+		margin: auto
+		text-align: right
+
+		span
+			display: block
+
+			&:first-of-type
+				margin-top: 1.5em
+
+			&.lesser
+				font-size: .8em
+				color: #6C6B6B
+
+	footer
+		margin-top: 3em
+
+		.nets
+			text-align: center
+
+			a.fa
+				@include radius(100%)
+
+				margin: .1em
+				padding: .5em
+
+				font-size: 1.2em
+				line-height: 1.2em
+
+				color: white
+				text-shadow: 1px 1px rgba(0, 0, 0, 0.2)
+
+				&:hover
+					text-shadow: none
+					background-color: #F5F5F5
+
+			.fa-twitter:hover
+				color: $twitter
+
+			.fa-github:hover
+				color: black
+
+		.made-in
+			float: left
+			margin: 2em
+
+			font-style: italic
+			font-size: .7em
+
+			color: #6E6E6E
+			text-shadow: 1px 1px #FFF

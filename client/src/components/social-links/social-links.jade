@@ -1,0 +1,8 @@
+a.fa.fa-fw(
+ng-repeat="(platform, url) in links"
+ng-if="url"
+ng-class="sLinks.fontAwesomeClass(platform)"
+ng-href="{{ url }}"
+title="{{ sLinks.linkTitle(platform, displayName) }}"
+target="_blank"
+)

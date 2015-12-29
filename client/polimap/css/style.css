@@ -1,0 +1,86 @@
+body {
+  background-color: #231f20; }
+
+.modal, .jquery-modal.blocker {
+  cursor: default; }
+
+.profile.modal {
+  overflow: hidden;
+  direction: rtl;
+  font-family: Arial, sans-serif;
+  padding: 0; }
+  .profile.modal .innerWrap {
+    padding: 13px 18px; }
+    .profile.modal .innerWrap:after {
+      content: "";
+      display: table;
+      clear: both; }
+  .profile.modal h3.orange, .profile.modal .link.orange {
+    background-color: #f7921e; }
+  .profile.modal h3.purple, .profile.modal .link.purple {
+    background-color: #b06be2; }
+  .profile.modal h3.blue, .profile.modal .link.blue {
+    background-color: #90bac7; }
+  .profile.modal h3.green, .profile.modal .link.green {
+    background-color: #71bf45; }
+  .profile.modal h3.aqua, .profile.modal .link.aqua {
+    background-color: #00b0f0; }
+  .profile.modal h3.yellow, .profile.modal .link.yellow {
+    background-color: #d5b463; }
+  .profile.modal h3.bordo, .profile.modal .link.bordo {
+    background-color: #f1553e; }
+  .profile.modal h3.sky, .profile.modal .link.sky {
+    background-color: #01b9bb; }
+  .profile.modal h3.pink, .profile.modal .link.pink {
+    background-color: #d14b7d; }
+  .profile.modal h3 {
+    margin: 0;
+    padding: 7px 12px;
+    text-shadow: -1px 1px 1px rgba(0, 0, 0, 0.4);
+    color: white; }
+  .profile.modal p.desc {
+    margin: 5px 0 10px; }
+    .profile.modal p.desc:last-of-type {
+      margin-bottom: 35px; }
+  .profile.modal .link {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    float: left;
+    display: inline-block;
+    margin: 0;
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+    border: none;
+    line-height: 1;
+    color: white;
+    text-decoration: none; }
+  .profile.modal .close {
+    float: left;
+    margin: 11px;
+    font-family: monospace;
+    font-size: 12px;
+    color: white; }
+    .profile.modal .close:hover {
+      cursor: pointer; }
+
+#content {
+  width: 100%;
+  height: 100%;
+  visibility: hidden; }
+
+#loading {
+  position: absolute;
+  top: 500px;
+  width: 350px;
+  height: 180px;
+  border: 1px solid;
+  color: white; }
+
+#progress_background {
+  width: 80%;
+  border: 1px solid #231f20; }
+
+#progress {
+  width: 80%;
+  border: 1px solid #231f20; }

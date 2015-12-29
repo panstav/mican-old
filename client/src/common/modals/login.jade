@@ -1,0 +1,57 @@
+.modal.login(
+modal-sizer, stop-propagation
+ng-controller="loginCtrl as login"
+)
+
+	header
+		h2 הצטרפו לדרכנו
+		.fa.fa-close(ng-click="modal.reset()")
+
+	main
+
+		.paper
+
+			p.explain משתמשים רשומים יכולים:
+			ul
+				li.fa.fa-check לסמן יוזמות נבחרות.
+				li.fa.fa-check לרשום יוזמות נוספות למאגר.
+				li.fa.fa-check להחשף לתכנים שאינם נגישים אנונימית.
+
+		.paper
+
+			a.viaGoogle(
+			ng-click="login.with('google')"
+			href="javascript:void(0)"
+			)
+				span התחברו דרך -
+					span.fa.fa-google
+
+			a.viaFacebook(
+			ng-click="login.with('facebook')"
+			href="javascript:void(0)"
+			)
+				span התחברו דרך -
+					span.fa.fa-facebook
+
+			.delimiter
+
+			.linkToMail
+
+				button.send(
+				ng-click="login.linkToMail.send()"
+				) שלח
+
+				.fa.fa-envelope-o
+				span לינק התחברות חד-פעמי
+
+				input(
+				type="email"
+				ng-model="login.linkToMail.address"
+				placeholder="כתובת המייל שלך"
+				)
+
+		a.anonymously(
+		ng-click="modal.reset()"
+		href="javascript:void(0)"
+		)
+			span בלי להתחבר
