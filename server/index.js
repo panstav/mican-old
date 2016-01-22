@@ -54,17 +54,9 @@ module.exports.init = () => {
 
 	log.debug('Establishing Cloudinary && Mongo connections');
 
-	// greet database, bind models and generate a sitemap
-	db.init(db.regenerateSitemap);
+	integrateDatabase();
 
-	// greet cloudinary img service
-	cloudinary.config(
-		{
-			cloud_name: process.env.CLOUDINARY_CLOUDNAME,
-			api_key:    process.env.CLOUDINARY_APIKEY,
-			api_secret: process.env.CLOUDINARY_SECRET
-		}
-	);
+	integrateCloudinary();
 
 	// prettify output json by default on non-production env
 	if (process.env.NODE_ENV !== 'production') server.set('json spaces', 4);
@@ -106,26 +98,9 @@ module.exports.init = () => {
 	server.use(snapshooter);
 
 	// store session-id at 'connect.sid' cookie
-	server.use(session(
-		{
-			secret: process.env.SESSION_SECRET,
-			cookie: { secure: !!process.env.SECURE },
-			resave: false,
-			saveUninitialized: false,
+	server.use(getSessionController());
 
-			// persistently
-			store: new MongoStore(
-				{
-					db: process.env.DATABASE_NAME,
-					expireAfter: 1000 * 60 * 60 * 24 * 10,
-					mongooseConnection: mongoose.connections[0]
-				}
-			)
-		}
-	));
-
-	// set passport policy
-	require('./registry.js')(server);
+	setLoginPolicies();
 
 	// POST'ed json is at req.body
 	server.use(bodyParser.json());
@@ -147,4 +122,67 @@ module.exports.init = () => {
 	server.use(fourOhFour);
 
 	return server;
+
+	function integrateDatabase(){
+
+		if (!process.env.LOCAL_MONGO_URL && !process.env.MONGOHQ_URL){
+			log.error('MongoDB credentials are missing, database is mendatory.');
+			log.info('Check the readme file for instructions.');
+
+			process.exit(1);
+		}
+
+		// greet database, bind models and generate a sitemap
+		db.init(db.regenerateSitemap);
+
+	}
+
+	function integrateCloudinary(){
+
+		if (!process.env.CLOUDINARY_APIKEY) return log.warn('Cloudinary credentials are missing, image uploading is not operational.');
+
+		// greet cloudinary img service
+		cloudinary.config(
+			{
+				cloud_name: process.env.CLOUDINARY_CLOUDNAME,
+				api_key:    process.env.CLOUDINARY_APIKEY,
+				api_secret: process.env.CLOUDINARY_SECRET
+			}
+		);
+
+	}
+
+	function setLoginPolicies(){
+
+		if (!process.env.GOOGLE_CLIENTID || !process.env.FACEBOOK_APP_ID) return log.warn('Social login credentials are missing, social login is not operational.');
+
+		// set passport policy
+		require('./registry.js')(server);
+
+	}
+
+	function getSessionController(){
+
+		let options = {
+			secret: process.env.SESSION_SECRET,
+			cookie: { secure: !!process.env.SECURE },
+			resave: false,
+			saveUninitialized: false
+		};
+
+		if (process.env.MONGOHQ_URL && process.env.DATABASE_NAME){
+
+			options.store = new MongoStore(
+				{
+					db: process.env.DATABASE_NAME,
+					expireAfter: 1000 * 60 * 60 * 24 * 10,
+					mongooseConnection: mongoose.connections[0]
+				}
+			);
+
+		}
+
+		return session(options);
+	}
+
 };
