@@ -1143,7 +1143,7 @@
 			directLink: 'http://www.anu.org.il/'
 		},{
 			region: { x: 48, y: 1402 },
-			directLink: 'http://darkenu.net/'
+			directLink: 'http://www.mican.co.il/'
 		}
 	];
 

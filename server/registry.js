@@ -59,7 +59,7 @@ module.exports = function(app){
 	passport.use(new GoogleStrategy(googleOptions, oAuthLogin));
 
 	var facebookOptions = {
-		clientID: process.env.FACEBOOK_APPID,
+		clientID: process.env.FACEBOOK_APP_ID,
 		clientSecret: process.env.FACEBOOK_SECRET,
 		callbackURL: urls.domain + '/facebook/callback'
 	};

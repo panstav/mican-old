@@ -181,7 +181,7 @@ function addToNewsletter(req, res){
 		var mailchimpApi = new mailchimp.Mailchimp(process.env.MAILCHIMP_API_KEY);
 
 		var subscriptionObj = {
-			id: process.env.MAILCHIMP_DARKENU_LISTID,
+			id: process.env.MAILCHIMP_MICAN_LISTID,
 			email: { email: req.body.email }
 		};
 

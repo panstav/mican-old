@@ -52,7 +52,7 @@ module.exports = function(req, res){
 				important: true,
 
 				from_email: urls.officialAddress,
-				from_name: 'דרכנו',
+				from_name: 'מכאן',
 				to: [{ email: req.user.email }],
 
 				subject: 'אישור שימוש בכתובת המייל',

@@ -15,11 +15,11 @@ module.exports = {
 	},
 
 	linkByMail: function(args){
-		return wrap('ליחצו על הלינק על מנת לחזור ל- \'דרכנו\':<br><a href="' + urls.domain + '/auth/login-by-mail?userid=' + args.userID + '&code=' + args.code + '" target="_blank">' + urls.domain + '/auth/login-by-mail?userid=' + args.userID + '&code=' + args.code + '</a>')
+		return wrap('ליחצו על הלינק על מנת לחזור ל- \'מכאן\':<br><a href="' + urls.domain + '/auth/login-by-mail?userid=' + args.userID + '&code=' + args.code + '" target="_blank">' + urls.domain + '/auth/login-by-mail?userid=' + args.userID + '&code=' + args.code + '</a>')
 	},
 
 	emailConfirmation: function(secret){
-		return wrap('<p>מייל זה מגיע אליכם בעקבות בקשת אימות-מייל באתר <a href="' + urls.domain + '" target="_blank">דרכנו</a>.</p>\n\n\t\t<a href="' + urls.domain + '/confirm-email/' + secret + '">ליחצו כאן על מנת לחזור לאתר.</a>')
+		return wrap('<p>מייל זה מגיע אליכם בעקבות בקשת אימות-מייל באתר <a href="' + urls.domain + '" target="_blank">מכאן</a>.</p>\n\n\t\t<a href="' + urls.domain + '/confirm-email/' + secret + '">ליחצו כאן על מנת לחזור לאתר.</a>')
 	},
 
 	newFieldSuggestion: function(args){
@@ -54,13 +54,13 @@ module.exports = {
 
 	notifyVolunteersOfTaskCompletion: function(args){
 
-		return wrap('<span>לידיעתך - היוזמה "<a href="' + args.groupLink + '" target="_blank">' + args.groupDisplayName + '</a>" סימנה שהמשימה שהתנדבת אליה - "' + args.taskTitle + '" - הושלמה!</span><br><br><span>במערכת דרכנו יש עוד הרבה משימות והזדמנויות להתנדב - <a href="' + urls.domain + '/tasks" target="_blank">עמוד המשימות</a>.</span>');
+		return wrap('<span>לידיעתך - היוזמה "<a href="' + args.groupLink + '" target="_blank">' + args.groupDisplayName + '</a>" סימנה שהמשימה שהתנדבת אליה - "' + args.taskTitle + '" - הושלמה!</span><br><br><span>במערכת מכאן יש עוד הרבה משימות והזדמנויות להתנדב - <a href="' + urls.domain + '/tasks" target="_blank">עמוד המשימות</a>.</span>');
 
 	},
 
 	notifyVolunteersOfTaskCancelation: function(args){
 
-		return wrap('<span>לידיעתך - היוזמה "<a href="' + args.groupLink + '" target="_blank">' + args.groupDisplayName + '</a>" סימנה שהמשימה שהתנדבת אליה - "' + args.taskTitle + '" - בוטלה!</span><br><br><span>במערכת דרכנו יש עוד הרבה משימות והזדמנויות להתנדב - <a href="' + urls.domain + '/tasks" target="_blank">עמוד המשימות</a>.</span>');
+		return wrap('<span>לידיעתך - היוזמה "<a href="' + args.groupLink + '" target="_blank">' + args.groupDisplayName + '</a>" סימנה שהמשימה שהתנדבת אליה - "' + args.taskTitle + '" - בוטלה!</span><br><br><span>במערכת מכאן יש עוד הרבה משימות והזדמנויות להתנדב - <a href="' + urls.domain + '/tasks" target="_blank">עמוד המשימות</a>.</span>');
 
 	}
 
@@ -70,7 +70,7 @@ function wrap(content){
 
 	var styles = '<style>\n\n\t.container{\n\t\tdirection: rtl;\n\t\tmax-width: 700px;\n\t\tmargin: auto;\n\t\tpadding: 0 20px 20px;\n\t}\n\n\t.header{\n\t\tfont-weight: bold;\n\t\tbackground-color: white;\n\t\ttext-align: center;\n\t\tfont-size: 32px;\n\t\tmargin: 20px auto 20px;\n\t\tpadding-bottom: 25px;\n\t\tcolor: #F5BF36;\n\t}\n\n\t.main{\n\t\tfont-size: 16px;\n\t\tcolor: #707070;\n\t}\n\n\t.footnotes{\n\t\tpadding-top: 75px;\n\t\tfont-size: 13px;\n\t\tcolor: #a3a3a3;\n\t}\n\n</style>';
 
-	var wrapperStart = '<div class="container">\n\n\t<div class="header">דרכנו</div>\n\n\t<div class="main">';
+	var wrapperStart = '<div class="container">\n\n\t<div class="header">מכאן</div>\n\n\t<div class="main">';
 
 	var wrapperEnd = '</div><div class="footnotes">\n\n\t\t<p>במידה ואינכם יודעים במה מדובר - ניתן להתעלם ממייל זה.</p>\n\t\t<p>אך אם הבעייה חוזרת על עצמה - אנא, פנו לכתובת - <a href="mailto:' + urls.supportAddress + '">' + urls.supportAddress + '</a></p></div></div>';
 

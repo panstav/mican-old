@@ -27,7 +27,7 @@ ng-hide="!overview.groups.length"
 	ng-repeat-start="group in overview.filteredOrderedGroups()"
 	ng-if="overview.categoryFilter && group.firstAtCat"
 	ng-class="'back-' + group.color"
-	ng-style="{ 'background-image': 'url(//s3.eu-central-1.amazonaws.com/darkenu/graphics/categories/' + group.color + '.png)' }"
+	ng-style="{ 'background-image': 'url(https://s3.eu-central-1.amazonaws.com/mican/icons/' + group.color + '.png)' }"
 	) {{ overview.categoryName(group.color) }}
 
 	a.singleGroup(
@@ -59,7 +59,7 @@ ng-hide="!overview.groups.length"
 		title="{{ main.categories[color] }}"
 		)
 			img(
-			ng-src="{{ '//s3.eu-central-1.amazonaws.com/darkenu/graphics/categories/' + color + '.png' }}"
+			ng-src="{{ 'https://s3.eu-central-1.amazonaws.com/mican/icons/' + color + '.png' }}"
 			)
 
 			label {{ main.categories[color] }}

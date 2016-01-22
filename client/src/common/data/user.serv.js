@@ -46,7 +46,7 @@ function user($rootScope, api, modal, track){
 
 				var hasntEditedProfileRecently =  !window.localStorage.getItem('reviewedProfile');
 				var displayNameIsAuto =           userInfo.displayName === userInfo.email.substr(0, userInfo.email.indexOf('@'));
-				var avatarIsAnonymous =           userInfo.profilePhotoUrl === 'https://s3.eu-central-1.amazonaws.com/darkenu/avatars/anon.png';
+				var avatarIsAnonymous =           userInfo.profilePhotoUrl === 'https://s3.eu-central-1.amazonaws.com/mican/misc/anon-avatar.png';
 				var genderIsUnknown =             userInfo.gender === 'unknown';
 
 				if (hasntEditedProfileRecently && displayNameIsAuto && avatarIsAnonymous && genderIsUnknown){

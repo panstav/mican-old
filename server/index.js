@@ -58,18 +58,13 @@ module.exports.init = () => {
 	db.init(db.regenerateSitemap);
 
 	// greet cloudinary img service
-	if (!process.env.MASTER_KEYS){
-		console.warn('Cloudinary keys are missing, some user operation are going to fail.');
-
-	} else {
-		cloudinary.config(
-			{
-				cloud_name: process.env.CLOUDINARY_CLOUDNAME,
-				api_key:    process.env.CLOUDINARY_APIKEY,
-				api_secret: process.env.CLOUDINARY_SECRET
-			}
-		);
-	}
+	cloudinary.config(
+		{
+			cloud_name: process.env.CLOUDINARY_CLOUDNAME,
+			api_key:    process.env.CLOUDINARY_APIKEY,
+			api_secret: process.env.CLOUDINARY_SECRET
+		}
+	);
 
 	// prettify output json by default on non-production env
 	if (process.env.NODE_ENV !== 'production') server.set('json spaces', 4);
@@ -81,7 +76,7 @@ module.exports.init = () => {
 	log.debug('Attaching Express Middleware');
 
 	// compress everything
-	server.use(compression());
+	//server.use(compression());
 
 	// allow access to static assets
 	server.use(express.static('public', {
@@ -129,14 +124,8 @@ module.exports.init = () => {
 		}
 	));
 
-	// Registry
-	if (!process.env.MASTER_KEYS){
-		console.warn('Registry keys are missing, some user operation are going to fail.');
-
-	} else {
-		// set passport policy
-		require('./registry.js')(server);
-	}
+	// set passport policy
+	require('./registry.js')(server);
 
 	// POST'ed json is at req.body
 	server.use(bodyParser.json());

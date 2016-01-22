@@ -1,29 +1,53 @@
-const gulp =        require('gulp');
-const plugins =     require('gulp-load-plugins')();
+'use strict';
 
-const requireDir =  require('require-dir');
-const del =         require('del');
+var gulp =        require('gulp');
+var plugins =     require('gulp-load-plugins')();
 
-const tasks =       requireDir('./gulp-tasks');
+var requireDir =  require('require-dir');
+var tasks =       requireDir('./gulp-tasks');
 
 //-=======================================================---
 //------------------ Micro Tasks
 //-=======================================================---
 
-gulp.task('clean', done => {
-	del([
-		    '!public/.gitignore',    'public/*',      // compiled, static-served files
-		    '!client/snapshots/.gitignore', 'client/snapshots/*',   // snapshots cacher
-		    '!uploads/.gitignore',          'uploads/*'             // user uploads (images mainly)
-	    ], done);
+gulp.task('clean', () => {
+
+	let tempFiles = [
+		'!public/.gitignore',           'public/*',             // compiled, static-served files
+		'!client/snapshots/.gitignore', 'client/snapshots/*',   // snapshots cacher
+		'!uploads/.gitignore',          'uploads/*'             // user uploads (images mainly)
+	];
+
+	return gulp.src(tempFiles, { read: false })
+		.pipe(plugins.clean({ force: true }));
+
 });
 
 gulp.task('define-revision', () => {
 	process.env.VERSIONSTR = process.env.SOURCE_VERSION ? '-' + process.env.SOURCE_VERSION.substr(0, 10) : '';
 });
 
-gulp.task('define-local', () => {
+gulp.task('define-local', done => {
 	process.env.LOCAL = true;
+
+	require('./env');
+
+	done();
+});
+
+gulp.task('prep-public-dir', () => {
+
+	let copyPaste = [
+		'client/manifest.json',
+	  'client/browserconfig.xml',
+	  'client/sitemap.xml',
+	  'client/robots.txt',
+	  'client/alefhebrew.css'
+	];
+
+	return gulp.src(copyPaste)
+		.pipe(gulp.dest('public'));
+
 });
 
 gulp.task('polimap', () => {
@@ -61,8 +85,8 @@ gulp.task('js', tasks.javascript.bundle);
 //------------------ Build ENVs
 //-=======================================================---
 
-gulp.task('build', plugins.sequence(['font-awesome', 'polimap'], ['sass-to-css', 'jade-to-html'], 'construct-html-head', 'js'));
+gulp.task('build', plugins.sequence('prep-public-dir', ['font-awesome', 'polimap'], ['sass-to-css', 'jade-to-html'], 'construct-html-head', 'js'));
 
-gulp.task('local', plugins.sequence(['define-local', 'build']));
+gulp.task('local', plugins.sequence('clean', 'define-local', 'build'));
 
-gulp.task('heroku', ['define-revision', 'clean', 'build']);
+gulp.task('heroku', plugins.sequence('clean', 'define-revision', 'build'));

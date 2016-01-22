@@ -17,7 +17,7 @@ function analytics(){
 		},
 
 		page: function(data){
-			if (location.host !== 'www.darkenu.net') return false;
+			if (location.host !== 'www.mican.co.il') return false;
 
 			window.ga('send', 'pageview', data);
 		}

@@ -1,35 +1,43 @@
-const path = require('path');
+'use strict';
 
-const gulp = require('gulp');
-const plugins = require('gulp-load-plugins')();
+var path = require('path');
 
-const webpack = require('webpack');
-const StringReplacePlugin = require('string-replace-webpack-plugin');
+var gulp = require('gulp');
+var plugins = require('gulp-load-plugins')();
 
-const packageJson = require('../package.json');
+var webpack = require('webpack');
+var StringReplacePlugin = require('string-replace-webpack-plugin');
+
+var packageJson = require('../package.json');
 
 module.exports.bundle = done => {
 
-	const jsBundleFilename = `bundle${ process.env.VERSIONSTR || '' }.js`;
+	var jsBundleFilename = `bundle${ process.env.VERSIONSTR || '' }.js`;
 
 	// inject google analytics key to be used from client side
-	const googleAnalyticsKey = {
+	let googleAnalyticsKey = {
 		pattern: /ANALYTICS_KEY/,
 		replacement: () => process.env.ANALYTICS_KEY
+	};
+
+	// inject facebook app id to be used from client side
+	let facebookAppId = {
+		pattern: /FACEBOOK_APP_ID/,
+		replacement: () => process.env.FACEBOOK_APP_ID
 	};
 	
 	// about page showcases dependencies
 	// fetch them from package.json, filter and inject
-	const filteredPackageDependecies = {
-		pattern: /PACKAGE\.JSON_FILTERED_DEPENDENCIES/,
+	let filteredPackageDependecies = {
+		pattern: /PACKAGE_JSON_FILTERED_DEPENDENCIES/,
 		replacement: () => {
 
-			const unwantedDeps = ['angular', 'passport', 'mongo', 'font-awesome', 'cloudinary', 'universal-analytics', 'mailchimp-api', 'mandrill-api', 'express', 'passport-facebook', 'passport-google-oauth', 'passport-strategy'];
+			let unwantedDeps = ['angular', 'passport', 'mongo', 'font-awesome', 'cloudinary', 'universal-analytics', 'mailchimp-api', 'mandrill-api', 'express', 'passport-facebook', 'passport-google-oauth', 'passport-strategy'];
 
 			// get all deps, including devDeps
 			// remove unwanted depencencies
 			// and set titles and urls to direct to the npmjs.com package
-			const filteredDeps = Object.keys(packageJson.dependencies).concat(Object.keys(packageJson.devDependencies))
+			let filteredDeps = Object.keys(packageJson.dependencies).concat(Object.keys(packageJson.devDependencies))
 				.filter(dep => unwantedDeps.indexOf(dep) === -1)
 				.map(dep => ({ title: dep, url: `https://www.npmjs.com/package/${ dep }` }));
 
@@ -37,8 +45,13 @@ module.exports.bundle = done => {
 		}
 	};
 
-	const replacerOptions = StringReplacePlugin.replace(
-		{ replacements: [ googleAnalyticsKey, filteredPackageDependecies ] }
+	var domainName = {
+		pattern: /DOMAIN_NAME/,
+		replacement: () => require('../common').domain
+	};
+
+	var replacerOptions = StringReplacePlugin.replace(
+		{ replacements: [ googleAnalyticsKey, facebookAppId, filteredPackageDependecies, domainName ] }
 	);
 
 	var webpackOptions = {
@@ -63,23 +76,23 @@ module.exports.bundle = done => {
 				{ test: /\.jade/, loader: 'html!jade-html' },
 
 				// files with dynamic data => inject(data)
-				{ test: [/track\.js/, /about\.ctrl/], loader: replacerOptions }
+				{ test: /index\.js/, loader: replacerOptions }
 
 			]
 		}
 	};
 
 	// on a local machine - log webpack stats
-	if (process.env.LOCAL){
+	if (process.env.LOCAL && process.env.DEBUG){
 		var StatsPlugin = require('stats-webpack-plugin');
 
 		webpackOptions.plugins.push(new StatsPlugin('../../webpack-stats.json', {}));
 	}
 
 	webpack(webpackOptions, err => {
-		if (err) throw new plugins.util.PluginError("webpack", err);
+		if (err) throw new plugins.util.PluginError('webpack', err);
 
-		const uglifier = process.env.NODE_ENV === 'production' ? plugins.uglify : plugins.util.noop;
+		let uglifier = process.env.NODE_ENV === 'production' ? plugins.uglify : plugins.util.noop;
 
 		gulp.src(`public/${ jsBundleFilename }`)
 			.pipe(uglifier())

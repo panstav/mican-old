@@ -21,26 +21,6 @@ module.exports = function(router){
 	);
 
 	router.get(
-		'/robots.txt',
-		serveRobotsFile
-	);
-
-	router.get(
-		'/sitemap.xml',
-		serveSitemap
-	);
-
-	router.get(
-		/\/google.+\.txt/,
-		serveGoogleVerification
-	);
-
-	router.get(
-		'/alefhebrew.css',
-		serveAlefFontRouter
-	);
-
-	router.get(
 		'/confirm-email/:code',
 		validate(validation.confirmEmail),
 		auth(),
@@ -58,22 +38,6 @@ function getHomepage(req, res){
 	var maxAge = process.env.NODE_ENV === 'production' ? 60 * 60 * 1000 : 0;
 
 	res.sendFile('partials/index.html', { root: 'public', maxAge: maxAge });
-}
-
-function serveRobotsFile(req, res){
-	res.sendFile('robots.txt', { root: 'client', maxAge: 0 });
-}
-
-function serveSitemap(req, res){
-	res.sendFile('sitemap.xml', { root: 'client', maxAge: 0 });
-}
-
-function serveGoogleVerification(req, res){
-	res.sendFile('google1d49fa403d712f50.txt', { root: 'client', maxAge: 0 });
-}
-
-function serveAlefFontRouter(req, res){
-	res.sendFile('alef-font-router.css', { root: 'client', maxAge: 2419200 });
 }
 
 function confirmEmailCode(req, res){

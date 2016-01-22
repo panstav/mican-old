@@ -1,5 +1,12 @@
 require('html5shiv');
 
+var dataObj = {
+	domain: 'DOMAIN_NAME',
+	googleAnalyticsKey: 'ANALYTICS_KEY',
+	facebookAppId: 'FACEBOOK_APP_ID',
+	packageDependencies: PACKAGE_JSON_FILTERED_DEPENDENCIES
+};
+
 var angular =   require('angular');
 
 var states =    require('./states');
@@ -29,11 +36,9 @@ var externalModules = [
 ];
 
 angular.module('app', externalModules)
+	.value('topLevelData', dataObj)
 	.config(states)
-	.run(runtime)
-
-	.value('domain', 'https://www.darkenu.net')
-	.value('facebookAppId', '1011418022209063');
+	.run(runtime);
 
 // custom directives, services and (modal) controllers
 require('./loader');

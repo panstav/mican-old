@@ -3,9 +3,9 @@ module.exports = {
 	domain: domain(),
 
 	anonAvatar:
-		'https://s3.eu-central-1.amazonaws.com/darkenu/avatars/anon.png',
+		'https://s3.eu-central-1.amazonaws.com/mican/misc/anon-avatar.png',
 
-	officialAddress: 'darkenu.net@gmail.com',
+	officialAddress: 'stavgeffen@gmail.com',
 	supportAddress: 'stavgeffen@gmail.com'
 
 };
@@ -17,7 +17,7 @@ function domain(){
 	if (process.env.SECURE) domain += 's';
 	domain += '://';
 
-	if (process.env.NODE_ENV === 'production') return domain + 'www.darkenu.net';
+	if (process.env.NODE_ENV === 'production') return domain + 'www.mican.co.il';
 
-	return domain + 'darkenu-dev.herokuapp.com';
+	return domain + 'www.mican.co.il';
 }

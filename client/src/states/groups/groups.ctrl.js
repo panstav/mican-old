@@ -1,6 +1,6 @@
-module.exports = ['$rootScope', '$scope', 'user', 'groups', 'api', 'modal', 'pars', '$filter', '$document', '$location', 'domain', controller];
+module.exports = ['topLevelData', '$rootScope', '$scope', 'user', 'groups', 'api', 'modal', 'pars', '$filter', '$document', '$location', controller];
 
-function controller($rootScope, $scope, user, groups, api, modal, pars, $filter, $document, $location, domain){
+function controller(topLevelData, $rootScope, $scope, user, groups, api, modal, pars, $filter, $document, $location){
 
 	var ctrl = this;
 
@@ -205,7 +205,7 @@ function controller($rootScope, $scope, user, groups, api, modal, pars, $filter,
 	function registerSEO(){
 
 		var pageSEO = $scope.$state.current.seo;
-		pageSEO.canonical = ctrl.categoryFilter ? domain + $location.path() : null;
+		pageSEO.canonical = ctrl.categoryFilter ? topLevelData.domain + $location.path() : null;
 		$rootScope.$broadcast('seo:update', pageSEO);
 
 	}

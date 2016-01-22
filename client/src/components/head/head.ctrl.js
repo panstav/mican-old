@@ -1,20 +1,19 @@
-module.exports = ['$rootScope', '$scope', '$location', 'track', 'domain', head];
+module.exports = ['topLevelData', '$rootScope', '$scope', '$location', 'track', head];
 
-function head($rootScope, $scope, $location, track, domain){
+function head(topLevelData, $rootScope, $scope, $location, track){
 
 	var ctrl = this;
 
-	this.domain = domain;
+	this.domain = topLevelData.domain;
 
 	var defaults = {
 
-		title: 'דרכנו',
+		title: 'מכאן',
 		description: 'אינדקס יוזמות חברתיות. הגיע הזמן להתארגן ברשת!',
-		image: 'https://s3.eu-central-1.amazonaws.com/darkenu/graphics/darkenuLogo.jpg',
+		image: 'https://s3.eu-central-1.amazonaws.com/mican/logo/logo-square.jpg',
 
 		twitter: {
 			card: 'summary',
-			handle: '@darkenunet',
 			creator: '@stavgeffen'
 		}
 
@@ -57,7 +56,6 @@ function head($rootScope, $scope, $location, track, domain){
 			page: $location.path(),
 			title: ctrl.title
 		});
-
 	}
 
 }

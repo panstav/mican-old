@@ -2,7 +2,7 @@ module.exports = [controller];
 
 function controller(){
 
-	this.shareText = 'שמעתם על הדבר הזה - \'דרכנו\' ?';
+	this.shareText = 'שמעתם על הדבר הזה - \'מכאן\' ?';
 
 	this.contributers = [
 		'תום בזרוקוב',

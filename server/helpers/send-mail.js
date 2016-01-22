@@ -14,7 +14,7 @@ module.exports = function(settings, callback){
 		important: settings.importance || false,
 
 		from_email: urls.officialAddress,
-		from_name: 'דרכנו',
+		from_name: 'מכאן',
 		to: [{ email: settings.recipient }],
 
 		subject: settings.subject,
