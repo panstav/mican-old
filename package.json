@@ -2,7 +2,7 @@
   "name": "Mican",
   "version": "0.0.0",
   "engines": {
-    "node": "4.2.3",
+    "node": "4.2.6",
     "npm": "2.14.7"
   },
   "description": "Israeli Social Initiatives Index",
