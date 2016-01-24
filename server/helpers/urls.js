@@ -5,8 +5,8 @@ module.exports = {
 	anonAvatar:
 		'https://s3.eu-central-1.amazonaws.com/mican/misc/anon-avatar.png',
 
-	officialAddress: 'stavgeffen@gmail.com',
-	supportAddress: 'stavgeffen@gmail.com'
+	officialAddress: 'admin@mican.co.il',
+	supportAddress: 'admin@mican.co.il'
 
 };
 
