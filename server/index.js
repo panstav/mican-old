@@ -72,7 +72,7 @@ module.exports.init = () => {
 	log.debug('Attaching Express Middleware');
 
 	// compress everything
-	//server.use(compression());
+	if (process.env.NODE_ENV === 'production') server.use(compression());
 
 	// allow access to static assets
 	server.use(express.static('public', {
