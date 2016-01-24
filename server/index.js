@@ -26,6 +26,9 @@ var db =            require('./services/db');
 
 var cloudinary =    require('cloudinary');
 
+// Tools
+var moment =        require('moment');
+
 // Custom Helpers
 var urls =          require('./helpers/urls');
 var track =         require('./services/track');
@@ -50,7 +53,10 @@ module.exports.init = () => {
 	if (process.env.HEROKU) server.enable('trust proxy');
 
 	// enforce https on production environment
-	if (process.env.NODE_ENV === 'production') server.use(enforce.HTTPS({ trustProtoHeader: true }));
+	if (process.env.NODE_ENV === 'production'){
+		server.use(enforce.HTTPS({ trustProtoHeader: true }));
+		server.use(HSTS({ expiryDate: '24/01/2017' }));
+	}
 
 	// identify as admin user, if env in local and middleware is available
 	let localID = optional('./localID');
@@ -126,6 +132,17 @@ module.exports.init = () => {
 	server.use(fourOhFour);
 
 	return server;
+
+	function HSTS(options){
+		return (req, res, next) => {
+
+			// set the 'Strict-Transport-Security' to the number of seconds until SSL certificate is expired
+			let maxAgeInSeconds = moment(options.expiryDate, 'DD/MM/YY').diff(moment(), 'seconds');
+			res.setHeader('Strict-Transport-Security', maxAgeInSeconds);
+
+			next();
+		};
+	}
 
 	function integrateDatabase(){
 
