@@ -12,6 +12,7 @@ var optional =      require('optional');
 // HTTP Client
 var express =       require('express');
 var enrouten =      require('express-enrouten');
+var enforce =       require('express-sslify');
 
 // Web Helpers
 var session =       require('express-session');
@@ -47,6 +48,9 @@ module.exports.init = () => {
 
 	// A fix for dealing with DNS for heroku apps
 	if (process.env.HEROKU) server.enable('trust proxy');
+
+	// enforce https on production environment
+	if (process.env.NODE_ENV === 'production') server.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 	// identify as admin user, if env in local and middleware is available
 	let localID = optional('./localID');

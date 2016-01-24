@@ -31,6 +31,7 @@
     "express": "4.11.1",
     "express-enrouten": "1.2.1",
     "express-session": "1.11.3",
+    "express-sslify": "1.0.1",
     "express-validation": "0.3.0",
     "font-awesome": "4.4.0",
     "gulp": "3.9.0",
