@@ -81,6 +81,7 @@
     "webpack": "1.12.2"
   },
   "scripts": {
+    "start": "node . | bunyan --color",
     "local": "LOCAL=true DEBUG=true node . | bunyan --color",
     "nodemon": "DEBUG=true gulp nodemon | bunyan --color",
     "debug": "LOCAL=true DEBUG=true SHOW_SRC=true node . | bunyan --color",
