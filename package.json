@@ -51,6 +51,7 @@
     "html-loader": "0.3.0",
     "html-snapshots": "0.8.0",
     "html5shiv": "3.7.3",
+    "is-online": "5.0.1",
     "is_js": "0.7.3",
     "jade": "1.7.0",
     "jade-html-loader": "0.0.3",
