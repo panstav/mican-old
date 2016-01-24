@@ -35,6 +35,14 @@ gulp.task('define-local', done => {
 	done();
 });
 
+gulp.task('define-production', done => {
+	process.env.NODE_ENV = 'production';
+
+	require('./env');
+
+	done();
+});
+
 gulp.task('prep-public-dir', () => {
 
 	let copyPaste = [
@@ -90,3 +98,5 @@ gulp.task('build', plugins.sequence('prep-public-dir', ['font-awesome', 'polimap
 gulp.task('local', plugins.sequence('clean', 'define-local', 'build'));
 
 gulp.task('heroku', plugins.sequence('clean', 'define-revision', 'build'));
+
+gulp.task('production-like', plugins.sequence('define-production', 'heroku'));
