@@ -41,7 +41,7 @@ module.exports.constructHead = () => {
 	// insert the possibly versioned css file and the font-awesome loader
 	resources.css = [
 		`global${ process.env.VERSIONSTR || '' }.css`,
-		`font-awesome/css/font-awesome${ process.env.LOCAL ? '' : '.min' }.css`
+		`font-awesome/css/font-awesome${ process.env.NODE_ENV === 'production' ? '.min' : '' }.css`
 	];
 
 	// insert the possibly versioned js file as async script
@@ -66,7 +66,7 @@ module.exports.constructHead = () => {
 		};
 	}
 
-	gulp.src('public/partials/index.html')
+	return gulp.src('public/partials/index.html')
 		.pipe(plugins.htmlReplace(resources))
 		.pipe(gulp.dest('public/partials'));
 
