@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img width="500" src="https://s3.eu-central-1.amazonaws.com/mican/logo/logo.jpg" alt="mican">
+	<img width="500" src="https://s3.eu-central-1.amazonaws.com/mican/logo/logo-transparent.png" alt="mican">
 </h1>
 
 An Israeli social-initiatives index.
