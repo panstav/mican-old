@@ -1,6 +1,6 @@
-module.exports = [controller];
+module.exports = ['topLevelData', controller];
 
-function controller(){
+function controller(topLevelData){
 
 	this.shareText = 'שמעתם על הדבר הזה - \'מכאן\' ?';
 
@@ -64,6 +64,6 @@ function controller(){
 	];
 
 	// that's a hook replaced by actual package.json dependencies @ gulpfile.js - webpack
-	this.restTechnologies = PACKAGE.JSON_FILTERED_DEPENDENCIES;
+	this.restTechnologies = topLevelData.packageDependencies;
 
 }
