@@ -52,7 +52,7 @@ module.exports = function(app){
 	});
 
 	var googleOptions = {
-		clientID: process.env.GOOGLE_CLIENTID,
+		clientID: process.env.GOOGLE_CLIENT_ID,
 		clientSecret: process.env.GOOGLE_SECRET,
 		callbackURL: urls.domain + '/google/callback'
 	};

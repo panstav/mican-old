@@ -175,7 +175,7 @@ module.exports.init = () => {
 
 	function setLoginPolicies(){
 
-		if (!process.env.GOOGLE_CLIENTID || !process.env.FACEBOOK_APP_ID) return log.warn('Social login credentials are missing, social login is not operational.');
+		if (!process.env.GOOGLE_CLIENT_ID || !process.env.FACEBOOK_APP_ID) return log.warn('Social login credentials are missing, social login is not operational.');
 
 		// set passport policy
 		require('./registry.js')(server);
