@@ -48,7 +48,6 @@ gulp.task('prep-public-dir', () => {
 	let copyPaste = [
 		'client/manifest.json',
 	  'client/browserconfig.xml',
-	  'client/sitemap.xml',
 	  'client/robots.txt',
 	  'client/alefhebrew.css'
 	];
