@@ -56,10 +56,10 @@ module.exports.constructHead = () => {
 			src: null,
 			tpl: '<meta name="robots" content="noindex">'
 		};
-	}
 
-	// insert google verification if environment has such key
-	if (process.env.GOOGLE_VERIFICATION){
+	} else {
+
+		// insert google verification
 		resources.google = {
 			src: null,
 			tpl: `<meta name="google-site-verification" content="${ process.env.GOOGLE_VERIFICATION }">`
