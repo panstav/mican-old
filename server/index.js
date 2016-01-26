@@ -56,6 +56,7 @@ module.exports.init = () => {
 	if (process.env.NODE_ENV === 'production'){
 		server.use(enforce.HTTPS({ trustProtoHeader: true }));
 		server.use(HSTS({ expiryDate: '24/01/2017' }));
+		process.env.SECURE = 'true';
 	}
 
 	// identify as admin user, if env in local and middleware is available
