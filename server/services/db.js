@@ -77,15 +77,39 @@ function regenerateSitemap(callback){
 
 	log.debug('Initiating sitemap regeneration,');
 
-	var dayOfLastCommit, priorities = {
+	var priorities = {
 		topPages: 1,
 		groupPages: 0.5
 	};
 
+	map = [
+		{
+			url: '/',
+			changefreq: 'monthly',
+			priority: priorities.topPages
+		},
+
+		{
+			url: '/groups',
+			changefreq: 'weekly',
+			priority: priorities.topPages
+		},
+
+		{
+			url: '/tasks',
+			changefreq: 'daily',
+			priority: priorities.topPages
+		},
+
+		{
+			url: '/map',
+			changefreq: 'never',
+			priority: priorities.topPages
+		}
+	];
+
 	async.series(
 		[
-			set_day_of_last_commit_and_map,
-
 			prep_all_group_profiles,
 
 		  write_sitemap_for_serve
@@ -97,58 +121,9 @@ function regenerateSitemap(callback){
 				return log.error(err);
 			}
 
-			log.debug('Sitemap regeneration complete.')
+			log.debug('Sitemap regeneration complete.');
 		}
 	);
-
-	function set_day_of_last_commit_and_map(done){
-
-		git.getLastCommit((err, commit) => {
-
-			var sitemapDateFormat = 'YYYY-MM-DD';
-
-			if (err || !commit){
-				dayOfLastCommit = moment().format(sitemapDateFormat);
-
-				log.error(err || 'no commit');
-
-			} else {
-				dayOfLastCommit = moment(commit.committedOn, 'X').format(sitemapDateFormat);
-			}
-
-			map = [
-				{
-					url: '/',
-					changefreq: 'monthly',
-					priority: priorities.topPages,
-					lastmod: dayOfLastCommit
-				},
-
-				{
-					url: '/groups',
-					changefreq: 'weekly',
-					priority: priorities.topPages,
-					lastmod: dayOfLastCommit
-				},
-
-				{
-					url: '/tasks',
-					changefreq: 'daily',
-					priority: priorities.topPages,
-					lastmod: dayOfLastCommit
-				},
-
-				{
-					url: '/map',
-					changefreq: 'never',
-					priority: priorities.topPages,
-					lastmod: '2014-04-01'
-				}
-			];
-
-			done();
-		});
-	}
 
 	function prep_all_group_profiles(done){
 
@@ -156,18 +131,11 @@ function regenerateSitemap(callback){
 			if (err) return done(err);
 			if (!groups) return done({ groups: groups });
 
-			groups.forEach(group => {
-
-				map.push(
-					{
-						changefreq: 'weekly',
-						priority: priorities.groupPages,
-						lastmod: dayOfLastCommit,
-						url: '/groups/' + (group.namespace ? group.namespace : group._id.toString())
-					}
-				);
-
-			});
+			map.push.apply(map, groups.map(group => ({
+				changefreq: 'weekly',
+				priority: priorities.groupPages,
+				url: '/groups/' + (group.namespace ? group.namespace : group._id.toString())
+			})));
 
 			done();
 		});
