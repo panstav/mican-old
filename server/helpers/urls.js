@@ -19,5 +19,6 @@ function domain(){
 
 	if (process.env.NODE_ENV === 'production') return domain + 'www.mican.co.il';
 
+	// used for remote dev instance
 	return domain + 'www.mican.co.il';
 }
