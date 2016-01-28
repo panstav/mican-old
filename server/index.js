@@ -53,10 +53,9 @@ module.exports.init = () => {
 	if (process.env.HEROKU) server.enable('trust proxy');
 
 	// enforce https on production environment
-	if (process.env.NODE_ENV === 'production'){
+	if (process.env.NODE_ENV === 'production' && process.env.SECURE){
 		server.use(enforce.HTTPS({ trustProtoHeader: true }));
 		server.use(HSTS({ expiryDate: '24/01/2017' }));
-		process.env.SECURE = 'true';
 	}
 
 	// identify as admin user, if env in local and middleware is available
@@ -89,21 +88,6 @@ module.exports.init = () => {
 	}));
 
 	server.use(track.middleware);
-
-	// break non-safe requests if environment
-	server.use(function(req, res, next){
-		if (process.env.SECURE && req.protocol === 'http'){
-			var eventObj = {
-				ec: 'Routes', ea: 'Non-secure', dl: req.path
-			};
-
-			res.redirect(301, urls.domain);
-
-			return req.track.event(eventObj).send();
-		}
-
-		next();
-	});
 
 	// provide snapshots for crawlers
 	server.use(snapshooter);
