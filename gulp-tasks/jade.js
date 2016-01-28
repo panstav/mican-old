@@ -64,6 +64,12 @@ module.exports.constructHead = () => {
 			src: null,
 			tpl: `<meta name="google-site-verification" content="${ process.env.GOOGLE_VERIFICATION }">`
 		};
+
+		// insert bing verification
+		resources.bing = {
+			src: null,
+			tpl: `<meta name="msvalidate.01" content="${ process.env.BING_VERIFICATION }" />`
+		};
 	}
 
 	return gulp.src('public/partials/index.html')

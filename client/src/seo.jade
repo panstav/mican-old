@@ -1,12 +1,16 @@
 title(ng-bind="head.title")
+meta(name="description" content="{{ head.description }}")
 meta(name="author" content="Stav Geffen")
 
 // build:noIndex
 // endbuild
 
 // Google
-meta(name="description" content="{{ head.description }}")
 // build:google
+// endbuild
+
+// Bing
+// build:bing
 // endbuild
 
 // Twitter Cards
