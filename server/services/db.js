@@ -99,12 +99,6 @@ function regenerateSitemap(callback){
 			url: '/tasks',
 			changefreq: 'daily',
 			priority: priorities.topPages
-		},
-
-		{
-			url: '/map',
-			changefreq: 'never',
-			priority: priorities.topPages
 		}
 	];
 

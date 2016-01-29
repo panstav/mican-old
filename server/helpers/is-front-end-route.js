@@ -6,8 +6,7 @@ var routered = [
 	'/groups(?modal=:modal)',
 	'/groups/(:groupID)',
 	'/tasks',
-	'/tasks/(:taskID)',
-	'/map'
+	'/tasks/(:taskID)'
 ];
 
 module.exports = function(url){
