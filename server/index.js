@@ -123,7 +123,7 @@ module.exports.init = () => {
 
 			// set the 'Strict-Transport-Security' to the number of seconds until SSL certificate is expired
 			let maxAgeInSeconds = moment(options.expiryDate, 'DD/MM/YY').diff(moment(), 'seconds');
-			res.setHeader('Strict-Transport-Security', maxAgeInSeconds);
+			res.setHeader('Strict-Transport-Security', `max-age=${ maxAgeInSeconds }`);
 
 			next();
 		};
