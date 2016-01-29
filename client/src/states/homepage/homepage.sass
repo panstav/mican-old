@@ -88,13 +88,16 @@ state-homepage
 			max-width: 35em
 			margin: auto
 
-		p
+		p:not(.emphasized)
 			margin: 3em auto 2em
 			padding: 0 2em
 			text-align: justify
 
 			@media (min-width: $tv)
 				font-size: 1.25em
+
+		p.emphasized
+			padding: 0 1em
 
 		a
 			float: left
