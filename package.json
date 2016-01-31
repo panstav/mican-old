@@ -1,13 +1,44 @@
 {
   "name": "Mican",
+  "description": "Israeli Social Initiatives Index",
+  "author": "Stav Pan Geffen <stavgeffen@gmail.com>",
+  "main": "index.js",
   "version": "0.0.0",
   "engines": {
     "node": "4.2.6",
     "npm": "2.14.7"
   },
-  "description": "Israeli Social Initiatives Index",
   "homepage": "https://www.mican.co.il",
-  "main": "index.js",
+  "readmeFilename": "README.md",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/panstav/mican.git"
+  },
+  "bugs": {
+    "url": "https://github.com/panstav/mican/issues"
+  },
+  "config": {
+    "pre-git": {
+      "pre-commit": "npm test",
+      "post-commit": "git st",
+      "post-merge": "git recap",
+      "pre-push": [ "gulp local", "npm test" ],
+      "commit-msg": []
+    }
+  },
+  "scripts": {
+    "start": "node . | bunyan --color",
+    "local": "LOCAL=true DEBUG=true node . | bunyan --color",
+    "nodemon": "DEBUG=true gulp nodemon | bunyan --color",
+    "debug": "LOCAL=true DEBUG=true SHOW_SRC=true node . | bunyan --color",
+    "trace": "LOCAL=true TRACE=true node . | bunyan --color",
+    "postinstall": "gulp heroku",
+    "log": "heroku logs --tail --app mican",
+    "log-dev": "heroku logs --tail --app mican-dev",
+    "test": "LOCAL=true mocha",
+    "commit": "commit-wizard"
+  },
   "dependencies": {
     "angular": "1.4.6",
     "angular-animate": "1.4.6",
@@ -83,28 +114,6 @@
     "valid-url": "1.0.9",
     "webpack": "1.12.2"
   },
-  "scripts": {
-    "start": "node . | bunyan --color",
-    "local": "LOCAL=true DEBUG=true node . | bunyan --color",
-    "nodemon": "DEBUG=true gulp nodemon | bunyan --color",
-    "debug": "LOCAL=true DEBUG=true SHOW_SRC=true node . | bunyan --color",
-    "trace": "LOCAL=true TRACE=true node . | bunyan --color",
-    "postinstall": "gulp heroku",
-    "log": "heroku logs --tail --app mican",
-    "log-dev": "heroku logs --tail --app mican-dev",
-    "test": "LOCAL=true mocha"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/panstav/mican.git"
-  },
-  "bugs": {
-    "url": "https://github.com/panstav/mican/issues"
-  },
-  "author": "Stav Pan Geffen <stavgeffen@gmail.com>",
-  "license": "ISC",
-  "readmeFilename": "README.md",
-  "private": true,
   "devDependencies": {
     "expect.js": "0.3.1",
     "gulp-bump": "0.3.0",
@@ -112,9 +121,10 @@
     "is-online": "5.0.1",
     "jsonfile": "2.0.0",
     "mocha": "2.1.0",
-    "pre-commit": "1.1.1",
+    "pre-git": "^3.3.0",
     "snyk": "1.1.1",
     "stats-webpack-plugin": "0.2.2",
     "supertest": "0.15.0"
-  }
+  },
+  "private": true
 }
