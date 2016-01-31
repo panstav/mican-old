@@ -36,7 +36,11 @@ function init(callback){
 	mongoose.connect(dbURI);
 
 	mongoose.connection.on('connected', function(){
-		log.info('Mongoose connection established: ' + mongoose.connection.host + ':' + mongoose.connection.port);
+		process.env.MONGO_CONNECTED = true;
+
+		if (!process.env.NODE_ENV === 'test'){
+			log.info('Mongoose connection established: ' + mongoose.connection.host + ':' + mongoose.connection.port);
+		}
 	});
 
 	mongoose.connection.on('error', function(err){

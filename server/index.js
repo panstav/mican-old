@@ -7,10 +7,8 @@ if (process.env.LOCAL) log.trace({ env: process.env }, 'Environment');
 //------------------ Required
 //-=======================================================---
 
-var optional =      require('optional');
-
 // HTTP Client
-var express =       require('express');
+var express =  require('express');
 var enrouten =      require('express-enrouten');
 var enforce =       require('express-sslify');
 
@@ -58,13 +56,12 @@ module.exports.init = () => {
 		server.use(HSTS({ expiryDate: '24/01/2017' }));
 	}
 
-	// identify as admin user, if env in local and middleware is available
-	let localID = optional('./localID');
-	if (process.env.LOCAL && localID) server.use(localID);
+	// optionally mock a user (for test purposes)
+	if (process.env.LOCAL && process.env.MOCK_USER) server.use(require('./mock-user'));
 
 	log.debug('Establishing Cloudinary && Mongo connections');
 
-	integrateDatabase();
+	if (!process.env.MONGO_CONNECTED) integrateDatabase();
 
 	integrateCloudinary();
 

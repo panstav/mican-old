@@ -1,12 +1,16 @@
+var expect = require('expect.js');
 var request = require('supertest');
 
-var expect = require('expect.js');
 var isHTML = require('is-html');
 
 var express = require('../server').init();
-require('../env');
 
-describe('Public - Client Side', function(){
+before(() => {
+	// define test env
+	process.env.NODE_ENV = 'test';
+});
+
+describe('Public - Assets', () => {
 
 	it('Should serve homepage', done => {
 
@@ -95,8 +99,6 @@ describe('Public - Client Side', function(){
 
 	it('Should serve 404 for requests of non-existent snapshots', done => {
 
-		delete process.env.LOCAL;
-
 		request(express)
 			.get('/non-existant?_escaped_fragment_=')
 			.set('Accept', 'text/html')
@@ -104,8 +106,6 @@ describe('Public - Client Side', function(){
 				if (err) throw err;
 
 				expect(res.status).to.eql(404);
-
-				process.env.LOCAL = 'true';
 
 				done();
 			});
@@ -128,4 +128,9 @@ describe('Public - Client Side', function(){
 
 	});
 
+});
+
+after(() => {
+	// close express instance
+	express.listen().close();
 });
