@@ -19,8 +19,6 @@ module.exports = (req, res, next) => {
 
 			prep_and_save_new_groupObj,
 
-			handle_groupField_suggestion,
-
 			optionally_set_user_as_admin
 
 		],
@@ -65,32 +63,6 @@ module.exports = (req, res, next) => {
 			step(null, newGroupDoc);
 		});
 
-	}
-
-	function handle_groupField_suggestion(newGroupDoc, step){
-
-		var suggestedField = req.body.suggestedField;
-
-		if (!suggestedField) return step(null, newGroupDoc);
-
-		var mailObj = {
-			subject: 'הצעה לזירת עשייה חדשה!',
-			recipient: urls.supportAddress,
-			importance: false,
-			template: 'newFieldSuggestion',
-			templateArgs: {
-				groupID: normalizeID(newGroupDoc._id),
-				groupDisplayName: newGroupDoc.displayName,
-				userID: req.user ? normalizeID(req.user._id) : 'anon',
-				suggestedField: suggestedField
-			}
-		};
-
-		sendMail(mailObj, function(err){
-			if (err) return log.error(err);
-
-			step(null, newGroupDoc);
-		});
 	}
 
 	function optionally_set_user_as_admin(newGroupDoc, step){

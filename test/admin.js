@@ -89,7 +89,19 @@ describe('Admin - Groups API', () => {
 					// remember the first valid color
 					validColor = errorMessage.substr(21, errorMessage.indexOf(',') -21);
 
-					done();
+					// make sure it doesn't accept other / suggested color
+					newGroupObj.color = 'other';
+					request(express)
+						.post('/api/groups/')
+						.send(newGroupObj)
+						.end((err, res) => {
+							if (err) return done(err);
+
+							expect(res.status).to.be.eql(400);
+
+							done();
+						});
+
 				});
 
 		});

@@ -10,15 +10,8 @@ function addGroup(user){
 		displayName: '',
 		field: '',
 		desc: '',
-
-		amAdmin: false,
-
-		// meta
-		suggestedField: '',
-		comment: ''
+		amAdmin: false
 	};
-
-	this.newGroupField = false;
 
 	this.send = function(valid){
 

@@ -40,7 +40,7 @@ var validationObj = {
 				
 				displayName:  Joi.string().max(50).required(),
 				desc:         Joi.string().max(800).required(),
-				color:        Joi.any().valid(['orange','purple','blue','green','aqua','yellow','bordo','sky','pink','other']).required()
+				color:        Joi.any().valid(['orange','purple','blue','green','aqua','yellow','bordo','sky','pink']).required()
 
 			}
 		},
