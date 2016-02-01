@@ -19,7 +19,7 @@ module.exports = function(options){
 
 		// got users info - check for required roles
 		if (req.user.blocked && req.user.blocked.value){
-			if (!options.test) log.warn({ req: req }, 'User blocked');
+			if (process.env.NODE_ENV === 'production') log.warn({ req: req }, 'User blocked');
 
 			return fail();
 		}
@@ -52,9 +52,7 @@ module.exports = function(options){
 
 		function fail(){
 
-			if (options.test) return new Error('Failed auth');
-
-			if (!options.possibleMishap){
+			if (process.env.NODE_ENV === 'production && !options.possibleMishap'){
 				log.warn({ req: req }, 'Suspicious');
 			}
 

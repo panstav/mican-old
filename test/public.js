@@ -10,7 +10,7 @@ before(() => {
 	process.env.NODE_ENV = 'test';
 });
 
-describe('Public - Assets', () => {
+describe('Public - Assets', function(){
 
 	it('Should serve homepage', done => {
 
@@ -97,6 +97,26 @@ describe('Public - Assets', () => {
 
 	});
 
+	it('Shouldn\'t respond with 404 to existent pages if they\'re not express routes', done => {
+
+		request(express)
+			.get('/groups')
+			.set('Accept', 'text/html')
+			.end((err, res) => {
+				if (err) throw err;
+
+				expect(isHTML(res.text)).to.be.ok();
+				expect(res.status).to.eql(200);
+
+				done();
+			});
+
+	});
+
+});
+
+describe('Public - Snapshots', () => {
+
 	it('Should serve 404 for requests of non-existent snapshots', done => {
 
 		request(express)
@@ -112,19 +132,25 @@ describe('Public - Assets', () => {
 
 	});
 
-	it('Shouldn\'t respond with 404 to existent pages if they\'re not express routes', done => {
+});
 
-		request(express)
-			.get('/groups')
-			.set('Accept', 'text/html')
-			.end((err, res) => {
-				if (err) throw err;
+describe('Public - Groups API', () => {
 
-				expect(isHTML(res.text)).to.be.ok();
-				expect(res.status).to.eql(200);
+	describe('POST \'/\' - Add Group', () => {
 
-				done();
-			});
+		it('Shouldn\'t allow a public user to access this endpoint', done => {
+
+			request(express)
+				.post('/api/groups/')
+				.end((err, res) => {
+					if (err) throw err;
+
+					expect(res.status).to.eql(401);
+
+					done();
+				});
+
+		});
 
 	});
 

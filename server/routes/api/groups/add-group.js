@@ -12,7 +12,7 @@ var urls =        require('../../../helpers/urls');
 var normalizeID = require('../../../helpers/normalize-id');
 var paraSplit =   require('../../../helpers/para-split');
 
-module.exports = function(req, res, next){
+module.exports = (req, res, next) => {
 
 	async.waterfall(
 		[
@@ -32,7 +32,7 @@ module.exports = function(req, res, next){
 
 			resJson.groupCreated = true;
 
-			res.status(202).json(resJson);
+			res.status(200).json(resJson);
 		}
 	);
 
@@ -60,7 +60,7 @@ module.exports = function(req, res, next){
 				ec: 'Data Entry', ea: 'Group', dl: newGroupObj.displayName
 			};
 
-			req.track.event(eventObj).send();
+			if (process.env.NODE_ENV === 'production') req.track.event(eventObj).send();
 
 			step(null, newGroupDoc);
 		});
@@ -102,6 +102,7 @@ module.exports = function(req, res, next){
 		userModel.findByIdAndUpdate(req.user._id, { $addToSet: { admining: normalizeID(newGroupDoc._id) }}, function(err){
 			if (err) return log.error(err);
 
+			// send the id so user could be redirected to newly created group profile
 			step(null, { _id: normalizeID(newGroupDoc._id) });
 		});
 	}
