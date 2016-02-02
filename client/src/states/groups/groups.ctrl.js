@@ -136,18 +136,6 @@ function controller(topLevelData, $rootScope, $scope, user, groups, api, modal, 
 	//------------------ Redirection
 	//-=======================================================---
 
-	// quick route
-	var reqModal = $scope.$state.params.modal;
-
-	if (reqModal && reqModal === 'add-group'){
-
-		// ask for login info asyncly
-		// user.recall() is called at app.runtime, but race condition is there
-		user.isAnon(function(ans){
-			return modal.open(ans ? 'add-group' : 'login');
-		});
-	}
-
 	var reqCategory = $scope.$state.params.category;
 	if (reqCategory) redirectByRequestedCategory(reqCategory);
 

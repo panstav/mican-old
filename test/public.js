@@ -113,6 +113,20 @@ describe('Public - Assets', function(){
 
 	});
 
+	it('Should 404 to /add-group', done => {
+
+		request(express)
+			.get('/add-group')
+			.end((err, res) => {
+				if (err) throw err;
+
+				expect(res.status).to.eql(404);
+
+				done();
+			});
+
+	});
+
 });
 
 describe('Public - Snapshots', () => {

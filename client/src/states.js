@@ -50,7 +50,7 @@ var states = {
 
 	groups: {
 
-		url: '/groups?category&modal',
+		url: '/groups?category',
 
 		views: {
 			'main':{
