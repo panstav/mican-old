@@ -8,7 +8,6 @@ var async =       require('async');
 var _ =           require('lodash');
 var moment =      require('moment');
 var sm =          require('sitemap');
-var git =         require('git-last-commit');
 
 var log =         require('./log');
 var urls =        require('../helpers/urls');
