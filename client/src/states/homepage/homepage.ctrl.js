@@ -1,6 +1,6 @@
-module.exports = ['api', 'user', controller];
+module.exports = ['api', 'user', 'modal', controller];
 
-function controller(api, user){
+function controller(api, user, modal){
 	
 	var ctrl = this;
 
@@ -15,6 +15,14 @@ function controller(api, user){
 		if (email && emailRegexp.test(email)){
 			api.addToNewsletter({ email: email });
 		}
+
+	};
+
+	this.addGroup = function(){
+
+		if (user.isAnon()) return modal.open('suggest-group');
+
+		modal.open('add-group');
 
 	};
 

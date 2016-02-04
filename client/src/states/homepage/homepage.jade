@@ -45,12 +45,13 @@ ng-if="main.user.isAdmin"
 
 	.actions
 
-		.action.registerGroup
+		.action.registerGroup(
+		ng-click="home.addGroup()"
+		)
 			img(
 			src="https://s3.eu-central-1.amazonaws.com/mican/misc/home-actions/add-group.png"
 			)
 			span לרשום יוזמה חדשה
-			span.smaller בקרוב..
 
 		a.action.volunteer(
 		ui-sref="tasks"

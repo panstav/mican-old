@@ -144,6 +144,26 @@ function api($rootScope, $state, $http, $upload, httpErrorHandler, mem, confirme
 
 			},
 
+			suggest: function(data, callback){
+
+				$http.post('api/groups/suggest', data)
+
+					.success(
+						function(){
+							$rootScope.$broadcast('prompt:success', 'תודה רבה, במידה ונמצא את היוזמה מתאימה - ניצור עימה קשר בקרוב.');
+
+							callback();
+						})
+
+					.error(
+						function(){
+							$rootScope.$broadcast('prompt:error', 'שמירת פרטי היוזמה נכשלה מסיבה מסויימת, נסו שוב מאוחר יותר.');
+
+							callback();
+						});
+
+			},
+
 			getAdminEmail: function(id, successCallback){
 
 				$http.get('api/groups/' + id + '/admin-email').success(successCallback).error(httpErrorHandler);

@@ -1,0 +1,65 @@
+.modal.suggestGroup(
+modal-sizer, stop-propagation
+ng-controller="suggestGroupCtrl as suggG"
+)
+
+	header
+		h2 המלצה על יוזמה קיימת
+
+		.fa.fa-close(ng-click="modal.reset()")
+
+	main
+		.form(
+		ng-form="newGroupSuggestionForm"
+		ng-submit="suggG.send()"
+		ng-class="suggG.showValidation ? 'showValidation' : ''"
+		)
+
+			p.explain
+				|לאחר&nbsp;
+
+				span.link-like(
+				ng-click="suggG.openLoginInstead()"
+				) התחברות למערכת
+
+				|&nbsp;תוכלו להוסיף ולנהל יוזמות חדשות, אם אין ברצונכם להתחבר ל- 'מכאן'
+				|&nbsp;עדיין תוכלו להמליץ לנו על כל יוזמה באמצעות טופס זה.
+
+			input(
+			type="text" required
+			name="groupName"
+			ng-model="suggG.newGroupSuggestion.displayName"
+			placeholder="שם היוזמה"
+			)
+
+			p(
+			ng-class="newGroupSuggestionForm.$error.noContact ? 'explicit' : ''"
+			) על מנת שנוכל ליצור קשר ולהוסיף את היוזמה - מלאו לפחות אחד מהשדות הבאים:
+
+			.fa-wrapper.fa.fa-fw.fa-envelope
+				input(
+				name="email" type="email"
+				ng-model="suggG.newGroupSuggestion.mail"
+				placeholder="כתובת מייל"
+				)
+
+			.fa-wrapper.fa.fa-fw.fa-phone
+				input(
+				name="tel" type="tel"
+				ng-model="suggG.newGroupSuggestion.tel"
+				placeholder="מספר טלפון"
+				)
+
+			.fa-wrapper.fa.fa-fw.fa-external-link
+				input(
+				name="link" type="url"
+				ng-model="suggG.newGroupSuggestion.link"
+				placeholder="כתובת אינטרנט"
+				)
+
+			p.explain(valid-url)
+
+	footer
+		span.validation(ng-show="suggG.showValidation") שימו לב לשדות שלא מולאו כשורה.
+		button.submit.silent(ng-click="suggG.send(newGroupSuggestionForm.$valid)") {{ modal.prompts.sendForm }}
+

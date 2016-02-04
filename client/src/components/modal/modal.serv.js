@@ -1,6 +1,6 @@
-module.exports = ['mem', service];
+module.exports = ['mem', '$timeout', service];
 
-function service(mem){
+function service(mem, $timeout){
 
 	var modalUrl = '';
 
@@ -11,9 +11,6 @@ function service(mem){
 		// allow some passage of data
 		if (angular.isObject(toMemorize)) mem(toMemorize);
 
-		// if a modal is currently open
-		if (!!modalUrl) reset();
-
 		// disable scrolling
 		window.document.body.style.overflowY = 'hidden';
 
@@ -23,7 +20,7 @@ function service(mem){
 	function reopen(url, toMemorize){
 		reset();
 
-		open(url, toMemorize);
+		$timeout(() => { open(url, toMemorize) });
 	}
 
 	function reset(){
