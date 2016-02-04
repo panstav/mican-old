@@ -24,6 +24,7 @@
       "post-commit": "git st",
       "post-merge": "git recap",
       "pre-push": [ "gulp local", "npm test" ],
+      "post-push": "git gc",
       "commit-msg": []
     }
   },
