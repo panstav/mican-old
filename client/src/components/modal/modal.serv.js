@@ -4,32 +4,39 @@ function service(mem){
 
 	var modalUrl = '';
 
-	return {
+	return { open, reopen, reset, url };
 
-		open: function(url, toMemorize){
+	function open(url, toMemorize){
 
-			// allow some passage of data
-			if (angular.isObject(toMemorize)) mem(toMemorize);
+		// allow some passage of data
+		if (angular.isObject(toMemorize)) mem(toMemorize);
 
-			// disable scrolling
-			window.document.body.style.overflowY = 'hidden';
+		// if a modal is currently open
+		if (!!modalUrl) reset();
 
-			modalUrl = url;
-		},
+		// disable scrolling
+		window.document.body.style.overflowY = 'hidden';
 
-		reset: function(){
+		modalUrl = url;
+	}
 
-			// enable scrolling
-			window.document.body.style.overflowY = 'auto';
-			window.document.body.style.position = 'initial';
+	function reopen(url, toMemorize){
+		reset();
 
-			modalUrl = '';
-		},
+		open(url, toMemorize);
+	}
 
-		url: function(){
-			return modalUrl;
-		}
+	function reset(){
 
-	};
+		// enable scrolling
+		window.document.body.style.overflowY = 'auto';
+		window.document.body.style.position = 'initial';
+
+		modalUrl = '';
+	}
+
+	function url(){
+		return modalUrl;
+	}
 
 }
