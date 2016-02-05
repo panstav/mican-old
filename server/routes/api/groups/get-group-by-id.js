@@ -37,7 +37,7 @@ module.exports = function(req, res){
 
 		function(err, result){
 			if (err){
-				log.error(err);
+				if (process.env.NODE_ENV !== 'test') log.error(err);
 
 				return res.status(err.noSuchGroup ? 404 : 423).json(err);
 			}

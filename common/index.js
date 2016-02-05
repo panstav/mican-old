@@ -1,8 +1,13 @@
 'use strict';
 
+var emailRegExp = require('./email-regexp');
+
 var common = {
 	domain: getDomain(),
-	timeformat: 'DD/MM/YYYY HH:mm'
+
+	timeformat: 'DD/MM/YYYY HH:mm',
+
+	emailRegExp
 };
 
 module.exports = common;

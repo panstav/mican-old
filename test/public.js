@@ -1,5 +1,8 @@
+'use strict';
+
 var expect = require('expect.js');
 var request = require('supertest');
+var async = require('async');
 
 var isHTML = require('is-html');
 
@@ -160,6 +163,140 @@ describe('Public - Groups API', () => {
 					if (err) throw err;
 
 					expect(res.status).to.eql(401);
+
+					done();
+				});
+
+		});
+
+	});
+
+	describe('POST \'/suggest\' - Suggest Group', () => {
+		
+		it('Shouldn\'t allow a GET request', done => {
+			
+			request(express)
+				.get('/api/groups/suggest')
+				.end((err, res) => {
+					if (err) throw err;
+			
+					expect(res.status).to.eql(404);
+
+					// sending GET to /api/groups/name should return a profile of a group by that displayName
+					// or a get-group-by-id 404
+					expect(res.body).to.have.key('noSuchGroup');
+			
+					done();
+				});
+			
+		});
+
+		it('Shouldn\'t allow an empty POST request', done => {
+
+			request(express)
+				.post('/api/groups/suggest')
+				.end((err, res) => {
+					if (err) throw err;
+
+					expect(res.status).to.eql(400);
+
+					done();
+				});
+
+		});
+
+		it('Shouldn\'t allow a POST request with empty displayName', done => {
+
+			request(express)
+				.post('/api/groups/suggest')
+				.send({ displayName: '' })
+				.end((err, res) => {
+					if (err) throw err;
+
+					expect(res.status).to.eql(400);
+
+					done();
+				});
+
+		});
+
+		it('Shouldn\'t allow suggesting without a contacts property', done => {
+
+			async.parallel([ test_undefined_contact_obj, test_empty_contact_obj ], done);
+
+			function test_undefined_contact_obj(callback){
+
+				let suggestionObj = { displayName: 'suggestion-test' };
+
+				request(express)
+					.post('/api/groups/suggest')
+					.send(suggestionObj)
+					.end((err, res) => {
+						if (err) throw err;
+
+						expect(res.status).to.eql(400);
+
+						callback();
+					});
+
+			}
+
+			function test_empty_contact_obj(callback){
+
+				let suggestionObj = { displayName: 'suggestion-test', contacts: [] };
+
+				request(express)
+					.post('/api/groups/suggest')
+					.send(suggestionObj)
+					.end((err, res) => {
+						if (err) throw err;
+
+						expect(res.status).to.eql(400);
+
+						callback();
+					});
+
+			}
+
+		});
+
+		it('Shouldn\'t allow suggesting without a single valid contact', done => {
+
+			let suggestionObj = {
+				displayName: 'suggestion-test',
+				contacts: [
+					{ type: 'mail', value: 'non-valid-property' }
+				]
+			};
+
+			request(express)
+				.post('/api/groups/suggest')
+				.send(suggestionObj)
+				.end((err, res) => {
+					if (err) throw err;
+
+					expect(res.status).to.eql(400);
+					expect(res.body.invalidEmailAddress).to.be.ok();
+
+					done();
+				});
+
+		});
+
+		it('Should accept a suggestion that has a single valid property', done => {
+
+			let suggestionObj = {
+				displayName: 'suggestion-test',
+				contacts: [{ type :'mail', value: 'valid@address.com'}]
+			};
+
+			request(express)
+				.post('/api/groups/suggest')
+				.send(suggestionObj)
+				.end((err, res) => {
+					if (err) throw err;
+
+					expect(res.status).to.eql(200);
 
 					done();
 				});

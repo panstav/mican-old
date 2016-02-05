@@ -33,6 +33,7 @@ module.exports = function(router){
 
 	/*
 	 * Post api/groups/         - creates new group
+	 * Post api/groups/suggest  - suggests new group
 	 * Post api/groups/star     - sets user to follow group
 	 * Post api/groups/contacts - creates a new contact
 	 * Post api/groups/events   - creates a new event
@@ -43,6 +44,12 @@ module.exports = function(router){
 		auth(),
 		validate(validation.addGroup),
 		require('./add-group')
+	);
+
+	router.post(
+		'/suggest',
+		validate(validation.suggestGroup),
+		require('./suggest-group')
 	);
 
 	router.post(

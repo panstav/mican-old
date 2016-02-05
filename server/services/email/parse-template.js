@@ -4,6 +4,16 @@ var urls = require('./../../helpers/urls');
 
 var templates = {
 
+	suggestGroup: function(args){
+
+		let contacts = `<p>פרטי קשר</p>`;
+		if (args.link) contacts += `<span>אתר אינטרנט: <a href="${args.link}" target="_blank">${args.link}</a></span><br>`;
+		if (args.mail) contacts += `<span>כתובת מייל: <a href="mailto:${args.mail}">${args.mail}</a></span><br>`;
+		if (args.tel) contacts += `<span>מספר טלפון: <a href="tel:${args.tel}">${args.tel}</a></span>`;
+
+		return `<p>נשלחה המלצה חדשה ליוזמה בשם - "${args.displayName}"</p>` + contacts;
+	},
+
 	feedback: function(args){
 
 		var userStr = args.userID

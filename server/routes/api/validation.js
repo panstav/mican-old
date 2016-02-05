@@ -45,6 +45,21 @@ var validationObj = {
 			}
 		},
 
+		suggestGroup: {
+
+			body: {
+
+				displayName:  Joi.string().min(1).required(),
+				contacts:     Joi.array().min(1).required().includes(Joi.object().keys(
+					{
+						type: Joi.string().valid(['link', 'mail', 'tel']).required(),
+						value: Joi.string().required()
+					}
+				))
+
+			}
+		},
+
 		editGroupDesc: {
 
 			body: {
