@@ -9,7 +9,7 @@ var userModel = mongoose.model('user');
 var urls = require('../../../helpers/urls');
 
 var guid = require('../../../helpers/guid');
-var templates = require('../../../helpers/templates.js');
+var templates = require('../../../services/email/parse-template');
 
 module.exports = function(req, res){
 

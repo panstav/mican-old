@@ -7,7 +7,7 @@ var mongoose =    require('mongoose');
 var groupModel =  mongoose.model('group');
 var userModel =   mongoose.model('user');
 
-var sendMail =    require('../../../helpers/send-mail');
+var sendMail =    require('../../../services/email');
 var urls =        require('../../../helpers/urls');
 var normalizeID = require('../../../helpers/normalize-id');
 var paraSplit =   require('../../../helpers/para-split');

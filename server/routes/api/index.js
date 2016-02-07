@@ -7,7 +7,7 @@ var is =          require('is_js');
 var mongoose =    require('mongoose');
 var groupModel =  mongoose.model('group');
 
-var sendMail =    require('../../helpers/send-mail');
+var sendMail =    require('../../services/email');
 var normalizeID = require('../../helpers/normalize-id');
 var urls =        require('../../helpers/urls');
 

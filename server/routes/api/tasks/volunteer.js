@@ -4,7 +4,7 @@ var async = require('async');
 var is = require('is_js');
 var moment = require('moment');
 
-var sendMail = require('../../../helpers/send-mail');
+var sendMail = require('../../../services/email');
 var validMongoID = require('../../../helpers/valid-mongo-id');
 var normalizeID = require('../../../helpers/normalize-id');
 //

@@ -6,7 +6,7 @@ var userModel = mongoose.model('user');
 var taskModel = mongoose.model('task');
 var storyModel = mongoose.model('story');
 
-var sendMail = require('../../../helpers/send-mail');
+var sendMail = require('../../../services/email');
 var urls = require('../../../helpers/urls');
 var paraSplit = require('../../../helpers/para-split');
 

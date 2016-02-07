@@ -6,7 +6,7 @@ var userModel =     mongoose.model('user');
 var validMongoID =  require('../helpers/valid-mongo-id');
 var normalizeID =   require('../helpers/normalize-id');
 
-var sendMail =      require('../helpers/send-mail');
+var sendMail =      require('../services/email');
 var urls =          require('../helpers/urls');
 var guid =          require('../helpers/guid');
 
