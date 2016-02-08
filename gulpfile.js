@@ -1,6 +1,8 @@
 'use strict';
 
 var path = require('path');
+
+var common = require('./common');
 var packageJson = require('./package.json');
 
 var gulp = require('gulp');
@@ -156,6 +158,15 @@ gulp.task('construct-html-head', () => {
 
 		var resourcesObj = {};
 
+		// insert page title and description
+		resourcesObj.titledesc = {
+			src: null,
+			tpl:
+`<title ng-bind="head.title">${ common.title }</title>
+<meta name="description" ng-attr-content="{{ head.description }}" content="${ common.description }">
+<meta name="author" content="${ common.author }">`
+		};
+
 		// insert the possibly versioned css file and the font-awesome loader
 		resourcesObj.css = [
 			`global${ process.env.VERSIONSTR || '' }.css`,
@@ -170,14 +181,10 @@ gulp.task('construct-html-head', () => {
 
 		// insert noindex meta tag for non-production environments
 		if (process.env.NODE_ENV !== 'production'){
-
 			resourcesObj.noIndex = {
 				src: null,
 				tpl: '<meta name="robots" content="noindex">'
 			};
-
-			return resourcesObj;
-
 		}
 
 		// insert google verification
@@ -200,6 +207,40 @@ gulp.task('construct-html-head', () => {
 				<meta property="fb:app_id" content="${ process.env.FACEBOOK_APP_ID }" />
 			`
 		};
+
+		// insert twitter card details
+		resourcesObj.twitter = {
+			src: null,
+			tpl: `
+				<meta name="twitter:card" ng-attr-content="{{ head.twitter.card }}" content="${ common.twitter.card }">
+				<meta name="twitter:title" ng-attr-content="{{ head.title }}" content="${ common.title }">
+				<meta name="twitter:description" ng-attr-content="{{ head.description }}" content="${ common.description }">
+				<meta name="twitter:creator" ng-attr-content="{{ head.twitter.creator }}" content="${ common.twitter.creator }">
+				<meta name="twitter:image" ng-attr-content="{{ head.image }}" content="${ common.logo.square }">
+			`
+		};
+
+		// insert open graph details
+		resourcesObj.opengraph = {
+			src: null,
+			tpl: `
+				<meta property="og:site_name" content="${ common.site.name }">
+				<meta property="og:locale" content="${ common.site.lang }">
+				<meta property="og:title" ng-attr-content="{{ head.title }}" content="${ common.title }">
+				<meta property="og:type" content="website">
+				<meta property="og:url" ng-attr-content="{{ head.domain + head.path }}" content="${ common.domain }">
+				<meta property="og:image" ng-attr-content="{{ head.image }}" content="${ common.logo.square }">
+				<meta property="og:description" ng-attr-content="{{ head.description }}" content="${ common.description }">
+			`
+		};
+
+		// minify injected templates
+		if (process.env.NODE_ENV === 'production')
+		for (let key in resourcesObj){
+			if (resourcesObj[key].hasOwnProperty('tpl')){
+				resourcesObj[key].tpl = resourcesObj[key].tpl.replace(/\n|\t/g, '')
+			}
+		}
 
 		return resourcesObj;
 	}
@@ -259,7 +300,7 @@ gulp.task('js', done => {
 
 		var domainName = {
 			pattern: /DOMAIN_NAME/,
-			replacement: () => require('./common').domain
+			replacement: () => common.domain
 		};
 
 		var replacerOptions = StringReplacePlugin.replace(

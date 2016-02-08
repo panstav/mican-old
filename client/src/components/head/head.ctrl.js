@@ -1,3 +1,5 @@
+var common = require('../../../../common');
+
 module.exports = ['topLevelData', '$rootScope', '$scope', '$location', 'track', head];
 
 function head(topLevelData, $rootScope, $scope, $location, track){
@@ -7,16 +9,10 @@ function head(topLevelData, $rootScope, $scope, $location, track){
 	this.domain = topLevelData.domain;
 
 	var defaults = {
-
-		title: 'מכאן',
-		description: 'אינדקס יוזמות חברתיות. הגיע הזמן להתארגן ברשת!',
-		image: 'https://s3.eu-central-1.amazonaws.com/mican/logo/logo-square.jpg',
-
-		twitter: {
-			card: 'summary',
-			creator: '@stavgeffen'
-		}
-
+		title: common.title,
+		description: common.description,
+		image: common.logo.square,
+		twitter: common.twitter
 	};
 
 	var pageTitle;
