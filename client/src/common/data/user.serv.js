@@ -1,6 +1,6 @@
-module.exports = ['$rootScope', 'api', 'modal', 'track', user];
+module.exports = ['$rootScope', 'api', 'modal', user];
 
-function user($rootScope, api, modal, track){
+function user($rootScope, api, modal){
 
 	var userInfo;
 
@@ -53,7 +53,6 @@ function user($rootScope, api, modal, track){
 					openProfileEditingModal();
 				}
 
-				track.setUser(userInfo.id);
 			});
 
 		},

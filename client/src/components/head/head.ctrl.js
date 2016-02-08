@@ -1,8 +1,8 @@
 var common = require('../../../../common');
 
-module.exports = ['topLevelData', '$rootScope', '$scope', '$location', 'track', head];
+module.exports = ['topLevelData', '$rootScope', '$scope', '$location', head];
 
-function head(topLevelData, $rootScope, $scope, $location, track){
+function head(topLevelData, $rootScope, $scope, $location){
 
 	var ctrl = this;
 
@@ -41,17 +41,9 @@ function head(topLevelData, $rootScope, $scope, $location, track){
 
 		seo.path = $location.path();
 
-		if (seo === 'defaults'){
-			angular.extend(ctrl, defaults);
+		if (seo === 'defaults') return angular.extend(ctrl, defaults);
 
-		} else {
-			angular.extend(ctrl, defaults, seo);
-		}
-
-		track.page({
-			page: $location.path(),
-			title: ctrl.title
-		});
+		angular.extend(ctrl, defaults, seo);
 	}
 
 }

@@ -20,11 +20,10 @@
   },
   "config": {
     "pre-git": {
-      "pre-commit": "npm test",
+      "pre-commit": "npm run mocha",
       "post-commit": "git st",
       "post-merge": "git recap",
       "pre-push": [
-        "gulp local",
         "npm test",
         "snyk test"
       ],
@@ -41,7 +40,8 @@
     "postinstall": "gulp heroku",
     "log": "heroku logs --tail --app mican",
     "log-dev": "heroku logs --tail --app mican-dev",
-    "test": "LOCAL=true mocha",
+    "test": "gulp production-like && npm run mocha && gulp local && npm run mocha",
+    "mocha": "LOCAL=true mocha",
     "commit": "commit-wizard"
   },
   "dependencies": {

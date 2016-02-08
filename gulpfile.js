@@ -118,7 +118,10 @@ gulp.task('sass-to-css', () => {
 
 gulp.task('jade-to-html', () => {
 
-	var jadeOptions = process.env.LOCAL ? { pretty: true } : {};
+	var jadeOptions = {
+		pretty: !!process.env.LOCAL,
+		locals: { production: process.env.NODE_ENV === 'production' }
+	};
 
 	return gulp.src('client/src/**/*.jade')
 		.pipe(plugins.data(jsonDataCollector))

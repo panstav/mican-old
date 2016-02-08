@@ -2,7 +2,6 @@ require('html5shiv');
 
 var dataObj = {
 	domain: 'DOMAIN_NAME',
-	googleAnalyticsKey: 'ANALYTICS_KEY',
 	facebookAppId: 'FACEBOOK_APP_ID',
 	packageDependencies: PACKAGE_JSON_FILTERED_DEPENDENCIES
 };
@@ -42,3 +41,6 @@ angular.module('app', externalModules)
 
 // custom directives, services and (modal) controllers
 require('./loader');
+
+// finally - ping google analytics
+(function(i, s, o, g, r, a, m){i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function(){(i[r].q = i[r].q || []).push(arguments)}, i[r].l = 1*new Date();a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m)})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');window.ga('create', 'ANALYTICS_KEY', 'auto');window.ga('send', 'pageview');
