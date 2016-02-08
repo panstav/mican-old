@@ -70,6 +70,15 @@ module.exports.constructHead = () => {
 			src: null,
 			tpl: `<meta name="msvalidate.01" content="${ process.env.BING_VERIFICATION }" />`
 		};
+
+		// insert facebook verification
+		resources.facebook = {
+			src: null,
+			tpl: `
+				<meta property="fb:admins" content="${ process.env.FACEBOOK_ADMIN_ID }" />
+				<meta property="fb:app_id" content="${ process.env.FACEBOOK_APP_ID }" />
+			`
+		};
 	}
 
 	return gulp.src('public/partials/index.html')
