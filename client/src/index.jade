@@ -10,7 +10,6 @@ html(lang="he", ng-app="app")
 		link(type="text/plain", rel="author", href="humans.txt")
 		link(ng-if="head.canonical" rel="canonical" href="{{ head.canonical }}")
 
-		include favicons
 		include seo
 
 		// build:css
@@ -18,6 +17,8 @@ html(lang="he", ng-app="app")
 
 		// build:js
 		// endbuild
+
+		include favicons
 
 	body(ng-class="$state.$current.name" step="loading")
 
