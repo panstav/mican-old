@@ -8,7 +8,7 @@ var key = process.env.ANALYTICS_KEY;
 // https everywhere and all that
 // allow using mongoIDs as analyticsCid
 var options = {
-	https: process.env.SECURE ? 'https' : 'http',
+	https: !!process.env.SECURE,
 	strictCidFormat: false
 };
 
