@@ -23,6 +23,9 @@ function head(topLevelData, $rootScope, $scope, $location){
 
 	$rootScope.$on('$stateChangeSuccess', function(){
 		if ($scope.$state) seoUpdate($scope.$state.current.seo);
+
+		// ping google analytics
+		window.ga('send', 'pageview');
 	});
 
 	function seoUpdate(seo){
@@ -41,9 +44,9 @@ function head(topLevelData, $rootScope, $scope, $location){
 
 		seo.path = $location.path();
 
-		if (seo === 'defaults') return angular.extend(ctrl, defaults);
+		// append seo data to view
+		angular.extend(ctrl, defaults, (seo === 'defaults' ? {} : seo));
 
-		angular.extend(ctrl, defaults, seo);
 	}
 
 }
