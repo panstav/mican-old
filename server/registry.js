@@ -108,16 +108,9 @@ function oAuthLogin(accessToken, refreshToken, profile, done){
 
 			// user has logged in with this provider before - go on
 			if (userDoc){
+				track(userDoc.toObject())({ cat: 'login', label: profile.provider });
 
-				console.log('\n', typeof profile.provider, 'profile.provider', profile.provider, '\n');
-				
-				var eventObj = {
-					ec: 'API', ea: 'Login', el: profile.provider
-				};
-
-				track(userDoc).event(eventObj).send();
-
-				return done(err, userDoc);
+				return done(null, userDoc);
 			}
 
 			step();

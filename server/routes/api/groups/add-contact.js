@@ -6,8 +6,9 @@ var groupModel = db.models.group;
 module.exports = function(req, res){
 
 	var contact = req.body.contact;
+	var groupID = req.body.groupID;
 
-	groupModel.update({ _id: req.body.groupID }, { $push: { 'profile.contacts': contact } }, function(err){
+	groupModel.update({ _id: groupID }, { $push: { 'profile.contacts': contact } }, function(err){
 		if (err){
 			log.error(err);
 
@@ -16,11 +17,7 @@ module.exports = function(req, res){
 
 		res.status(201).end();
 
-		var eventObj = {
-			ec: 'Data Entry', ea: 'GroupContact'
-		};
-
-		req.track.event(eventObj).send();
+		req.track({ cat: 'data-entry', label: 'contact', groupID });
 	});
 
 };

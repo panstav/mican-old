@@ -54,11 +54,7 @@ module.exports = (req, res, next) => {
 		groupModel.create(newGroupObj, function(err, newGroupDoc){
 			if (err) return log.error(err);
 
-			var eventObj = {
-				ec: 'Data Entry', ea: 'Group', dl: newGroupObj.displayName
-			};
-
-			if (process.env.NODE_ENV === 'production') req.track.event(eventObj).send();
+			req.track({ cat: 'data-entry', label: 'group', displayName: newGroupObj.displayName });
 
 			step(null, newGroupDoc);
 		});

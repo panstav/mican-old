@@ -102,11 +102,7 @@ module.exports = function(req, res){
 
 			res.status(200).end();
 
-			var eventObj = {
-				ec: 'New Data', ea: 'AnonVolunteer'
-			};
-
-			req.track.event(eventObj).send();
+			req.track({ cat: 'data-entry', label: 'anon-volunteer', taskID: normalizeID(taskDoc._id) });
 		});
 	}
 

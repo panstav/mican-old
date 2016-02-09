@@ -6,9 +6,11 @@ var userModel = mongoose.model('user');
 var taskModel = mongoose.model('task');
 var storyModel = mongoose.model('story');
 
+var log = require('../../../services/log');
 var sendMail = require('../../../services/email');
 var urls = require('../../../helpers/urls');
 var paraSplit = require('../../../helpers/para-split');
+var normalizeID = require('../../../helpers/normalize-id');
 
 module.exports = function(req, res){
 
@@ -124,14 +126,10 @@ module.exports = function(req, res){
 			content: paraSplit(req.body.story)
 		};
 
-		storyModel.create(storyObj, function(err){
+		storyModel.create(storyObj, function(err, newStoryDoc){
 			if (err) return log.error(err);
 
-			var eventObj = {
-				ec: 'New Data', ea: 'Story'
-			};
-
-			req.track.event(eventObj).send();
+			req.track({ cat: 'data-entry', label: 'story', storyID: normalizeID(newStoryDoc._id) });
 
 			resume();
 		});

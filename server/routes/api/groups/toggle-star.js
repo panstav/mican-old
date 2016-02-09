@@ -23,18 +23,12 @@ module.exports = function(req, res){
 
 		],
 
-		function(err, toggledOn, groupToken){
+		function(err, toggledOn, groupID, groupToken){
 			if (err) return log.error(err);
 
 			res.status(200).json({ groupToken: groupToken });
 
-			if (toggledOn){
-				var eventObj = {
-					ec: 'Data Entry', ea: 'Follow', el: groupToken.displayName
-				};
-
-				req.track.event(eventObj).send();
-			}
+			if (toggledOn) req.track({ cat: 'data-entry', label: 'follow', groupID });
 		}
 	);
 
@@ -73,7 +67,7 @@ module.exports = function(req, res){
 			staringDoc.save(function(err){
 				if (err) return step(err);
 
-				step(null, nowFollowingGroups, groupToken);
+				step(null, nowFollowingGroups, groupID, groupToken);
 			});
 		});
 	}

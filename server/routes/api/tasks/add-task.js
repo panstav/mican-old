@@ -1,3 +1,5 @@
+'use strict';
+
 var log =         require('../../../services/log');
 
 var async =       require('async');
@@ -62,13 +64,11 @@ module.exports = function(req, res, next){
 				return res.status(500).end();
 			}
 
-			var eventObj = {
-				ec: 'New Data', ea: 'GroupTask', dl: req.body.task.title
-			};
+			let taskID = normalizeID(newTaskDoc._id);
 
-			req.track.event(eventObj).send();
+			req.track({ cat: 'data-entry', label: 'task', taskID });
 
-			step(null, normalizeID(newTaskDoc._id));
+			step(null, taskID);
 		});
 	}
 

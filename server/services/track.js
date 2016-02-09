@@ -1,52 +1,41 @@
+'use strict';
+
+var Keen = require('keen-js');
 var _ = require('lodash');
 
 var log = require('./log');
 
-var UniversalAnalytics = require('universal-analytics');
-var key = process.env.ANALYTICS_KEY;
+var keenClient = new Keen({
+	projectId: process.env.KEEN_PROJECT_ID,
+	writeKey: process.env.KEEN_WRITE_KEY,
+	protocol: "https"
+});
 
-// https everywhere and all that
-// allow using mongoIDs as analyticsCid
-var options = {
-	https: !!process.env.SECURE,
-	strictCidFormat: false
-};
-
-track.middleware = function(req, res, next){
-	req.track = track(req.user);
-
-	next();
-};
+track.middleware = middleware;
 
 module.exports = track;
 
-function track(userReq){
+function middleware(req, res, next){
+	req.track = track(req.user, _.pick(req, ['method', 'url', 'params', 'query', 'headers' ]));
 
-	var visitor;
+	next();
+}
+
+function track(userReq, serializedReq){
 
 	// don't bother building service if we're not registering any data
-	if (process.env.NODE_ENV !== 'production') return { page: uaLog, event: uaLog };
+	if (process.env.NODE_ENV !== 'production') return data => { log.debug(data, 'Track') };
 
-	// different calls for anon / user
-	visitor = userReq
-		? UniversalAnalytics(key, userReq._id.toString(), options)
-		: UniversalAnalytics(key, options);
+	return keen.bind(null, _.extend({ userID: userReq ? userReq._id.toString() : 'anon' }, serializedReq));
 
-	// keep on reporting but also log data
-	if (process.env.DEBUG) visitor = visitor.debug();
+	function keen(user, event){
 
-	return {
-		page: visitor.pageview.bind(visitor),
-		event: visitor.event.bind(visitor)
-	};
+		// extract collection name and remove it from archived data
+		let collectionName = event.cat;
+		delete event.cat;
 
-	function uaLog(data){
-
-		// log instead
-		log.info(data, 'Analytics');
-
-		// return send method because syntax
-		return { send: _.noop };
+		// register event
+		keenClient.addEvent(collectionName, _.extend(user, event), err => { if (err) log.error(err) });
 	}
 
 }

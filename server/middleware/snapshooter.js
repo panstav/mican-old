@@ -52,11 +52,7 @@ module.exports = function(req, res, next){
 				timeout: 10000
 			};
 
-			var eventObj = {
-				ec: 'Routes', ea: 'Snapshot', dl: path
-			};
-
-			req.track.event(eventObj).send();
+			req.track({ cat: 'snapshot' });
 
 			htmlSnapshots.run(snapOptions, done);
 		});

@@ -19,10 +19,6 @@ module.exports = function(req, res, next){
 
 		res.status(200).end();
 
-		var eventObj = {
-			ec: 'Data Entry', ea: 'GroupEvent', dl: req.body.event.title
-		};
-
-		req.track.event(eventObj).send();
+		req.track({ cat: 'data-entry', label: 'event', eventTitle: req.body.event.title });
 	});
 };

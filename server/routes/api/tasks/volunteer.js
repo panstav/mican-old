@@ -7,7 +7,7 @@ var moment = require('moment');
 var sendMail = require('../../../services/email');
 var validMongoID = require('../../../helpers/valid-mongo-id');
 var normalizeID = require('../../../helpers/normalize-id');
-//
+
 var mongoose = require('mongoose');
 var groupModel = mongoose.model('group');
 var taskModel = mongoose.model('task');
@@ -133,11 +133,7 @@ module.exports = function(req, res, next){
 				return res.status(500).end();
 			}
 
-			var eventObj = {
-				ec: 'New Data', ea: 'Volunteer'
-			};
-
-			req.track.event(eventObj).send();
+			req.track({ cat: 'data-entry', label: 'volunteer', taskID: normalizeID(taskDoc._id) });
 
 			res.status(200).end();
 		});

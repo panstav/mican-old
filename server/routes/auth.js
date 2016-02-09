@@ -75,12 +75,7 @@ function getMailLogin(req, res, next){
 					res.redirect('/');
 				}
 
-				var eventObj = {
-					ec: 'API', ea: 'Login', el: 'email'
-				};
-
-				req.track.event(eventObj).send();
-
+				req.track({ cat: 'login', label: 'email' });
 			});
 		}
 	});

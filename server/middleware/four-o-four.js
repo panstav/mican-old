@@ -5,28 +5,21 @@ var isFrontEndRoute = require('../helpers/is-front-end-route');
 
 module.exports = function(req, res){
 
-	var path = req.path;
-
 	// respond with html page
 	if (req.accepts('html')){
+		res.status(isFrontEndRoute(req.path) ? 200 : 404).sendFile('partials/index.html', { root: 'public', maxAge: 0 });
 
-		var logObj = { path: req.path };
-		logObj.userID = req.user ? req.user._id : null;
-
-		return res.status(isFrontEndRoute(req.path) ? 200 : 404).sendFile('partials/index.html', { root: 'public', maxAge: 0 });
+		return req.track({ cat: '404', label: 'http' });
 	}
 
 	// respond with json
 	if (req.accepts('json')){
+		res.status(400).json({ error: 'Not found' });
 
-		var status = 400;
-		res.status(status).json({ error: 'Not found' });
-
-		var eventObj = {
-			ec: 'Routes', ea: 'Error', dl: path
-		};
-
-		return req.track.event(eventObj).send();
+		return req.track({ cat: '404', label: 'json' });
 	}
 
+	res.status(404).end();
+
+	req.track({ cat: '404', label: 'unknown' });
 };

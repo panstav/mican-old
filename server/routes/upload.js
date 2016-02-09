@@ -116,10 +116,7 @@ function uploadHeroLogo(req, res){
 				return step(result);
 			}
 
-			var eventObj = {
-				ec: 'Data Entry', ea: 'Group' + type.substr(0, 1).toUpperCase() + type.substr(1), dl: groupDoc.displayName
-			};
-			req.track.event(eventObj).send();
+			req.track({ cat: 'data-entry', label: `group-${type}`, groupID: normalizeID(groupDoc._id) });
 
 			step(null, result, groupDoc);
 		});

@@ -248,16 +248,7 @@ function postTrack(req, res){
 	if (!req.body.searchTerm) return res.status(400).end();
 
 	// only send event if he's not app admin
-	if (!req.user || !req.user.isAdmin()) event();
+	if (!req.user || !req.user.isAdmin()) req.track({ cat: 'search', label: 'group', input: req.body.searchTerm });
 
 	res.status(200).end();
-
-	function event(){
-		var eventObj = {
-			ec: 'Search Terms', ea: 'groups', el: req.body.searchTerm
-		};
-
-		req.track.event(eventObj).send();
-	}
-
 }
