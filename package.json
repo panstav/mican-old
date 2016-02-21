@@ -25,7 +25,7 @@
       "post-merge": "git recap",
       "pre-push": [
         "npm test",
-        "snyk test"
+        "node_modules/.bin/snyk test"
       ],
       "post-push": "git gc",
       "commit-msg": []
@@ -33,16 +33,15 @@
   },
   "scripts": {
     "start": "node . | bunyan --color",
-    "local": "LOCAL=true DEBUG=true node . | bunyan --color",
-    "nodemon": "DEBUG=true gulp nodemon | bunyan --color",
-    "debug": "LOCAL=true DEBUG=true SHOW_SRC=true node . | bunyan --color",
-    "trace": "LOCAL=true TRACE=true node . | bunyan --color",
-    "postinstall": "gulp heroku",
+    "local": "LOCAL=true DEBUG=true node . | node_modules/.bin/bunyan --color",
+    "nodemon": "DEBUG=true node_modules/.bin/gulp nodemon | node_modules/.bin/bunyan --color",
+    "debug": "LOCAL=true DEBUG=true SHOW_SRC=true node . | node_modules/.bin/bunyan --color",
+    "trace": "LOCAL=true TRACE=true node . | node_modules/.bin/bunyan --color",
+    "postinstall": "node_modules/.bin/gulp heroku",
     "log": "heroku logs --tail --app mican",
     "log-dev": "heroku logs --tail --app mican-dev",
-    "test": "gulp production-like && npm run mocha && gulp local && npm run mocha",
-    "mocha": "LOCAL=true mocha",
-    "commit": "commit-wizard"
+    "test": "node_modules/.bin/gulp production-like && npm run mocha && node_modules/.bin/gulp local && npm run mocha",
+    "mocha": "LOCAL=true node_modules/.bin/mocha"
   },
   "dependencies": {
     "angular": "1.4.6",
@@ -111,7 +110,6 @@
     "require-dir": "0.3.0",
     "share-dialog": "0.2.0",
     "sitemap": "0.9.0",
-    "snyk": "1.9.1",
     "string-replace-webpack-plugin": "0.0.2",
     "universal-analytics": "0.3.9",
     "url-pattern": "0.10.0",
@@ -125,7 +123,7 @@
     "is-online": "5.0.1",
     "mocha": "2.1.0",
     "pre-git": "3.3.0",
-    "snyk": "1.1.1",
+    "snyk": "1.9.1",
     "stats-webpack-plugin": "0.2.2",
     "supertest": "0.15.0"
   },
