@@ -51,7 +51,7 @@ function uploadHeroLogo(req, res){
 
 		// finally, delete the temp file
 		function(err){
-			if (err) return log.error(err);
+			if (err) log.error(err);
 
 			fs.unlinkSync(path);
 		}
