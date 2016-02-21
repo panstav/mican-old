@@ -94,7 +94,7 @@ function uploadHeroLogo(req, res){
 
 			if (!newImage.url) return step(null, groupDoc);
 
-			cloudinary.api.delete_resources(newImage.publicID, function(result){
+			cloudinary.api.delete_resources([newImage.publicID], function(result){
 				if (result.error){
 					res.status(500).end();
 
