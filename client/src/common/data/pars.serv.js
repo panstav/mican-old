@@ -173,11 +173,7 @@ function pars(){
 		},
 
 		linkTitleByPlatform: function(platform, displayName){
-			var hebProp = 'עמוד ה';
-
-			hebProp += getHebrewPlatformName(platform);
-
-			return hebProp + ' של ' + displayName;
+			return `עמוד ה${ getHebrewPlatformName(platform) } של ${displayName}`;
 		}
 
 	};
