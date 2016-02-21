@@ -5,17 +5,23 @@ ignore:
         expires: '2016-03-05T12:35:30.501Z'
       'jade > transformers > uglify-js':
         reason: No available upgrade
-        expires: '2016-03-05T12:40:59.046Z'
+        expires: '2016-03-22T17:43:44.531Z'
   'npm:uglify-js:20150824':
     - 'gulp-jade > jade > transformers > uglify-js':
         reason: No available upgrade
         expires: '2016-03-05T12:35:30.502Z'
+      'jade > transformers > uglify-js':
+        reason: No available upgrade
+        expires: '2016-03-22T17:43:44.532Z'
     - 'jade > transformers > uglify-js':
         reason: No available upgrade
         expires: '2016-03-05T12:35:30.502Z'
+      'gulp-jade > jade > transformers > uglify-js':
+        reason: No available upgrade
+        expires: '2016-03-22T17:43:44.532Z'
   'npm:hawk:20160119':
     - 'html-snapshots > phantomjs > request > hawk':
         reason: No available upgrade
-        expires: '2016-03-05T12:35:30.502Z'
+        expires: '2016-03-22T17:43:44.532Z'
 patch: {}
 version: v1

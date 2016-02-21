@@ -123,7 +123,7 @@
     "is-online": "5.0.1",
     "mocha": "2.1.0",
     "pre-git": "3.3.0",
-    "snyk": "1.9.1",
+    "snyk": "1.11.0",
     "stats-webpack-plugin": "0.2.2",
     "supertest": "0.15.0"
   },
