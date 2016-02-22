@@ -38,6 +38,31 @@ function singleGroup($scope, user, api, modal, acticons, sharer, pars, prompts, 
 	this.trimMax = pars.trimMax;
 
 	//-=======================================================---
+	//------------------ Admin
+	//-=======================================================---
+
+	this.categories = $scope.$root.main.categories;
+	this.newCategory = this.group.color;
+	this.changeCategory = () => {
+		if (ctrl.newCategory !== ctrl.group.color){
+
+			api.admin.updateGroupCategory({ groupId: ctrl.group._id, newCategory: ctrl.newCategory })
+
+		}
+	};
+
+	this.newNamespace = this.group.namespace || this.group._id;
+	this.updateNamespace = () => {
+		 api.admin.updateGroupNamespace({ groupId: ctrl.group._id, newNamespace: ctrl.newNamespace })
+	};
+
+	this.authorizeGroup = () => {
+
+		 api.admin.authorizeGroup({ groupId: ctrl.group._id })
+
+	};
+
+	//-=======================================================---
 	//------------------ Handlers
 	//-=======================================================---
 

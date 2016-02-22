@@ -24,6 +24,64 @@ function api($rootScope, $state, $http, $upload, httpErrorHandler, mem, confirme
 
 		},
 
+		admin: {
+
+			updateGroupCategory: data => {
+
+				$http.put('api/admin/group-category', data)
+
+					.success(
+						function(){
+							$rootScope.$broadcast('prompt:success', 'קטגוריית הקבוצה נשמרה בהצלחה.');
+
+							$state.go($state.current, {}, { reload: true });
+						})
+
+					.error(
+						function(){
+							$rootScope.$broadcast('prompt:error', 'שמירת הקטגורייה - נכשלה.');
+						});
+
+			},
+
+			updateGroupNamespace: data => {
+
+				$http.put('api/admin/group-namespace', data)
+
+					.success(
+						function(){
+							$rootScope.$broadcast('prompt:success', 'הכתובת החדשה של הקבוצה באתר נשמרה בהצלחה.');
+
+							$state.go($state.current, { groupID: data.newNamespace }, { reload: true });
+						})
+
+					.error(
+						function(){
+							$rootScope.$broadcast('prompt:error', 'שמירת הכתובת החדשה של הקבוצה באתר - נכשלה.');
+						});
+
+			},
+
+			authorizeGroup: data => {
+
+				$http.post('api/admin/group-authorize', data)
+
+					.success(
+						function(){
+							$rootScope.$broadcast('prompt:success', 'הקבוצה אושרה בהצלחה.');
+
+							$state.go($state.current, {}, { reload: true });
+						})
+
+					.error(
+						function(){
+							$rootScope.$broadcast('prompt:error', 'אישור הקבוצה - נכשל.');
+						});
+
+			}
+
+		},
+
 		users: {
 
 			updateInitials: function(data, callback){

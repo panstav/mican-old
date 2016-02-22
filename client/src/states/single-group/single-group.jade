@@ -52,6 +52,36 @@
 				ng-click="sGroup.editLinks()"
 				) עריכת לינקים
 
+	.paper.full.develop(ng-if="main.user.isAdmin")
+		.paper.less.admin
+
+			button.authorize(
+			ng-if="sGroup.group.pending"
+			ng-click="sGroup.authorizeGroup()"
+			) אשר יוזמה
+
+			.category
+				label(for="group-category") קטגוריה:
+				select(
+				name="group-category"
+				ng-model="sGroup.newCategory"
+				ng-options="color as title for (color, title) in main.categories"
+				ng-change="sGroup.changeCategory()"
+				)
+
+			.namespace
+				label(for="group-namespace") כתובת באתר:
+				input(
+				type="text"
+				ng-model="sGroup.newNamespace"
+				ng-change="sGroup.showSaveNamespaceButton = true"
+				name="group-namespace"
+				)
+				button(
+				ng-show="sGroup.showSaveNamespaceButton"
+				ng-click="sGroup.updateNamespace()"
+				) שמור כתובת באתר
+
 	.paper.royal(ng-if="sGroup.group.pending && sGroup.group.userIsAdmin")
 
 		pending-group(group-id="sGroup.group._id")
