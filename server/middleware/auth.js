@@ -52,7 +52,7 @@ module.exports = function(options){
 
 		function fail(){
 
-			if (process.env.NODE_ENV === 'production && !options.possibleMishap'){
+			if (process.env.NODE_ENV === 'production' && !options.possibleMishap){
 				log.warn({ req: req }, 'Suspicious');
 			}
 
