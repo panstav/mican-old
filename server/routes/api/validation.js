@@ -26,6 +26,36 @@ var validationObj = {
 
 	groups: {
 
+		admin: {
+
+			setCategory: {
+
+				body: {
+					groupId: Joi.string().alphanum().required(),
+					newCategory: Joi.any().valid(['orange','purple','blue','green','aqua','yellow','bordo','sky','pink']).required()
+				}
+
+			},
+
+			setNamespace: {
+
+				body: {
+					groupId: Joi.string().alphanum().required(),
+					newNamespace: Joi.string().min(2).max(50).required()
+				}
+
+			},
+
+			authorize: {
+
+				body: {
+					groupId: Joi.string().alphanum().required()
+				}
+
+			}
+
+		},
+
 		star: {
 			body: { groupIdToStar: Joi.string().alphanum().required() }
 		},
