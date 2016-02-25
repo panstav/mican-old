@@ -3,7 +3,7 @@ module.exports = ['api', 'mem', groups];
 function groups(api, mem){
 
 	var memKey = 'entireGroupsArray';
-	var maxAge = 60 * 60 * 24 * 1000;
+	var maxAge = 60 * 15 * 1000; // 15 minutes
 
 	return {
 
@@ -15,7 +15,7 @@ function groups(api, mem){
 			var groups = mem(memKey, null, { keep: true });
 
 			// getEm if no stored groups or their past due
-			if (!groups || !groups.list || Date.now() - maxAge > groups.downloadedAt){
+			if (!groups || !groups.list || Date.now() > groups.downloadedAt + maxAge){
 
 				return api.groups.getAll(function(groups){
 					mem(memKey, {
