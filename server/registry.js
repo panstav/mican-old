@@ -3,6 +3,7 @@ var log =               require('./services/log');
 var async =             require('async');
 var request =           require('request');
 var md5 =               require('md5');
+var _ =                 require('lodash');
 
 var mongoose =          require('mongoose');
 var userModel =         mongoose.model('user');
@@ -157,7 +158,7 @@ function oAuthLogin(accessToken, refreshToken, profile, done){
 			email: profile.emails.shift().value,
 			otherEmails: [],
 
-			profilePhotoUrl: profile.picture || profile._json.picture || '',
+			profilePhotoUrl: _.get(profile, 'picture') || _.get(profile, '_json.picture.data.url') || _.get(profile, 'photos[0].value') || '',
 			displayName: profile.displayName,
 			gender: profile.gender || 'unknown'
 		};
