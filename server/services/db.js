@@ -18,6 +18,7 @@ var models = {};
 module.exports = {
 
 	init,
+	close,
 
 	regenerateSitemap,
 
@@ -145,4 +146,8 @@ function regenerateSitemap(callback){
 		fs.writeFile('public/sitemap.xml', sitemap.toString(), done);
 	}
 
+}
+
+function close(callback){
+	mongoose.connection.close(callback);
 }
