@@ -9,7 +9,7 @@ module.exports = function(req, res){
 	if (req.accepts('html')){
 		res.status(isFrontEndRoute(req.path) ? 200 : 404).sendFile('partials/index.html', { root: 'public', maxAge: 0 });
 
-		return req.track({ cat: '404', label: 'http' });
+		return req.track({ cat: '404', label: 'http', path: req.path });
 	}
 
 	// respond with json
