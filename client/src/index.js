@@ -3,7 +3,8 @@ require('html5shiv');
 var dataObj = {
 	domain: 'DOMAIN_NAME',
 	facebookAppId: 'FACEBOOK_APP_ID',
-	packageDependencies: PACKAGE_JSON_FILTERED_DEPENDENCIES
+	packageDependencies: PACKAGE_JSON_FILTERED_DEPENDENCIES,
+	groupsSum: GROUPS_SUM
 };
 
 var angular =   require('angular');

@@ -3,6 +3,7 @@
 var path = require('path');
 
 var common = require('./common');
+var db = require('./server/services/db');
 var packageJson = require('./package.json');
 
 var gulp = require('gulp');
@@ -326,6 +327,12 @@ gulp.task('js', done => {
 				{
 					pattern: /DOMAIN_NAME/,
 					replacement: () => common.domain
+				},
+
+				{
+					// count number of groups
+					pattern: /GROUPS_SUM/,
+					replacement: () => asyncData.groupsSum
 				}
 
 			] }

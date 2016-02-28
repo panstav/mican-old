@@ -6,23 +6,8 @@ var states = {
 
 		views: {
 			'main':{
-				template: '<state-homepage></state-homepage>',
-
-				controllerAs: 'homeState',
-				controller: ['groupsSum', function(groupsSum){
-					this.groupsSum = groupsSum.data.num;
-				}]
+				template: '<state-homepage></state-homepage>'
 			}
-		},
-
-		resolve: {
-			groupsSum: ['$http', 'httpErrorHandler', function($http, httpErrorHandler){
-
-				return $http.get('api/groups-sum').success(function(data){
-					return data;
-				}).error(httpErrorHandler);
-
-			}]
 		},
 
 		seo: {

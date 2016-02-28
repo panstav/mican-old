@@ -15,8 +15,6 @@ module.exports = function(router){
 
 	router.get('/recall', recallUser);
 
-	router.get('/groups-sum', groupsSum);
-
 	router.post('/add-to-newsletter', addToNewsletter);
 
 	router.post('/feedback', postFeedback);
@@ -122,25 +120,6 @@ function recallUser(req, res){
 
 		res.json({ user: userObj });
 	}
-}
-
-function groupsSum(req, res){
-
-	var publicGroupsQuery = {
-		pending: false,
-		'blocked.value': false
-	};
-
-	groupModel.count(publicGroupsQuery, function(err, num){
-		if (err){
-			log.error(err);
-
-			return res.status(500).end();
-		}
-
-		res.json({ num: num });
-	});
-
 }
 
 function numPendingGroups(req, res){

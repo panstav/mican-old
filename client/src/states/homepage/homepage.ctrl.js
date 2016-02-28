@@ -1,10 +1,12 @@
 var emailRegExp = require('../../../../common/email-regexp');
 
-module.exports = ['api', 'user', 'modal', controller];
+module.exports = ['topLevelData', 'api', 'user', 'modal', controller];
 
-function controller(api, user, modal){
+function controller(topLevelData, api, user, modal){
 	
 	var ctrl = this;
+
+	this.groupsSum = topLevelData.groupsSum;
 
 	this.subscriberEmail = user.getEmail() || '';
 
