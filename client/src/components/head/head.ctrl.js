@@ -40,8 +40,6 @@ function head(topLevelData, $rootScope, $scope, $location){
 			delete seo.sectionTitle;
 		}
 
-		if (!seo.canonical) delete ctrl.canonical;
-
 		seo.path = $location.path();
 
 		// append seo data to view

@@ -192,9 +192,7 @@ function controller(topLevelData, $rootScope, $scope, user, groups, api, modal, 
 
 	function registerSEO(){
 
-		var pageSEO = $scope.$state.current.seo;
-		pageSEO.canonical = ctrl.categoryFilter ? topLevelData.domain + $location.path() : null;
-		$rootScope.$broadcast('seo:update', pageSEO);
+		$rootScope.$broadcast('seo:update', $scope.$state.current.seo);
 
 	}
 	registerSEO();
