@@ -38,7 +38,7 @@ function init(callback){
 	mongoose.connection.on('connected', function(){
 		process.env.MONGO_CONNECTED = true;
 
-		if (!process.env.NODE_ENV === 'test'){
+		if (process.env.NODE_ENV !== 'test'){
 			log.info('Mongoose connection established: ' + mongoose.connection.host + ':' + mongoose.connection.port);
 		}
 	});
