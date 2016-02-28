@@ -4,7 +4,7 @@ module.exports = function(router){
 
 	router.get(
 		'/auth',
-		passport.authenticate('facebook', { scope: 'email', display: 'popup' })
+		passport.authenticate('facebook', { scope: ['public_profile', 'email'], display: 'popup' })
 	);
 
 	router.get(

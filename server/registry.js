@@ -61,7 +61,8 @@ module.exports = function(app){
 	var facebookOptions = {
 		clientID: process.env.FACEBOOK_APP_ID,
 		clientSecret: process.env.FACEBOOK_SECRET,
-		callbackURL: urls.domain + '/facebook/callback'
+		callbackURL: urls.domain + '/facebook/callback',
+		profileFields: ['id', 'displayName', 'photos', 'gender', 'email', 'link', 'website']
 	};
 	passport.use(new FacebookStrategy(facebookOptions, oAuthLogin));
 
