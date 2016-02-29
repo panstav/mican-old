@@ -1,8 +1,11 @@
 'use strict';
 
-var expect = require('expect.js');
+const expect = require('expect.js');
+const isHTML = require('is-html');
 
-var isHTML = require('is-html');
+const db = require('../server/services/db');
+
+const validMongoId = require('../server/helpers/valid-mongo-id');
 
 describe('Unit - ParseTemplates', () => {
 
@@ -47,6 +50,25 @@ describe('Unit - ParseTemplates', () => {
 			expect(isHTML(output)).to.be.ok();
 
 		});
+
+	});
+
+});
+
+describe('Unit - ValidMongoId', () => {
+
+	it('Should reject all group namespaces', done => {
+
+		db.models.group.find({}, 'namespace').exec().then(testAllNamespaces, done);
+
+		function testAllNamespaces(docs){
+
+			docs.forEach(doc => {
+				expect(validMongoId(doc.namespace)).to.not.be.ok();
+			});
+
+			done();
+		}
 
 	});
 

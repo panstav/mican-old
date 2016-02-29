@@ -1,17 +1,16 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-module.exports = function(id){
+module.exports = id => {
 
 	if (!id) return false;
 
-	// otherwise given id validity
-	return mongoose.Types.ObjectId.isValid( typeof(id) === 'string' ? id : id.toString() );
+	const stringID = typeof(id) === 'string' ? id : id.toString();
 
+	const mongooseCheck = mongoose.Types.ObjectId.isValid(stringID);
+	const regExpCheck = /^[0-9a-fA-F]{24}$/.test(stringID);
+
+	return mongooseCheck && regExpCheck;
 };
 
-module.exports.gen = function(){
-	
-	// generate a random mongoID
-	return mongoose.Types.ObjectId().toString();
-
-}
+// generate a random mongoID
+module.exports.gen = () => mongoose.Types.ObjectId().toString();
