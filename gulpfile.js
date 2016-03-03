@@ -197,6 +197,12 @@ gulp.task('construct-html-head', () => {
 			tpl: `<meta name="google-site-verification" content="${ process.env.GOOGLE_VERIFICATION }">`
 		};
 
+		// insert google analytics
+		resourcesObj.analytics = {
+			src: null,
+			tpl: `<script>(function(i, s, o, g, r, a, m){i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function(){(i[r].q = i[r].q || []).push(arguments)}, i[r].l = 1*new Date();a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m)})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');window.ga('create', '${ process.env.ANALYTICS_KEY }', 'auto');window.ga('send', 'pageview');</script>`
+		};
+
 		// insert bing verification
 		resourcesObj.bing = {
 			src: null,
@@ -292,12 +298,6 @@ gulp.task('js', done => {
 
 		var replacerOptions = StringReplacePlugin.replace(
 			{ replacements: [
-
-				{
-					// inject google analytics key to be used from client side
-					pattern: /ANALYTICS_KEY/,
-					replacement: () => process.env.ANALYTICS_KEY
-				},
 
 				{
 					// inject facebook app id to be used from client side
