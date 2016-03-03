@@ -1,11 +1,14 @@
 'use strict';
 
+const loadAngular = require('./load-angular');
+
 const expect = require('expect.js');
 const isHTML = require('is-html');
 
 const db = require('../server/services/db');
 
 const validMongoId = require('../server/helpers/valid-mongo-id');
+const prettifyUrl = loadAngular(require('../client/src/common/functions/prettify-url.serv'), true);
 
 describe('Unit - ParseTemplates', () => {
 
@@ -71,5 +74,65 @@ describe('Unit - ValidMongoId', () => {
 		}
 
 	});
+
+});
+
+describe('Unit - PrettifyUrl', () => {
+
+	it('Should remove http:// from url', done => {
+
+		const url = 'http://example.com';
+		expect(prettifyUrl(url)).to.be.eql('example.com');
+
+		done();
+
+	});
+
+	it('Should remove http://www. from url', done => {
+
+		const url = 'http://www.example.com';
+		expect(prettifyUrl(url)).to.be.eql('example.com');
+
+		done();
+
+	});
+
+	it('Should remove https:// from url', done => {
+
+		const url = 'https://example.com';
+		expect(prettifyUrl(url)).to.be.eql('example.com');
+
+		done();
+
+	});
+
+	it('Should remove https://www. from url', done => {
+
+		const url = 'https://www.example.com';
+		expect(prettifyUrl(url)).to.be.eql('example.com');
+
+		done();
+
+	});
+
+	it('Should keep ftp:// for example', done => {
+
+		const url = 'ftp://www.example.com';
+		expect(prettifyUrl(url)).to.be.eql('ftp://www.example.com');
+
+		done();
+
+	});
+
+	it('Should keep example.com as is', done => {
+
+		const url = 'example.com';
+		expect(prettifyUrl(url)).to.be.eql('example.com');
+
+		done();
+
+	});
+
+
 
 });

@@ -1,6 +1,6 @@
-module.exports = ['$scope', 'user', 'api', 'modal', 'acticons', 'sharer', 'pars', 'prompts', singleGroup];
+module.exports = ['$scope', 'user', 'api', 'modal', 'acticons', 'sharer', 'pars', 'prompts', 'prettifyUrl', singleGroup];
 
-function singleGroup($scope, user, api, modal, acticons, sharer, pars, prompts){
+function singleGroup($scope, user, api, modal, acticons, sharer, pars, prompts, prettifyUrl){
 
 	var ctrl = this;
 
@@ -41,27 +41,7 @@ function singleGroup($scope, user, api, modal, acticons, sharer, pars, prompts){
 	//------------------ Handlers
 	//-=======================================================---
 
-	this.prettifyUrl = url => {
-
-		return url.substr(getGglyCharsNum());
-
-		function getGglyCharsNum(){
-
-			if (url.indexOf('http') > -1){
-				if (url.indexOf('https') > -1){
-					if (url.indexOf('https://www.') > -1) return 12;
-
-					return 8;
-				}
-
-				if (url.indexOf('http://www.') > -1) return 11;
-
-				return 7;
-			}
-
-		}
-
-	};
+	this.prettifyUrl = prettifyUrl;
 
 	this.dev = function(){
 		return (ctrl.editingMode && ctrl.group.userIsAdmin);
