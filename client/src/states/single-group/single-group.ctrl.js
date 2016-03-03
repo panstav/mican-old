@@ -41,11 +41,25 @@ function singleGroup($scope, user, api, modal, acticons, sharer, pars, prompts){
 	//------------------ Handlers
 	//-=======================================================---
 
-	this.prettifyUrl = function(url){
+	this.prettifyUrl = url => {
 
-		var withoutHTTP = url.substr(7);
+		return url.substr(getGglyCharsNum());
 
-		return withoutHTTP.indexOf('www.') === 0 ? withoutHTTP.substr(4) : withoutHTTP;
+		function getGglyCharsNum(){
+
+			if (url.indexOf('http') > -1){
+				if (url.indexOf('https') > -1){
+					if (url.indexOf('https://www.') > -1) return 12;
+
+					return 8;
+				}
+
+				if (url.indexOf('http://www.') > -1) return 11;
+
+				return 7;
+			}
+
+		}
 
 	};
 
