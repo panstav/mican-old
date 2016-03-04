@@ -32,6 +32,10 @@ function groupContact($scope, api, mem, pars){
 	//------------------ Handlers
 	//-=======================================================---
 
+	this.cleanChannel = () => {
+		Object.keys(ctrl.contactChannels).forEach(prop => delete ctrl.contact[prop]);
+	};
+	
 	this.remove = function(){
 		api.groups.removeContact({ groupID: groupID, contactID: contact._id });
 	};

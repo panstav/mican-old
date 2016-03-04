@@ -35,6 +35,7 @@ ng-controller="groupContactCtrl as gContact"
 				name="contactChannel" required
 				ng-model="gContact.contact.channel"
 				ng-options="contactChannel as contactStr for (contactChannel, contactStr) in gContact.contactChannels"
+				ng-change="gContact.cleanChannel()"
 				)
 					option(value="") סוג הקשר:
 
