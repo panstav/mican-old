@@ -24,7 +24,7 @@ ng-controller="editGroupDescCtrl as editGD"
          p.explain כאוות נפשכם, עד 800 תווים.
 
             span.charsLeft(
-            ng-show="editGD.showValidation"
+            ng-show="editGD.desc.length || editGroupDescForm.newGroupDesc.$error.maxlength"
             ng-class="editGroupDescForm.newGroupDesc.$error.maxlength ? 'explicit' : ''"
             ) נותרו עוד {{ 800 - ( editGroupDescForm.newGroupDesc.$error.maxlength ? 800 : editGD.desc.length ) }}
 

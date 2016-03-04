@@ -31,7 +31,7 @@
 			p.explain כאוות נפשכם, עד 800 תווים.
 
 				span.charsLeft(
-				ng-show="addG.showValidation"
+				ng-show="addG.newGroup.desc.length || newGroupForm.groupDesc.$error.maxlength"
 				ng-class="newGroupForm.groupDesc.$error.maxlength ? 'explicit' : ''"
 				) נותרו עוד {{ 800 - ( newGroupForm.groupDesc.$error.maxlength ? 800 : addG.newGroup.desc.length ) }}
 
