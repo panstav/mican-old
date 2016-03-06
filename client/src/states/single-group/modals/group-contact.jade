@@ -19,7 +19,15 @@ ng-controller="groupContactCtrl as gContact"
 			type="text"
 			ng-model="gContact.contact.nameOfContact"
 			placeholder="שם איש הקשר"
+			ng-maxlength="25"
 			)
+
+			p.explain עד 25 תווים.
+
+				span.charsLeft(
+				ng-show="gContact.contact.nameOfContact.length || groupContactForm.nameOfContact.$error.maxlength"
+				ng-class="groupContactForm.nameOfContact.$error.maxlength ? 'explicit' : ''"
+				) נותרו עוד {{ 25 - ( groupContactForm.nameOfContact.$error.maxlength ? 25 : gContact.contact.nameOfContact.length ) }}
 
 			div
 
