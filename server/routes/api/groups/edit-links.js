@@ -1,9 +1,7 @@
 var log = require('../../../services/log');
 var db =    require('../../../services/db');
 
-var _ = require('lodash');
-
-var validUrl = require('valid-url');
+var removeInvalidLinks = require('../../../helpers/remove-invalid-links');
 
 module.exports = function(req, res){
 
@@ -13,12 +11,10 @@ module.exports = function(req, res){
 		twitter: req.body.twitter,
 		google: req.body.google
 	};
-	
-	_.forIn(links, function(url, propName){
-		if (!validUrl.isWebUri(url) && url !== '') delete links[propName];
-	});
 
-	var update = { $set: { links: links } };
+	var validLinks = removeInvalidLinks(links);
+
+	var update = { $set: { links: validLinks } };
 
 	db.models.group.findByIdAndUpdate(req.body.groupID, update, function(err){
 		if (err){

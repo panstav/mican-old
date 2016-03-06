@@ -7,8 +7,9 @@ const isHTML = require('is-html');
 
 const db = require('../server/services/db');
 
-const validMongoId = require('../server/helpers/valid-mongo-id');
 const prettifyUrl = loadAngular(require('../client/src/common/functions/prettify-url.serv'), true);
+const removeInvalidLinks = require('../server/helpers/remove-invalid-links');
+const validMongoId = require('../server/helpers/valid-mongo-id');
 
 describe('Unit - ParseTemplates', () => {
 
@@ -53,25 +54,6 @@ describe('Unit - ParseTemplates', () => {
 			expect(isHTML(output)).to.be.ok();
 
 		});
-
-	});
-
-});
-
-describe('Unit - ValidMongoId', () => {
-
-	it('Should reject all group namespaces', done => {
-
-		db.models.group.find({}, 'namespace').exec().then(testAllNamespaces, done);
-
-		function testAllNamespaces(docs){
-
-			docs.forEach(doc => {
-				expect(validMongoId(doc.namespace)).to.not.be.ok();
-			});
-
-			done();
-		}
 
 	});
 
@@ -134,5 +116,89 @@ describe('Unit - PrettifyUrl', () => {
 	});
 
 
+
+});
+
+describe('Unit - RemoveInvalidLinks', () => {
+
+	it('Should accept normal urls', done => {
+
+		const urls = {
+			a: 'http://www.example.com',
+			b: 'https://www.another-example.co',
+			c: 'http://www.something-else.io'
+		};
+
+		expect(removeInvalidLinks(urls)).to.be.eql(urls);
+		expect(Object.keys(removeInvalidLinks(urls)).length).to.be.eql(Object.keys(urls).length);
+
+		done();
+
+	});
+
+	it('Should forgive empty urls', done => {
+
+		const urls = {
+			a: 'http://www.example.com',
+			b: ''
+		};
+
+		expect(removeInvalidLinks(urls)).to.be.eql(urls);
+		expect(Object.keys(removeInvalidLinks(urls)).length).to.be.eql(Object.keys(urls).length);
+
+		done();
+
+	});
+
+	it('Shouldn\'t accept bad urls', done => {
+
+		const urls = {
+			a: 'tp://www.example.com',
+			b: 'https:www.another-example.co',
+			c: 'ftp://www.something-else'
+		};
+
+		const validUrls = removeInvalidLinks(urls);
+
+		expect(validUrls).to.not.be.eql(urls);
+		expect(Object.keys(validUrls).length).to.not.be.eql(Object.keys(urls).length);
+
+		done();
+
+	});
+
+	it('Should be able to handle hebrew seemlessly', done => {
+
+		const urls = {
+			a: 'http://www.example.com/למשל',
+			b: 'https://www.another-example.co/דף-אחר/more/even-הרבה-יותר-more',
+			c: 'http://www.something-else/עוד-עברית-and-english-too'
+		};
+
+		expect(removeInvalidLinks(urls)).to.be.eql(urls);
+		expect(Object.keys(removeInvalidLinks(urls)).length).to.be.eql(Object.keys(urls).length);
+
+		done();
+
+	});
+
+});
+
+describe('Unit - ValidMongoId', () => {
+
+	it('Should reject all group namespaces', done => {
+
+		db.models.group.find({}, 'namespace').exec().then(testAllNamespaces, done);
+
+		function testAllNamespaces(docs){
+
+			docs.forEach(doc => {
+				expect(validMongoId(doc.namespace)).to.not.be.ok();
+			});
+
+			done();
+		}
+
+	});
 
 });

@@ -113,6 +113,7 @@
     "string-replace-webpack-plugin": "0.0.2",
     "universal-analytics": "0.3.9",
     "url-pattern": "0.10.0",
+    "urlencode": "1.1.0",
     "useful-string": "0.0.2",
     "valid-url": "1.0.9",
     "webpack": "1.12.5"
