@@ -31,11 +31,13 @@ function track(userReq, serializedReq){
 	function keen(user, event){
 
 		// extract collection name and remove it from archived data
-		let collectionName = event.cat;
+		const collectionName = event.cat;
 		delete event.cat;
 
+		const data = _.extend(user, event);
+
 		// register event
-		keenClient.addEvent(collectionName, _.extend(user, event), err => { if (err) log.error(err) });
+		keenClient.addEvent(collectionName, data, err => { if (err) log.error(err, data) });
 	}
 
 }
