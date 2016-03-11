@@ -65,7 +65,7 @@
     "connect-multiparty": "1.2.5",
     "express": "4.12.4",
     "express-enrouten": "1.2.1",
-    "express-session": "1.11.3",
+    "express-session": "1.13.0",
     "express-sslify": "1.0.1",
     "express-validation": "0.3.0",
     "font-awesome": "4.4.0",

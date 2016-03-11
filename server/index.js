@@ -166,9 +166,11 @@ module.exports.init = () => {
 
 	function getSessionController(){
 
-		let options = {
+		const sessionExpiry = 2 * 60 * 60 * 1000;
+
+		const options = {
 			secret: process.env.SESSION_SECRET,
-			cookie: { secure: !!process.env.SECURE },
+			cookie: { secure: !!process.env.SECURE, maxAge: sessionExpiry, rolling: true },
 			resave: false,
 			saveUninitialized: false
 		};
@@ -178,7 +180,7 @@ module.exports.init = () => {
 			options.store = new MongoStore(
 				{
 					db: process.env.DATABASE_NAME,
-					expireAfter: 1000 * 60 * 60 * 24 * 10,
+					expireAfter: sessionExpiry,
 					mongooseConnection: mongoose.connections[0]
 				}
 			);
