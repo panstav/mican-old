@@ -19,7 +19,7 @@ var compression =   require('compression');
 
 // Data Stores
 var mongoose =      require('mongoose');
-var MongoStore =    require('connect-mongostore')(session);
+var MongoStore =    require('connect-mongo')(session);
 var db =            require('./services/db');
 
 var cloudinary =    require('cloudinary');
@@ -166,28 +166,24 @@ module.exports.init = () => {
 
 	function getSessionController(){
 
-		const sessionExpiry = 2 * 60 * 60 * 1000;
-
-		const options = {
+		const sessionOptions = {
 			secret: process.env.SESSION_SECRET,
-			cookie: { secure: !!process.env.SECURE, maxAge: sessionExpiry, rolling: true },
+			cookie: { secure: !!process.env.SECURE, maxAge: 2 * 60 * 60 * 1000, rolling: true },
 			resave: false,
 			saveUninitialized: false
 		};
 
 		if (process.env.MONGOHQ_URL && process.env.DATABASE_NAME){
 
-			options.store = new MongoStore(
-				{
-					db: process.env.DATABASE_NAME,
-					expireAfter: sessionExpiry,
-					mongooseConnection: mongoose.connections[0]
-				}
-			);
-
+			const storeOptions = {
+				mongooseConnection: mongoose.connections[0],
+				stringify: false
+			};
+			
+			sessionOptions.store = new MongoStore(storeOptions);
 		}
 
-		return session(options);
+		return session(sessionOptions);
 	}
 
 };
