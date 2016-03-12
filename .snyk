@@ -23,5 +23,25 @@ ignore:
     - 'html-snapshots > phantomjs > request > hawk':
         reason: No available upgrade
         expires: '2016-03-22T17:43:44.532Z'
-patch: {}
+      'sparkpost > request > hawk':
+        reason: Waiting for alternatives
+        expires: '2016-04-11T11:29:12.704Z'
+    - 'html-snapshots > phantomjs > request > hawk':
+        reason: No available upgrade
+        expires: '2016-04-11T11:29:12.707Z'
+patch:
+  'npm:uglify-js:20150824':
+    - 'gulp-jade > jade > transformers > uglify-js':
+        patched: '2016-03-12T11:23:29.796Z'
+    - 'gulp-jade > jade > transformers > uglify-js':
+        patched: '2016-03-12T11:23:29.796Z'
+    - 'jade > transformers > uglify-js':
+        patched: '2016-03-12T11:23:29.796Z'
+    - 'jade > transformers > uglify-js':
+        patched: '2016-03-12T11:23:29.796Z'
+  'npm:uglify-js:20151024':
+    - 'gulp-jade > jade > transformers > uglify-js':
+        patched: '2016-03-12T11:23:29.796Z'
+    - 'jade > transformers > uglify-js':
+        patched: '2016-03-12T11:23:29.796Z'
 version: v1
