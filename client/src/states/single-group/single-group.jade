@@ -121,7 +121,7 @@
 
 			a.title(
 			ng-href="{{ event.link }}"
-			target="_blank"
+			target="_blank" rel="noopener"
 			) {{ event.title }}
 
 		.center
@@ -189,7 +189,7 @@
 
 				a.value(
 				ng-href="{{ sGroup.formatLinkProtocol(contact.channel, contact.value) }}"
-				target="_blank"
+				target="_blank" rel="noopener"
 				) {{ contact.channel === 'link' ? sGroup.prettifyUrl(contact.value) : contact.value }}
 
 				.nameOfContact

@@ -74,7 +74,7 @@ ng-style="{ 'border-right-color': tList.hexColorByName[task.color] }"
 				) {{ link.title + ' - ' }}
 				a(
 				ng-href="{{ link.value }}"
-				target="_blank"
+				target="_blank" rel="noopener"
 				) {{ tList.trimMax(link.value, 35) }}
 
 		.designated
