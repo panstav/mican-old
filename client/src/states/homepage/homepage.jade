@@ -12,31 +12,20 @@ ng-if="main.user.isAdmin"
 		span.num {{ home.groupsSum + ' ' }}
 		span.sumOf יוזמות חברתיות
 
-.paper.full.whatsUp
+.paper.full.groupCategories
 
 	header.lineThrough
-		span מה קורה פה בעצם?
+		span זירות העשייה
 
-	.paras
+	.categories
 
-		p בכמה מילים - האתר מציג תעודות זהות של יוזמות חברתיות וקריאות שלהן להתנדבות ועשייה חברתית.
-
-		p.emphasized
-			|"ריכוז הפוטנציאל הגבוה ביותר
-			br
-			|שוכן באדם שטרם התוודע לעוצמתו"
-
-		p
-			|מכאן נוסדה רעיונית איפשהו שם בתחילת 2013 כסוג של ניסוי כלים. אז עוד קראנו לזה 'דרכנו'. הרבה מים עברו מתחת לגשר, וכך או אחרת - היוזמה נמצאת בפיתוח תמידי.
-
-		p
-			|היינו רוצים לתת יד ליוזמות חברתיות הפועלות בדרכנו ומשקיעות אנרגיה כה רבה למה שמטיב עם כולנו. כמטרת על -&nbsp;
-			i לעת עתה
-			|- מכאן שואפת להיות במה מסודרת העונה על זוג צרכים בסיסיים - הנגשת מידע וגיוס משאבים ומתנדבים.
-
-		p בשלב זה המערכת מאפשרת ליוזמות חברתיות לנהל עמוד פרופיל ולהזין אליו פרטי התקשרות והצעות להתנדבות. בעתיד אנחנו מקווים לענות על צרכים ספציפיים יותר של היוזמות החברתיות בארץ.
-
-		a.button.silent.accent(ui-sref="about") אודותינו
+		a.singleCategory(
+		ng-repeat="(color, catTitle) in main.categories"
+		ng-class="'back-' + color"
+		ui-sref="groups({ category: main.engCatSlug(color) })"
+		)
+			img(ng-src="{{ 'https://s3.eu-central-1.amazonaws.com/mican/icons/' + color + '.png' }}")
+			span {{ catTitle }}
 
 .paper.full.homeActions
 
@@ -69,20 +58,31 @@ ng-if="main.user.isAdmin"
 			)
 			span למצוא יוזמה במאגר
 
-.paper.full.groupCategories
+.paper.full.whatsUp
 
 	header.lineThrough
-		span זירות העשייה
+		span מה קורה פה בעצם?
 
-	.categories
+	.paras
 
-		a.singleCategory(
-		ng-repeat="(color, catTitle) in main.categories"
-		ng-class="'back-' + color"
-		ui-sref="groups({ category: main.engCatSlug(color) })"
-		)
-			img(ng-src="{{ 'https://s3.eu-central-1.amazonaws.com/mican/icons/' + color + '.png' }}")
-			span {{ catTitle }}
+		p בכמה מילים - האתר מציג תעודות זהות של יוזמות חברתיות וקריאות שלהן להתנדבות ועשייה חברתית.
+
+		p.emphasized
+			|"ריכוז הפוטנציאל הגבוה ביותר
+			br
+			|שוכן באדם שטרם התוודע לעוצמתו"
+
+		p
+			|מכאן נוסדה רעיונית איפשהו שם בתחילת 2013 כסוג של ניסוי כלים. אז עוד קראנו לזה 'דרכנו'. הרבה מים עברו מתחת לגשר, וכך או אחרת - היוזמה נמצאת בפיתוח תמידי.
+
+		p
+			|היינו רוצים לתת יד ליוזמות חברתיות הפועלות בדרכנו ומשקיעות אנרגיה כה רבה למה שמטיב עם כולנו. כמטרת על -&nbsp;
+			i לעת עתה
+			|- מכאן שואפת להיות במה מסודרת העונה על זוג צרכים בסיסיים - הנגשת מידע וגיוס משאבים ומתנדבים.
+
+		p בשלב זה המערכת מאפשרת ליוזמות חברתיות לנהל עמוד פרופיל ולהזין אליו פרטי התקשרות והצעות להתנדבות. בעתיד אנחנו מקווים לענות על צרכים ספציפיים יותר של היוזמות החברתיות בארץ.
+
+		a.button.silent.accent(ui-sref="about") אודותינו
 
 .paper.full.newsletter
 
