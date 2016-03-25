@@ -87,7 +87,7 @@ module.exports = function(req, res){
 				if (err) return log.error(err);
 
 				// no group found - redirect
-				if (!groupDoc) return step({ noSuchGroup: true });
+				if (!groupDoc) return step({ noSuchGroup: true, identifier: req.params.id });
 
 				// got to group by namespace - proceed
 				step(null, groupDoc);
