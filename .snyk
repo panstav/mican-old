@@ -25,23 +25,30 @@ ignore:
         expires: '2016-03-22T17:43:44.532Z'
       'sparkpost > request > hawk':
         reason: Waiting for alternatives
-        expires: '2016-04-11T11:29:12.704Z'
+        expires: '2016-04-24T11:04:17.668Z'
     - 'html-snapshots > phantomjs > request > hawk':
         reason: No available upgrade
-        expires: '2016-04-11T11:29:12.707Z'
+        expires: '2016-04-24T11:04:17.669Z'
+  'npm:request:20160119':
+    - 'sparkpost > request':
+        reason: No available upgrade
+        expires: '2016-04-24T11:04:17.669Z'
+    - 'html-snapshots > phantomjs > request':
+        reason: No available upgrade
+        expires: '2016-04-24T11:04:17.669Z'
 patch:
   'npm:uglify-js:20150824':
     - 'gulp-jade > jade > transformers > uglify-js':
-        patched: '2016-03-12T11:23:29.796Z'
+        patched: '2016-03-25T10:56:49.347Z'
     - 'gulp-jade > jade > transformers > uglify-js':
-        patched: '2016-03-12T11:23:29.796Z'
+        patched: '2016-03-25T10:56:49.347Z'
     - 'jade > transformers > uglify-js':
-        patched: '2016-03-12T11:23:29.796Z'
+        patched: '2016-03-25T10:56:49.347Z'
     - 'jade > transformers > uglify-js':
-        patched: '2016-03-12T11:23:29.796Z'
+        patched: '2016-03-25T10:56:49.347Z'
   'npm:uglify-js:20151024':
     - 'gulp-jade > jade > transformers > uglify-js':
-        patched: '2016-03-12T11:23:29.796Z'
+        patched: '2016-03-25T10:56:49.347Z'
     - 'jade > transformers > uglify-js':
-        patched: '2016-03-12T11:23:29.796Z'
+        patched: '2016-03-25T10:56:49.347Z'
 version: v1
