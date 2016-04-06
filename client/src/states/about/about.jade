@@ -20,7 +20,10 @@
 		img(src="https://s3.eu-central-1.amazonaws.com/mican/misc/win.jpg")
 		.credit
 			|צילום:&nbsp;
-			a(target="_blank" href="https://www.facebook.com/ProtestArt") אביבי אהרון - Protest Art
+			a(
+			href="https://www.facebook.com/ProtestArt"
+			target="_blank" rel="noopener"
+			) אביבי אהרון - Protest Art
 
 .paper.step
 
@@ -63,11 +66,20 @@
 
 	p
 		|רוב הקוד הפועל מאחורי האתר, השירותים שהאתר מספק והשרת שמנגיש את אלו הינו - קוד פתוח. כלומר, ניתן&nbsp;
-		a(target="_blank" href="https://github.com/panstav/mican") לצפות בו
+		a(
+		href="https://github.com/panstav/mican"
+		target="_blank" rel="noopener"
+		) לצפות בו
 		|&nbsp;וב
-		a(target="_blank" href="https://github.com/panstav/mican/commits/master") תהליך הפיתוח שלו
+		a(
+		href="https://github.com/panstav/mican/commits/master"
+		target="_blank" rel="noopener"
+		) תהליך הפיתוח שלו
 		|, וגם&nbsp;
-		a(target="_blank" href="https://github.com/panstav/mican/pulls") להגיש הצעות עריכה
+		a(
+		href="https://github.com/panstav/mican/pulls"
+		target="_blank" rel="noopener"
+		) להגיש הצעות עריכה
 		|.
 
 .paper.step
@@ -78,7 +90,10 @@
 	ul.mainTech
 
 		li(ng-repeat="tech in about.mainTechnologies")
-			a.title(target="_blank" ng-href="{{ tech.url }}") {{ tech.title }}
+			a.title(
+			ng-href="{{ tech.url }}"
+			target="_blank" rel="noopener"
+			) {{ tech.title }}
 
 			p {{ tech.desc }}
 
@@ -91,5 +106,8 @@
 
 		ul(ng-show="showRestTech")
 			li(ng-repeat="tech in about.restTechnologies")
-				a(target="_blank" ng-href="{{ tech.url }}") {{ tech.title }}
+				a(
+				ng-href="{{ tech.url }}"
+				target="_blank" rel="noopener"
+				) {{ tech.title }}
 

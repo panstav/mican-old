@@ -7,7 +7,7 @@ var templates = {
 	suggestGroup: function(args){
 
 		let contacts = `<p>פרטי קשר</p>`;
-		if (args.link) contacts += `<span>אתר אינטרנט: <a href="${args.link}" target="_blank">${args.link}</a></span><br>`;
+		if (args.link) contacts += `<span>אתר אינטרנט: <a href="${args.link}" target="_blank" rel="noopener">${args.link}</a></span><br>`;
 		if (args.mail) contacts += `<span>כתובת מייל: <a href="mailto:${args.mail}">${args.mail}</a></span><br>`;
 		if (args.tel) contacts += `<span>מספר טלפון: <a href="tel:${args.tel}">${args.tel}</a></span>`;
 
@@ -50,12 +50,12 @@ var templates = {
 	linkByMail: function(args){
 		let url = `${urls.domain}/auth/login-by-mail?userid=${args.userID}&code=${args.code}`;
 
-		return `ליחצו על הלינק על מנת לחזור ל- 'מכאן':<br><a href="${url}" target="_blank">url</a>	`;
+		return `ליחצו על הלינק על מנת לחזור ל- 'מכאן':<br><a href="${url}" target="_blank" rel="noopener">url</a>	`;
 	},
 
 	emailConfirmation: function(secret){
 		return `
-			<p>מייל זה מגיע אליכם בעקבות בקשת אימות-מייל באתר <a href="${urls.domain}" target="_blank">מכאן</a>.</p>
+			<p>מייל זה מגיע אליכם בעקבות בקשת אימות-מייל באתר <a href="${urls.domain}" target="_blank" rel="noopener">מכאן</a>.</p>
 			<a href="${urls.domain}/confirm-email/${secret}">ליחצו כאן על מנת לחזור לאתר.</a>
 		`;
 	},
@@ -68,7 +68,7 @@ var templates = {
 			<span>שם: ' + args.user.displayName + '</span><br>
 			<span>ליצירת קשר במייל: <a href="mailto:${args.user.email}">${args.user.email}</a></span><br>
 			${message}
-			<span>לינק ישיר למשימה: <a href="${args.taskLink}" target="_blank">${args.taskLink}</a></span>
+			<span>לינק ישיר למשימה: <a href="${args.taskLink}" target="_blank" rel="noopener">${args.taskLink}</a></span>
 		`;
 	},
 
@@ -89,8 +89,7 @@ var templates = {
 		return `
 		<span>שם: ${args.anon.fullName}</span><br>
 		<span>ליצירת קשר ב${channel}: <a href="${hrefType + args.anon.contact.value}">${args.anon.contact.value}</a></span><br>
-		${message}
-		<span>לינק ישיר למשימה: <a href="${args.taskLink}" target="_blank">${args.taskLink}</a></span>
+		${message}<span>לינק ישיר למשימה: <a href="${args.taskLink}" target="_blank" rel="noopener">${args.taskLink}</a></span>
 		`;
 	},
 
@@ -98,7 +97,7 @@ var templates = {
 
 		return `
 		<span>לידיעתך - היוזמה "${args.groupTitle}" עידכנה את פרטי המשימה "${args.taskTitle}".</span><br><br>
-		<span>לינק ישיר למשימה: <a href="${args.taskLink}" target="_blank">${args.taskLink}</a></span>
+		<span>לינק ישיר למשימה: <a href="${args.taskLink}" target="_blank" rel="noopener">${args.taskLink}</a></span>
 		`;
 
 	},
@@ -106,8 +105,8 @@ var templates = {
 	notifyVolunteersOfTaskCompletion: function(args){
 
 		return `
-		<span>לידיעתך - היוזמה "<a href="${args.groupLink}" target="_blank">${args.groupDisplayName}</a>" סימנה שהמשימה שהתנדבת אליה - "${args.taskTitle}" - הושלמה!</span><br><br>
-		<span>במערכת מכאן יש עוד הרבה משימות והזדמנויות להתנדב - <a href="${urls.domain}/tasks" target="_blank">עמוד המשימות</a>.</span>
+		<span>לידיעתך - היוזמה "<a href="${args.groupLink}" target="_blank" rel="noopener">${args.groupDisplayName}</a>" סימנה שהמשימה שהתנדבת אליה - "${args.taskTitle}" - הושלמה!</span><br><br>
+		<span>במערכת מכאן יש עוד הרבה משימות והזדמנויות להתנדב - <a href="${urls.domain}/tasks" target="_blank" rel="noopener">עמוד המשימות</a>.</span>
 		`;
 
 	},
@@ -115,8 +114,8 @@ var templates = {
 	notifyVolunteersOfTaskCancelation: function(args){
 
 		return `
-		<span>לידיעתך - היוזמה "<a href="${args.groupLink}" target="_blank">${args.groupDisplayName}</a>" סימנה שהמשימה שהתנדבת	 אליה - "${args.taskTitle}" - בוטלה!</span><br><br>
-		<span>במערכת מכאן יש עוד הרבה משימות והזדמנויות להתנדב - <a href="${urls.domain}/tasks" target="_blank">עמוד המשימות</a>.</span>
+		<span>לידיעתך - היוזמה "<a href="${args.groupLink}" target="_blank" rel="noopener">${args.groupDisplayName}</a>" סימנה שהמשימה שהתנדבת	 אליה - "${args.taskTitle}" - בוטלה!</span><br><br>
+		<span>במערכת מכאן יש עוד הרבה משימות והזדמנויות להתנדב - <a href="${urls.domain}/tasks" target="_blank" rel="noopener">עמוד המשימות</a>.</span>
 		`;
 
 	}
