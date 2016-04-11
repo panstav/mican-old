@@ -122,57 +122,59 @@ var templates = {
 
 };
 
-module.exports = (templateName, args) => wrap(templates[templateName](args));
+module.exports = (templateName, args) => wrap({ subject: args.subject, content: templates[templateName](args) });
 module.exports.templateNames = Object.keys(templates);
 
-function wrap(content){
+function wrap(data){
 
-	var styles = `
-	<style>
-		.container {
-			direction: rtl;
-			max-width: 700px;
-			margin: auto;
-			padding: 0 20px 20px;
-		}
+	return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<title>${data.subject}</title>
+			<style>
+				.container {
+					direction: rtl;
+					max-width: 700px;
+					margin: auto;
+					padding: 0 20px 20px;
+				}
 
-		.header {
-			font-weight: bold;
-			background-color: white;
-			text-align: center;
-			font-size: 32px;
-			margin: 20px auto 20px;
-			padding-bottom: 25px;
-			color: #F5BF36;
-		}\
+				.header {
+					font-weight: bold;
+					background-color: white;
+					text-align: center;
+					font-size: 32px;
+					margin: 20px auto 20px;
+					padding-bottom: 25px;
+					color: #F5BF36;
+				}\
 
-		.main {
-			font-size: 16px;
-			color: #707070;
-		}
+				.main {
+					font-size: 16px;
+					color: #707070;
+				}
 
-		.footnotes {
-			padding-top: 75px;
-			font-size: 13px;
-			color: #a3a3a3;
-		}
-	</style>
-	`;
+				.footnotes {
+					padding-top: 75px;
+					font-size: 13px;
+					color: #a3a3a3;
+				}
+			</style>
+		</head>
+		<body>
+			<div class="container">
+				<div class="header">מכאן</div>
+				<div class="main">${data.content}</div>
+				<div class="footnotes">
+					<p>במידה ואינכם יודעים במה מדובר - ניתן להתעלם ממייל זה.</p>
+					<p>אך אם הבעייה חוזרת על עצמה או שאינכם רשומים לקבל התראות מייל מ- 'מכאן' - אנא, פנו לכתובת - <a href="mailto:${urls.supportAddress}">${urls.supportAddress}</a></p>
+				</div>
+			</div>
+		</body>
+		</html>
+		`;
 
-	var wrapperStart = `
-	<div class="container">
-		<div class="header">מכאן</div>
-		<div class="main">
-	`;
 
-	var wrapperEnd = `
-		</div>
-		<div class="footnotes">
-			<p>במידה ואינכם יודעים במה מדובר - ניתן להתעלם ממייל זה.</p>
-			<p>אך אם הבעייה חוזרת על עצמה - אנא, פנו לכתובת - <a href="mailto:${urls.supportAddress}">${urls.supportAddress}</a></p>
-		</div>
-	</div>
-	`;
-
-	return styles + wrapperStart + content + wrapperEnd;
 }

@@ -1,26 +1,13 @@
-var log = require('../log');
+const SparkPost = require('sparkpost');
+const emailer = new SparkPost(process.env.SPARKPOST_API_KEY);
 
-var mandrill = require('mandrill-api/mandrill');
-var mandrill_client = new mandrill.Mandrill(process.env.MANDRILL_APIKEY);
+const log = require('../log');
+const urls = require('./../../helpers/urls');
+const parseTemplate = require('./parse-template');
 
-var urls = require('./../../helpers/urls');
-var parseTemplate = require('./parse-template');
-
-module.exports = function(settings, callback){
+module.exports = (settings, callback) => {
 
 	log.trace(settings, 'Sending email');
-
-	var emailTemplate = parseTemplate(settings.template, settings.templateArgs);
-	var message = {
-		important: settings.importance || false,
-
-		from_email: urls.officialAddress,
-		from_name: 'מכאן',
-		to: [{ email: settings.recipient }],
-
-		subject: settings.subject,
-		html: emailTemplate
-	};
 
 	if (process.env.NODE_ENV === 'test'){
 		log.debug(`Avoided sending an email, with subject ${settings.subject}`);
@@ -28,6 +15,16 @@ module.exports = function(settings, callback){
 		return callback();
 	}
 
-	mandrill_client.messages.send({ message: message }, function() { callback() }, callback);
+	const transmissionBody = {
+		recipients: [{ address: settings.recipient }],
+		content: {
+			from: { name: 'Mican מכאן', email: urls.officialAddress },
+			reply_to: `Mican מכאן <${urls.officialAddress}>`,
+			subject: settings.subject,
+			html: parseTemplate(settings.template, settings.templateArgs)
+		}
+	};
+
+	emailer.transmissions.send({ transmissionBody }, callback);
 
 };
