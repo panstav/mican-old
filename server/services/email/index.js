@@ -1,6 +1,9 @@
 const SparkPost = require('sparkpost');
 const emailer = new SparkPost(process.env.SPARKPOST_API_KEY);
 
+const inlineCss = require('inline-css');
+
+const common = require('../../../common');
 const log = require('../log');
 const urls = require('./../../helpers/urls');
 const parseTemplate = require('./parse-template');
@@ -15,16 +18,23 @@ module.exports = (settings, callback) => {
 		return callback();
 	}
 
-	const transmissionBody = {
-		recipients: [{ address: settings.recipient }],
-		content: {
-			from: { name: 'Mican מכאן', email: urls.officialAddress },
-			reply_to: `Mican מכאן <${urls.officialAddress}>`,
-			subject: settings.subject,
-			html: parseTemplate(settings.template, settings.templateArgs)
-		}
-	};
+	inlineCss(parseTemplate(settings.template, settings.templateArgs), { url: common.domain })
+		.then(html => {
+			
+			console.log('Sending');
+			console.log('\n', typeof html, 'html', html, '\n');
 
-	emailer.transmissions.send({ transmissionBody }, callback);
+			const transmissionBody = {
+				recipients: [{ address: settings.recipient }],
+				content: {
+					from: { name: 'Mican מכאן', email: urls.officialAddress },
+					reply_to: `Mican מכאן <${urls.officialAddress}>`,
+					subject: settings.subject,
+					html
+				}
+			};
+
+			emailer.transmissions.send({ transmissionBody }, callback);
+		});
 
 };
