@@ -122,7 +122,7 @@ var templates = {
 
 };
 
-module.exports = (templateName, args) => wrap({ subject: args.subject, content: templates[templateName](args) });
+module.exports = (subject, templateName, args) => wrap({ subject, content: templates[templateName](args) });
 module.exports.templateNames = Object.keys(templates);
 
 function wrap(data){

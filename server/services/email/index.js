@@ -18,7 +18,7 @@ module.exports = (settings, callback) => {
 		return callback();
 	}
 
-	inlineCss(parseTemplate(settings.template, settings.templateArgs), { url: common.domain })
+	inlineCss(parseTemplate(settings.subject, settings.template, settings.templateArgs), { url: common.domain })
 		.then(html => {
 			
 			console.log('Sending');

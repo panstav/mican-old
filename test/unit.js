@@ -52,7 +52,7 @@ describe('Unit', () => {
 
 			parseTemplates.templateNames.forEach(templateName => {
 
-				let output = parseTemplates(templateName, args);
+				let output = parseTemplates('Subject: Test', templateName, args);
 				expect(isHTML(output)).to.be.ok();
 
 			});
