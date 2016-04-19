@@ -183,24 +183,10 @@ gulp.task('construct-html-head', () => {
 			tpl: '<script async src="%s"></script>'
 		};
 
-		// insert noindex meta tag for non-production environments
-		if (process.env.NODE_ENV !== 'production'){
-			resourcesObj.noIndex = {
-				src: null,
-				tpl: '<meta name="robots" content="noindex">'
-			};
-		}
-
 		// insert google verification
 		resourcesObj.google = {
 			src: null,
 			tpl: `<meta name="google-site-verification" content="${ process.env.GOOGLE_VERIFICATION }">`
-		};
-
-		// insert google analytics
-		resourcesObj.analytics = {
-			src: null,
-			tpl: `<script>(function(i, s, o, g, r, a, m){i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function(){(i[r].q = i[r].q || []).push(arguments)}, i[r].l = 1*new Date();a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m)})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');window.ga('create', '${ process.env.ANALYTICS_KEY }', 'auto');window.ga('send', 'pageview');</script>`
 		};
 
 		// insert bing verification
@@ -244,12 +230,29 @@ gulp.task('construct-html-head', () => {
 			`
 		};
 
-		// minify injected templates
-		if (process.env.NODE_ENV === 'production')
-		for (let key in resourcesObj){
-			if (resourcesObj[key].hasOwnProperty('tpl')){
-				resourcesObj[key].tpl = resourcesObj[key].tpl.replace(/\n|\t/g, '')
+
+		if (process.env.NODE_ENV === 'production'){
+
+			// insert google analytics
+			resourcesObj.analytics = {
+				src: null,
+				tpl: `<script>(function(i, s, o, g, r, a, m){i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function(){(i[r].q = i[r].q || []).push(arguments)}, i[r].l = 1*new Date();a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m)})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');window.ga('create', '${ process.env.ANALYTICS_KEY }', 'auto');window.ga('send', 'pageview');</script>`
+			};
+
+			// minify injected templates
+			for (let key in resourcesObj){
+				if (resourcesObj[key].hasOwnProperty('tpl')){
+					resourcesObj[key].tpl = resourcesObj[key].tpl.replace(/\n|\t/g, '')
+				}
 			}
+		} else {
+
+			// insert noindex meta tag
+			resourcesObj.noIndex = {
+				src: null,
+				tpl: '<meta name="robots" content="noindex">'
+			};
+
 		}
 
 		return resourcesObj;
