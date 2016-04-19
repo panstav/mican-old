@@ -129,6 +129,18 @@ module.exports = {
 		}
 	},
 
+	draft: {
+
+		url: '/drafts/:draftId',
+
+		views: {
+			'main':{
+				template: '<state-draft></state-draft>'
+			}
+		}
+
+	},
+
 	polimap: {
 
 		url: '/map',

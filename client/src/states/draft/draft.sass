@@ -1,0 +1,103 @@
+state-draft
+
+	.authered
+		.displayName
+			margin-right: .5em
+		.createdAt
+			margin-right: 1em
+
+	.paper.meta
+
+		h1
+			margin-top: 1em
+			font-size: 2em
+			font-weight: bold
+
+		p.desc
+			color: $explain
+
+		.authered img
+			@include portrait(2em, white)
+
+	.paper.tabs
+		text-align: center
+		padding-bottom: 0
+
+		a
+			text-decoration: none
+			display: inline-block
+			width: 33%
+			padding-top: .35em
+			padding-bottom: .5em
+			font-size: 1.3em
+			
+			@media (min-width: $mobile)
+				font-size: 1.5em
+
+			&.active
+				background-color: white
+
+		.counter
+			display: inline-block
+			background-color: white
+			border-radius: 2px
+			margin: -1px 0 0 .5em
+			padding: 0 .3em .2em
+			vertical-align: middle
+			font-size: .6em
+
+
+
+	.paper
+
+		&.text-comments, &.edit-suggestions, &.change-history
+			font-size: .85em
+
+			article
+				padding: 1em
+
+				&:not(:last-of-type)
+					border-bottom: 1px solid $uiGrey
+
+			.authered
+				margin-top: 1em
+
+				img
+					@include portrait(2em, $tokenBorder)
+
+		&.edit-suggestions, &.change-history
+
+			h3
+				font-size: 1.5em
+
+			.changes
+				border: 1px solid $tokenBorder
+				padding: .5em 1em
+
+				span.add
+					color: $uiGrowth
+
+				span.remove
+					text-decoration: line-through
+					color: $uiWarn
+
+		&.text-comments
+
+			p
+				margin: 0
+
+		&.edit-suggestions
+
+			.votes
+				margin-top: 1em
+				text-align: center
+
+				span
+					display: inline-block
+					font-size: 1.2em
+					padding: .5em 2em
+
+				.for
+					color: $vote-for
+				.against
+					color: $vote-against

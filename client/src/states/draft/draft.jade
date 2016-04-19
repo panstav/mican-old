@@ -1,0 +1,58 @@
+.paper.less.meta
+
+	h1 {{ draft.title }}
+	p.desc {{ draft.desc }}
+
+	.authered
+		img(ng-src="{{ draft.author.avatarHref }}")
+		span.displayName {{ draft.author.displayName }}
+		span.createdAt {{ draft.hour }} | {{ draft.date }}
+
+.paper
+
+	p(ng-repeat="paragraph in draft.content track by $index") {{ paragraph }}
+
+.paper.less.tight.tabs
+	a(href="#" ng-click="draft.extraDetails = 'comments'" ng-class="draft.extraDetails === 'comments' ? 'active' : ''")
+		span.counter {{ draft.counters.comments }}
+		|הערות
+	a(href="#" ng-click="draft.extraDetails = 'edits'" ng-class="draft.extraDetails === 'edits' ? 'active' : ''")
+		span.counter {{ draft.counters.edits }}
+		|הצעות
+	a(href="#" ng-click="draft.extraDetails = 'changes'" ng-class="draft.extraDetails === 'changes' ? 'active' : ''")
+		span.counter {{ draft.counters.changes }}
+		|שינויים
+
+.paper.edgy.step.text-comments(
+ng-show="draft.extraDetails === 'comments'"
+)
+
+	article.comment(ng-repeat="comment in draft.comments")
+
+		p {{ comment.content }}
+		.authered
+			img(ng-src="{{ comment.author.avatarHref }}")
+			span.displayName {{ comment.author.displayName }}
+			span.createdAt {{ comment.hour }} | {{ comment.date }}
+
+.paper.edgy.step.edit-suggestions(
+ng-show="draft.extraDetails === 'edits'"
+)
+
+	article.edit(ng-repeat="edit in draft.edits")
+
+		h3 {{ edit.title }}
+
+		.authered
+			img(ng-src="{{ edit.author.avatarHref }}")
+			span.displayName {{ edit.author.displayName }}
+			span.createdAt {{ edit.hour }} | {{ edit.date }}
+
+		p {{ edit.desc }}
+
+		.changes
+			span(ng-repeat="change in edit.changes" ng-class="change.state") {{ change.content }}
+
+		.votes
+			span.for {{ edit.votes.for }} תומכים
+			span.against {{ edit.votes.against }} מתנגדים
