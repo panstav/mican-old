@@ -36,17 +36,7 @@ gulp.task('define-revision', () => {
 	process.env.VERSIONSTR = process.env.SOURCE_VERSION ? '-' + process.env.SOURCE_VERSION.substr(0, 10) : '';
 });
 
-gulp.task('define-local', done => {
-	process.env.LOCAL = true;
-
-	require('./env');
-
-	done();
-});
-
-gulp.task('define-production', done => {
-	process.env.NODE_ENV = 'production';
-
+gulp.task('load-env', done => {
 	require('./env');
 
 	done();
@@ -403,8 +393,8 @@ gulp.task('js', done => {
 
 gulp.task('build', plugins.sequence('prep-public-dir', ['font-awesome', 'polimap'], ['sass-to-css', 'jade-to-html'], 'construct-html-head', 'js'));
 
-gulp.task('local', plugins.sequence('clean', 'define-local', 'build'));
+gulp.task('local', plugins.sequence('clean', 'load-env', 'build'));
 
-gulp.task('heroku', plugins.sequence('clean', 'define-revision', 'build'));
+gulp.task('remote', plugins.sequence('clean', 'define-revision', 'build'));
 
-gulp.task('production-like', plugins.sequence('define-production', 'heroku'));
+gulp.task('production-like', plugins.sequence('load-env', 'remote'));
