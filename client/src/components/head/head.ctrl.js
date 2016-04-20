@@ -25,7 +25,7 @@ function head(topLevelData, $rootScope, $scope, $location){
 		if ($scope.$state) seoUpdate($scope.$state.current.seo);
 
 		// ping google analytics
-		window.ga('send', 'pageview');
+		if (window.ga) window.ga('send', 'pageview');
 	});
 
 	function seoUpdate(seo){
