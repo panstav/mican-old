@@ -131,7 +131,7 @@ module.exports = {
 
 	draft: {
 
-		url: '/drafts/:draftId',
+		url: '/draft/:draftId',
 
 		views: {
 			'main':{
