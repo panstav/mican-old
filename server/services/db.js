@@ -56,7 +56,7 @@ function init(callback){
 	_.forIn(schemas, function(model, name){
 
 		// init schema
-		var schema = new mongoose.Schema(model.schema);
+		var schema = new mongoose.Schema(model.schema, { timestampes: true });
 
 		// methods form random docs retrieval
 		schema.plugin(random);

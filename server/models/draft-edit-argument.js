@@ -7,7 +7,6 @@ module.exports = {
 		draft: String,
 		edit: String,
 
-		createdAt: { type: Number, default: moment().unix() },
 		creator: String,
 
 		content: String,

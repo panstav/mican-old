@@ -4,7 +4,6 @@ module.exports = {
 
 	schema: {
 
-		createdAt: { type: Number, default: moment().unix() },
 		creator: String,
 
 		title: String,
