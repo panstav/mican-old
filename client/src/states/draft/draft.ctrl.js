@@ -8,10 +8,11 @@ function controller(){
 
 		title: 'כותרת המסמך',
 		desc: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן. תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן. תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן.',
+		participants: 5,
 
 		author: {
 			displayName: 'שם המחבר',
-			avatarHref: 'https://s3.amazonaws.com/uifaces/faces/twitter/suprb/128.jpg'
+			avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/suprb/128.jpg'
 		},
 		date: '02.06.16',
 		hour: '12:54',
@@ -23,41 +24,91 @@ function controller(){
 				content: 'Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.',
 				author: {
 					displayName: 'שם המחבר',
-					avatarHref: 'https://s3.amazonaws.com/uifaces/faces/twitter/nuraika/128.jpg'
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/nuraika/128.jpg'
 				},
-				date: '03.06.16',
-				hour: '17:14'
+				date: '03.05.16',
+				hour: '17:14',
+				createdAt: new Date('05.03.16')
 			},{
 				content: 'Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.',
 				author: {
 					displayName: 'שם המחבר',
-					avatarHref: 'https://s3.amazonaws.com/uifaces/faces/twitter/nuraika/128.jpg'
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/nuraika/128.jpg'
 				},
-				date: '03.06.16',
-				hour: '17:14'
+				date: '03.06.15',
+				hour: '17:14',
+				createdAt: new Date('06.03.15')
 			},{
 				content: 'Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.',
 				author: {
 					displayName: 'שם המחבר',
-					avatarHref: 'https://s3.amazonaws.com/uifaces/faces/twitter/nuraika/128.jpg'
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/nuraika/128.jpg'
 				},
-				date: '03.06.16',
-				hour: '17:14'
+				date: '01.01.16',
+				hour: '17:14',
+				createdAt: new Date('01.01.16')
 			},{
 				content: 'Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.',
 				author: {
 					displayName: 'שם המחבר',
-					avatarHref: 'https://s3.amazonaws.com/uifaces/faces/twitter/nuraika/128.jpg'
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/nuraika/128.jpg'
 				},
-				date: '03.06.16',
-				hour: '17:14'
+				date: '06.06.15',
+				hour: '17:14',
+				createdAt: new Date('06.06.15')
 			}
 		],
 
-		edits: [
+		history: [
 			{
 				title: 'כותרת הצעת שינוי',
-				desc: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum.',
+				description: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum. אבל רובם עברו שינויים בצורה זו או אחרת.',
+				updatedAt: new Date('02.05.2016'),
+
+				changes: [
+					{
+						content: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum. ',
+						state: 'remove'
+					}
+				],
+
+				author: {
+					displayName: 'שם המחבר',
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/minipunk/128.jpg'
+				},
+				date: '05.02.2016',
+				hour: '10:03'
+			},
+
+			{
+				title: 'כותרת הצעת שינוי שנייה',
+				description: 'תיאור קצר יותר של הצעת השינוי',
+				updatedAt: new Date('02.05.2015'),
+
+				changes: [
+					{
+						para: 1,
+						content: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum. ',
+						state: 'remove'
+					}
+				],
+
+				author: {
+					displayName: 'שם המחבר',
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/minipunk/128.jpg'
+				},
+
+				date: '05.02.15',
+				hour: '10:03'
+			}
+		],
+
+		suggestions: [
+
+			{
+				title: 'כותרת הצעת שינוי',
+				description: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum.',
+				createdAt: new Date('03.01.2015'),
 
 				changes: [
 					{
@@ -83,18 +134,30 @@ function controller(){
 
 				author: {
 					displayName: 'שם המחבר',
-					avatarHref: 'https://s3.amazonaws.com/uifaces/faces/twitter/minipunk/128.jpg'
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/minipunk/128.jpg'
 				},
-				date: '06.06.16',
+				date: '01.03.15',
 				hour: '10:03'
-			},{
+			},
+
+			{
 				title: 'כותרת הצעת שינוי',
-				desc: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum. אבל רובם עברו שינויים בצורה זו או אחרת.',
+				description: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum.',
+				createdAt: new Date('01.03.2016'),
 
 				changes: [
 					{
-						content: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum. ',
+						content: 'ודרך ציטוטים',
+						state: 'stay'
+					},{
+						content: ' של המילה',
 						state: 'remove'
+					},{
+						content: ' חדשים',
+						state: 'add'
+					},{
+						content: ' מתוך הספרות הקלאסית',
+						state: 'stay'
 					}
 
 				],
@@ -106,21 +169,20 @@ function controller(){
 
 				author: {
 					displayName: 'שם המחבר',
-					avatarHref: 'https://s3.amazonaws.com/uifaces/faces/twitter/minipunk/128.jpg'
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/minipunk/128.jpg'
 				},
-				date: '06.06.16',
+				date: '03.01.16',
 				hour: '10:03'
 			}
+
 		],
 
-		changes: []
+		counters: {
+			comments: 3,
+			suggestions: 3,
+			history: 3
+		}
 
 	});
-
-	ctrl.counters = {
-		comments: ctrl.comments.length,
-		edits: ctrl.edits.length,
-		changes: ctrl.changes.length
-	}
 
 }

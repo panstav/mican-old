@@ -3,8 +3,8 @@
 	h1 {{ draft.title }}
 	p.desc {{ draft.desc }}
 
-	.authered
-		img(ng-src="{{ draft.author.avatarHref }}")
+	.author
+		img(ng-src="{{ draft.author.avatar }}")
 		span.displayName {{ draft.author.displayName }}
 		span.createdAt {{ draft.hour }} | {{ draft.date }}
 
@@ -16,43 +16,63 @@
 	a(href="#" ng-click="draft.extraDetails = 'comments'" ng-class="draft.extraDetails === 'comments' ? 'active' : ''")
 		span.counter {{ draft.counters.comments }}
 		|הערות
-	a(href="#" ng-click="draft.extraDetails = 'edits'" ng-class="draft.extraDetails === 'edits' ? 'active' : ''")
-		span.counter {{ draft.counters.edits }}
+	a(href="#" ng-click="draft.extraDetails = 'suggestions'" ng-class="draft.extraDetails === 'suggestions' ? 'active' : ''")
+		span.counter {{ draft.counters.suggestions }}
 		|הצעות
-	a(href="#" ng-click="draft.extraDetails = 'changes'" ng-class="draft.extraDetails === 'changes' ? 'active' : ''")
-		span.counter {{ draft.counters.changes }}
+	a(href="#" ng-click="draft.extraDetails = 'history'" ng-class="draft.extraDetails === 'history' ? 'active' : ''")
+		span.counter {{ draft.counters.history }}
 		|שינויים
 
-.paper.edgy.step.text-comments(
+.paper.edgy.step.draft-comments(
 ng-show="draft.extraDetails === 'comments'"
 )
 
-	article.comment(ng-repeat="comment in draft.comments")
+	article.comment(ng-repeat="comment in draft.comments | orderBy: '-createdAt'")
 
 		p {{ comment.content }}
-		.authered
-			img(ng-src="{{ comment.author.avatarHref }}")
+		.author
+			img(ng-src="{{ comment.author.avatar }}")
 			span.displayName {{ comment.author.displayName }}
 			span.createdAt {{ comment.hour }} | {{ comment.date }}
 
 .paper.edgy.step.edit-suggestions(
-ng-show="draft.extraDetails === 'edits'"
+ng-show="draft.extraDetails === 'suggestions'"
 )
 
-	article.edit(ng-repeat="edit in draft.edits")
+	article.edit(ng-repeat="suggestion in draft.suggestions | orderBy: '-createdAt'")
 
-		h3 {{ edit.title }}
+		h3 {{ suggestion.title }}
 
-		.authered
-			img(ng-src="{{ edit.author.avatarHref }}")
-			span.displayName {{ edit.author.displayName }}
-			span.createdAt {{ edit.hour }} | {{ edit.date }}
+		.author
+			img(ng-src="{{ suggestion.author.avatar }}")
+			span.displayName {{ suggestion.author.displayName }}
+			span.createdAt {{ suggestion.hour }} | {{ suggestion.date }}
 
-		p {{ edit.desc }}
+		p {{ suggestion.description }}
 
 		.changes
-			span(ng-repeat="change in edit.changes" ng-class="change.state") {{ change.content }}
+			span(ng-repeat="change in suggestion.changes" ng-class="change.state") {{ change.content }}
 
 		.votes
-			span.for {{ edit.votes.for }} תומכים
-			span.against {{ edit.votes.against }} מתנגדים
+			span.for {{ suggestion.votes.for }} תומכים
+			span.against {{ suggestion.votes.against }} מתנגדים
+
+.paper.edgy.step.draft-history(
+ng-show="draft.extraDetails === 'history'"
+)
+
+	article.edit(ng-repeat="commit in draft.history | orderBy: '-updatedAt'")
+
+		h3 {{ commit.title }}
+
+		.author
+			img(ng-src="{{ commit.author.avatar }}")
+			span.displayName {{ commit.author.displayName }}
+			span.createdAt {{ commit.hour }} | {{ commit.date }}
+
+		p {{ commit.description }}
+
+		.changes
+			span(ng-repeat="change in commit.changes" ng-class="change.state") {{ change.content }}
+
+		.acceptedAt הצעת שינוי זו התקבלה ב- {{ commit.hour }} | {{ commit.date }}

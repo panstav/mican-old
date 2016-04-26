@@ -1,6 +1,6 @@
 state-draft
 
-	.authered
+	.author
 		.displayName
 			margin-right: .5em
 		.createdAt
@@ -16,7 +16,7 @@ state-draft
 		p.desc
 			color: $explain
 
-		.authered img
+		.author img
 			@include portrait(2em, white)
 
 	.paper.tabs
@@ -46,11 +46,8 @@ state-draft
 			vertical-align: middle
 			font-size: .6em
 
-
-
 	.paper
-
-		&.text-comments, &.edit-suggestions, &.change-history
+		&.draft-comments, &.edit-suggestions, &.draft-history
 			font-size: .85em
 
 			article
@@ -59,13 +56,13 @@ state-draft
 				&:not(:last-of-type)
 					border-bottom: 1px solid $uiGrey
 
-			.authered
+			.author
 				margin-top: 1em
 
 				img
 					@include portrait(2em, $tokenBorder)
 
-		&.edit-suggestions, &.change-history
+		&.edit-suggestions, &.draft-history
 
 			h3
 				font-size: 1.5em
@@ -81,7 +78,7 @@ state-draft
 					text-decoration: line-through
 					color: $uiWarn
 
-		&.text-comments
+		&.draft-comments
 
 			p
 				margin: 0
@@ -101,3 +98,10 @@ state-draft
 					color: $vote-for
 				.against
 					color: $vote-against
+
+		&.draft-history
+
+			.acceptedAt
+				font-size: 1rem
+				padding-top: 1em
+				color: $vote-for

@@ -1,16 +1,14 @@
-const moment = require('moment');
-
 module.exports = {
 
 	schema: {
 
-		draft: String,
-		edit: String,
-
-		creator: String,
+		draftId: String,
+		editId: String,
+		authorId: String,
 
 		content: String,
 		association: String,
+		// 'for' or 'against' edit at editId
 
 		votes: {
 			for: [String],
@@ -19,8 +17,7 @@ module.exports = {
 
 		comments: [
 			{
-				createdAt: { type: Number, default: moment().unix() },
-				creator: String,
+				authorId: String,
 				content: String
 			}
 		]
