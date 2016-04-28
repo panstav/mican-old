@@ -77,12 +77,12 @@ module.exports.init = () => {
 	// compress everything
 	if (process.env.NODE_ENV === 'production') server.use(compression());
 
-	// allow access to static assets
-	server.use(express.static('public', {
-
-		// set maxage of cache to 10 days, for static files - in production env
-		maxAge: process.env.NODE_ENV === 'production' ? 1000 * 60 * 60 * 24 * 10 : 0
-	}));
+	// serve static files with cache control
+	const oneYear = 1000 * 60 * 60 * 24 * 365;
+	server.use('/font-awesome', express.static('public/font-awesome', { maxAge: process.env.NODE_ENV === 'production' ? oneYear : 0 }));
+	server.use('/partials', express.static('public/partials', { maxAge: 0 }));
+	server.use('/polimap', express.static('public/partials', { maxAge: oneYear }));
+	server.use(express.static('public', { maxAge: 0, setHeaders: setPublicHeaders }));
 
 	server.use(track.middleware);
 
@@ -124,6 +124,16 @@ module.exports.init = () => {
 
 			next();
 		};
+	}
+
+	function setPublicHeaders(res, path){
+		if (process.env.NODE_ENV !== 'production') return;
+
+		['public/bundle-', 'public/global-'].forEach(pathToDynamic => {
+			// set these to cache for a year (in seconds, not milliseconds)
+			// since no-cache index.html will require different versionHashes on each gulpBuild
+			if (path.indexOf(pathToDynamic) > -1) res.setHeader('Cache-Control', `public, max-age=${oneYear/1000}`);
+		});
 	}
 
 	function integrateDatabase(){

@@ -28,9 +28,7 @@ module.exports = function(router){
 	);
 
 	function getHomepage(req, res){
-		var maxAge = process.env.NODE_ENV === 'production' ? 60 * 60 * 1000 : 0;
-
-		res.sendFile('partials/index.html', { root: 'public', maxAge: maxAge });
+		res.sendFile('partials/index.html', { root: 'public', maxAge: 0 });
 	}
 
 	function confirmEmailCode(req, res){
