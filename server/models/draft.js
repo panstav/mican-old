@@ -5,7 +5,7 @@ module.exports = {
 		authorId: String,
 
 		title: String,
-		desc: String,
+		description: String,
 
 		admins: [String],
 		participants: [String],

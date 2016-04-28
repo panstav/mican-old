@@ -7,7 +7,7 @@ function controller(){
 	angular.extend(ctrl, {
 
 		title: 'כותרת המסמך',
-		desc: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן. תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן. תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן.',
+		description: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן. תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן. תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן.',
 		participants: 5,
 
 		author: {
@@ -109,18 +109,23 @@ function controller(){
 				title: 'כותרת הצעת שינוי',
 				description: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum.',
 				createdAt: new Date('03.01.2015'),
+				url: 'localhost:3000/edit/123',
 
 				changes: [
 					{
+						para: 1.1,
 						content: 'ודרך ציטוטים',
 						state: 'stay'
 					},{
+						para: 1.2,
 						content: ' של המילה',
 						state: 'remove'
 					},{
+						para: 1.3,
 						content: ' חדשים',
 						state: 'add'
 					},{
+						para: 1.4,
 						content: ' מתוך הספרות הקלאסית',
 						state: 'stay'
 					}
@@ -184,5 +189,14 @@ function controller(){
 		}
 
 	});
+
+	ctrl.changesAtPara = paraIndex => {
+
+		const relevantChanges = ctrl.suggestions.filter(suggestion => {
+			return suggestion.changes.some(change => Math.floor(change.para) === paraIndex+1);
+		});
+
+		return relevantChanges.length;
+	}
 
 }

@@ -1,0 +1,12 @@
+@mixin changes()
+
+	article &
+		border: 1px solid $tokenBorder
+		padding: .5em 1em
+
+	span.add
+		color: $uiGrowth
+
+	span.remove
+		text-decoration: line-through
+		color: $uiWarn

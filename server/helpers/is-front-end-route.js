@@ -7,8 +7,8 @@ var routered = [
 	'/groups/(:groupID)',
 	'/tasks',
 	'/tasks/(:taskID)',
-  '/draft',
-  '/draft/(:draftID)'
+  '/draft/(:draftID)',
+  '/edit/(:draftID)'
 ];
 
 module.exports = function(url){

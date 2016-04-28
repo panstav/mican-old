@@ -1,71 +1,132 @@
 // Import
 //-------
 
-@import "/alefhebrew.css";
+@import "/alefhebrew.css"
 
 // Setup
 //------
 
-@import "sass/variables";
-@import "sass/methods";
-@import "sass/colors";
-@import "sass/z-index";
+@import "sass/variables"
+@import "sass/methods"
+@import "sass/colors"
+@import "sass/z-index"
 
-@import "sass/normalize";
-@import "sass/base";
+@import "sass/normalize"
+@import "sass/base"
 
-@import "sass/nz-animate";
+@import "sass/nz-animate"
 
 // Elements
 //---------
 
-@import "sass/ui/paper";
-@import "sass/ui/box";
-@import "sass/ui/elemental";
-@import "sass/ui/button";
-@import "sass/ui/line-through";
-@import "sass/ui/logo";
-@import "sass/ui/portrait";
+@import "sass/ui/paper"
+@import "sass/ui/box"
+@import "sass/ui/elemental"
+@import "sass/ui/button"
+@import "sass/ui/line-through"
+@import "sass/ui/logo"
+@import "sass/ui/portrait"
+@import "sass/ui/changes"
 
-@import "sass/ui/helper-classes";
+@import "sass/ui/helper-classes"
 
-@import "components/task-list/task-list";
-@import "components/fa-sharing-buttons/fa-sharing-buttons";
-@import "components/social-links/social-links";
+@import "components/task-list/task-list"
+@import "components/fa-sharing-buttons/fa-sharing-buttons"
+@import "components/social-links/social-links"
 
 
 // Admin Dashboards
 //-----------------
 
-@import "states/homepage/admin";
+@import "states/homepage/admin"
 
 
 // States
 //-------
 
-@import "components/body/body";
+@import "components/body/body"
 
-@import "states/homepage/homepage";
+@import "states/homepage/homepage"
 
-@import "states/about/about";
+@import "states/about/about"
 
-@import "states/groups/groups";
+@import "states/groups/groups"
 
-@import "states/draft/draft";
+@import "states/draft/draft"
 
-@import "states/tasks/tasks";
+@import "states/tasks/tasks"
 
-@import "states/single-group/single-group";
+@import "states/single-group/single-group"
 
 // Modals
 //-------
 
-@import "components/modal/modal";
+@import "components/modal/modal"
 
-@import "common/modals/login";
-@import "common/modals/edit-profile";
-@import "common/modals/feedback";
-@import "common/modals/confirm-action";
+@import "common/modals/login"
+@import "common/modals/edit-profile"
+@import "common/modals/feedback"
+@import "common/modals/confirm-action"
 
-@import "states/homepage/modals/add-group";
-@import "states/single-group/modals/group-task";
+@import "states/homepage/modals/add-group"
+@import "states/single-group/modals/group-task"
+
+@import "states/edit/edit"
+
+state-draft, state-edit
+
+	[ng-click]
+		cursor: pointer
+
+	h1
+		margin-top: 1em
+		font-size: 2em
+		font-weight: bold
+
+	p.description
+		color: $explain
+
+	.author
+		span:first-child
+			margin-left: 1em
+		img
+			@include portrait(2em, white)
+		.displayName
+			margin-right: .5em
+		.createdAt
+			margin-right: 1em
+
+	article[class^="single"]
+		font-size: .85em
+
+	.paper
+
+		&.changes
+			@include changes
+
+		&.tabs
+			text-align: center
+			padding-bottom: 0
+
+			a
+				text-decoration: none
+				display: inline-block
+				width: 33%
+				padding-top: .35em
+				padding-bottom: .5em
+				font-size: 1.3em
+
+				@media (min-width: $mobile)
+					font-size: 1.5em
+
+				&.active
+					background-color: white
+
+			.counter
+				display: inline-block
+				background-color: white
+				border-radius: 2px
+				margin: -1px 0 0 .5em
+				padding: 0 .3em .2em
+				vertical-align: middle
+				font-size: .6em

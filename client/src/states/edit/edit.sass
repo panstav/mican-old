@@ -1,0 +1,33 @@
+state-edit
+
+	.author
+		margin-top: .5em
+
+	.draft-ref a
+		font-weight: bold
+
+	.paper.action
+		text-align: center
+
+	fa-sharing-buttons
+		display: block
+		text-align: right
+		margin-top: .95em
+
+	button
+		&.for, &.against
+			width: 40%
+
+	@media (min-width: $tablet)
+
+		.paper.action
+			text-align: inherit
+
+		fa-sharing-buttons
+			float: left
+
+		button
+			&.for, &.against
+				width: auto
+				padding-right: 1.8em
+				padding-left: 1.8em

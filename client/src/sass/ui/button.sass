@@ -67,6 +67,12 @@
 		@include playSilent($uiGrowth)
 	&.warn
 		@include playSilent($uiWarn)
+	&.for
+		@include playSilent($vote-for)
+		color: white
+	&.against
+		@include playSilent($vote-against)
+		color: white
 
 	&.develop
 		background-color: $mican

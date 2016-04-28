@@ -141,6 +141,18 @@ module.exports = {
 
 	},
 
+	draftEdit: {
+
+		url: '/edit/:editId',
+
+		views: {
+			'main':{
+				template: '<state-edit></state-edit>'
+			}
+		}
+
+	},
+
 	polimap: {
 
 		url: '/map',

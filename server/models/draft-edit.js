@@ -6,7 +6,7 @@ module.exports = {
 		authorId: String,
 
 		title: String,
-		desc: String,
+		description: String,
 
 		changes: [
 			{
