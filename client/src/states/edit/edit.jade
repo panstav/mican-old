@@ -70,6 +70,20 @@
 				span.displayName {{ reject.author.displayName }}
 				span.createdAt {{ reject.hour }} | {{ reject.date }}
 
+.edit-comments.paper.less(
+ng-show="dEdit.comments.length"
+)
+
+	h2 תגובות נוספות להצעת השינוי
+
+	article.single-comment(ng-repeat="comment in dEdit.comments | orderBy: '-createdAt'")
+
+		p {{ comment.content }}
+		.author
+			img(ng-src="{{ comment.author.avatar }}")
+			span.displayName {{ comment.author.displayName }}
+			span.createdAt {{ comment.hour }} | {{ comment.date }}
+
 //.reasons.tabs.tight.paper.less
 //	a(href="#" ng-click="dEdit.extraDetails = 'support'" ng-class="dEdit.extraDetails === 'support' ? 'active' : ''")
 //		|בעד

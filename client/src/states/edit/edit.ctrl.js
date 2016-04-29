@@ -105,11 +105,7 @@ function controller(){
 
 						date: '03.05.16',
 						hour: '17:14',
-
-						votes: {
-							for: 15,
-							against: 7
-						}
+						createdAt: new Date('05.03.16')
 
 					},{
 
@@ -122,11 +118,7 @@ function controller(){
 
 						date: '03.05.16',
 						hour: '17:14',
-
-						votes: {
-							for: 15,
-							against: 4
-						}
+						createdAt: new Date('05.03.16')
 
 					},{
 
@@ -139,11 +131,7 @@ function controller(){
 
 						date: '03.05.16',
 						hour: '17:14',
-
-						votes: {
-							for: 5,
-							against: 0
-						}
+						createdAt: new Date('05.03.16')
 
 					}
 				]
