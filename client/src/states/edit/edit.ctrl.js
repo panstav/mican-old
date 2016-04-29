@@ -138,7 +138,6 @@ function controller(){
 
 	});
 
-	ctrl.draftUrl = `localhost:3000/draft/${ctrl.draftId}`;
 	ctrl.shareText = `"${ctrl.title}" - הצעת שינוי מאת ${ctrl.author.displayName}`;
 	ctrl.currentUrl = `localhost:3000/edit/${ctrl.id}`;
 

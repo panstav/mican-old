@@ -4,7 +4,7 @@
 
 	.draft-ref
 		|הצעת שינוי למסמך:&nbsp;
-		a(ng-href="{{ dEdit.draftUrl }}") {{ dEdit.draftTitle }}
+		a(ui-sref="draft({ draftId: dEdit.draftId })") {{ dEdit.draftTitle }}
 
 	.author
 		span מאת:

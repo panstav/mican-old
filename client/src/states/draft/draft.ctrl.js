@@ -106,6 +106,7 @@ function controller(){
 		suggestions: [
 
 			{
+				id: '123',
 				title: 'כותרת הצעת שינוי',
 				description: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum.',
 				createdAt: new Date('03.01.2015'),
@@ -146,6 +147,7 @@ function controller(){
 			},
 
 			{
+				id: '123',
 				title: 'כותרת הצעת שינוי',
 				description: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum.',
 				createdAt: new Date('01.03.2016'),

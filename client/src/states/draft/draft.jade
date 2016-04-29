@@ -56,7 +56,7 @@ ng-show="draft.extraDetails === 'suggestions'"
 	article.single-edit(ng-repeat="suggestion in draft.suggestions | orderBy: '-createdAt'")
 
 		h3
-			a(ng-href="{{ suggestion.url }}") {{ suggestion.title }}
+			a(ui-sref="draftEdit({ editId: suggestion.id })") {{ suggestion.title }}
 
 		.author
 			img(ng-src="{{ suggestion.author.avatar }}")
