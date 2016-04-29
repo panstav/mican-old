@@ -10,21 +10,31 @@
 
 .draft.paper
 
+	button.transparent.fa.fa-plus(
+	ng-click="draft.addParaBefore()"
+	title="הוסף פסקא נוספת כאן"
+	)
+		span הוסף פסקא נוספת כאן
+
 	.para(ng-repeat="paragraph in draft.content track by $index")
 
 		p {{ paragraph }}
 
 		.actions
 
-			button.white.silent.fa.fa-plus(
+			button.transparent.fa.fa-plus(
 			ng-click="draft.addParaAfter($index)"
 			title="הוסף פסקא נוספת כאן"
 			)
+				span הוסף פסקא נוספת כאן
 
-			button.white.silent.fa.fa-edit(
+			button.transparent.fa.fa-edit(
 			ng-click="draft.showSuggestions()"
 			ng-attr-title="{{ draft.changesAtPara($index) ? 'הצג הצעות' : 'הוסף הצעת' }} שינוי לפסקא זו"
-			) {{ draft.changesAtPara($index) ? ' (' + draft.changesAtPara($index) + ')' : '' }}
+			)
+				span
+					|{{ draft.changesAtPara($index) ? 'הצג הצעות' : 'הוסף הצעת' }} שינוי לפסקא זו
+					span(ng-show="draft.changesAtPara($index)") &nbsp;({{draft.changesAtPara($index)}})
 
 .tabs.tight.paper.less
 	a(href="#" ng-click="draft.extraDetails = 'comments'" ng-class="draft.extraDetails === 'comments' ? 'active' : ''")

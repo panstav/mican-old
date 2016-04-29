@@ -1,28 +1,29 @@
 state-draft
 
 	.paper
-
 		&.draft
 
-			.para
-				position: relative
+			.para:not(:first-of-type)
+				p
+					margin-top: 1.5em
 
-				&:not(:last-of-type) p
-					margin-bottom: 2.5em
+			button
+				margin-top: 0
+				color: $explain
 
 				&:hover
-					button.fa
-						color: inherit
+					color: inherit
 
-				.actions
-					position: absolute
-					left: 0
-					bottom: -2em
-					direction: ltr
+				span
+					display: none
 
-				button.fa
-					color: $uiGrey
-					margin-right: 0
+				@media (min-width: $mobile)
+
+					&:before
+						margin-left: .5em
+
+					span
+						display: inline-block
 
 		&.draft-comments, &.edit-suggestions, &.draft-history
 
