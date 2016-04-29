@@ -1,12 +1,16 @@
 state-edit
 
+	@media (min-width: $tablet)
+		fa-sharing-buttons
+			float: left
+
 	.author
 		margin-top: .5em
 
 	.draft-ref a
 		font-weight: bold
 
-	.desc.paper
+	.paper.desc
 		@include clearFix
 
 	fa-sharing-buttons
@@ -16,11 +20,68 @@ state-edit
 	.paper.action
 		text-align: center
 
-	button
-		&.for, &.against
-			width: 40%
+		button
+			width: 90%
+			max-width: $mobile
+			margin-top: 0
 
-	@media (min-width: $tablet)
+			&:before
+				margin-left: .5em
 
-		fa-sharing-buttons
-			float: left
+			@media (min-width: $tablet)
+				width: 50%
+				margin: 0
+
+				&.for
+					border-radius: 0 2px 2px 0
+				&.against
+					border-radius: 2px 0 0 2px
+
+		.num-votes
+			font-size: .8em
+
+	.paper.discussion
+
+		.for .top-border
+			border: $defaultPadding/5 solid lighten($vote-for, 10%)
+		.against .top-border
+			border: $defaultPadding/5 solid lighten($vote-against, 10%)
+
+		article
+			@include clearFix
+			padding: .5em
+
+			&:not(:last-of-type)
+				border-bottom: 1px solid $uiGrey
+
+			p
+				margin-top: 0
+
+		.no-arguments
+			text-align: center
+			font-size: 2em
+			color: $explain
+
+		.rate-argument
+			float: right
+			width: 2.5em
+			margin-left: .5em
+			text-align: center
+
+		.score, .fa
+			color: $explain
+
+		.score
+			font-size: 1.2em
+			padding-right: .1em
+
+		@media (min-width: $mobile)
+
+			.for, .against
+				box-sizing: border-box
+				display: inline-block
+				width: 50%
+				vertical-align: top
+
+			.against article
+				border-right: 1px solid $uiGrey

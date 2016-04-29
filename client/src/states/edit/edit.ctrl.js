@@ -33,8 +33,65 @@ function controller(){
 
 		votes: {
 			for: 38,
-			against: 21
+			against: 0
 		},
+
+		supports: [
+			{
+				content: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים ',
+				votes: {
+					up: 5,
+					down: 2
+				},
+				author: {
+					displayName: 'צ\'ובקה',
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg'
+				},
+				hour: '19:21',
+				date: '15.4.2015'
+			},
+			{
+				content: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים ',
+				votes: {
+					up: 5,
+					down: 2
+				},
+				author: {
+					displayName: 'צ\'ובקה',
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg'
+				},
+				hour: '19:21',
+				date: '15.4.2015'
+			}
+		],
+		rejects: [
+			{
+				content: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן',
+				votes: {
+					up: 5,
+					down: 2
+				},
+				author: {
+					displayName: 'צ\'ובקה',
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg'
+				},
+				hour: '19:21',
+				date: '15.4.2015'
+			},
+			{
+				content: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן',
+				votes: {
+					up: 5,
+					down: 2
+				},
+				author: {
+					displayName: 'צ\'ובקה',
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg'
+				},
+				hour: '19:21',
+				date: '15.4.2015'
+			}
+		],
 
 		comments: [
 					{

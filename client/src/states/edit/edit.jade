@@ -24,50 +24,92 @@
 	url="dEdit.currentUrl"
 	)
 
-.action.paper.full
-	button.big.for בעד {{ dEdit.votes.for }}
-	button.big.against נגד {{ dEdit.votes.against }}
+.action.edgy.paper.less.step
+	button.big.for.fa.fa-thumbs-o-up
+		|אני בעד&nbsp;
+		span.num-votes(
+		ng-show="dEdit.votes.for"
+		) ({{ dEdit.votes.for }}+)
+	button.big.against.fa.fa-thumbs-o-down
+		|אני נגד&nbsp;
+		span.num-votes(
+		ng-show="dEdit.votes.against"
+		) ({{ dEdit.votes.against }}+)
 
-.reasons.tabs.tight.paper.less
-	a(href="#" ng-click="dEdit.extraDetails = 'support'" ng-class="dEdit.extraDetails === 'support' ? 'active' : ''")
-		|בעד
-	a(href="#" ng-click="dEdit.extraDetails = 'disucssion'" ng-class="dEdit.extraDetails === 'disucssion' ? 'active' : ''")
-		|דיון
-	a(href="#" ng-click="dEdit.extraDetails = 'reject'" ng-class="dEdit.extraDetails === 'reject' ? 'active' : ''")
-		|נגד
+.discussion.edgy.paper
 
-.supports.edgy.paper.step(
-ng-show="dEdit.extraDetails === 'support'"
-)
+	.for
+		.top-border
+		.no-arguments(ng-hide="dEdit.supports.length") אין טענות בעד עדיין
+		article(ng-repeat="support in dEdit.supports | orderBy: 'votes.for -votes.against'")
 
-	article.single-support(ng-repeat="support in dEdit.supports | orderBy: 'votes.for -votes.against'")
+			.rate-argument
+				button.transparent.tiny.fa.fa-chevron-up
+				span.score {{ support.votes.up - support.votes.down }}
+				button.transparent.tiny.fa.fa-chevron-down
 
-		p {{ support.content }}
-		.author
-			img(ng-src="{{ support.author.avatar }}")
-			span.displayName {{ support.author.displayName }}
-			span.createdAt {{ support.hour }} | {{ support.date }}
+			p {{ support.content }}
+			.author
+				img(ng-src="{{ support.author.avatar }}")
+				span.displayName {{ support.author.displayName }}
+				span.createdAt {{ support.hour }} | {{ support.date }}
 
-.discussion.edgy.paper.step(
-ng-show="dEdit.extraDetails === 'discussion'"
-)
+	.against
+		.top-border
+		.no-arguments(ng-hide="dEdit.rejects.length") אין טענות נגד עדיין
+		article(ng-repeat="reject in dEdit.rejects | orderBy: 'votes.for -votes.against'")
 
-	article.single-comment(ng-repeat="comment in dEdit.comments | orderBy: 'votes.for -votes.against'")
+			.rate-argument
+				button.transparent.tiny.fa.fa-chevron-up
+				span.score {{ support.votes.up - support.votes.down }}
+				button.transparent.tiny.fa.fa-chevron-down
 
-		p {{ comment.content }}
-		.author
-			img(ng-src="{{ comment.author.avatar }}")
-			span.displayName {{ comment.author.displayName }}
-			span.createdAt {{ comment.hour }} | {{ comment.date }}
+			p {{ reject.content }}
+			.author
+				img(ng-src="{{ reject.author.avatar }}")
+				span.displayName {{ reject.author.displayName }}
+				span.createdAt {{ reject.hour }} | {{ reject.date }}
 
-.rejects.edgy.paper.step(
-ng-show="dEdit.extraDetails === 'reject'"
-)
-
-	article.single-reject(ng-repeat="reject in dEdit.rejects | orderBy: 'votes.for -votes.against'")
-
-		p {{ reject.content }}
-		.author
-			img(ng-src="{{ reject.author.avatar }}")
-			span.displayName {{ reject.author.displayName }}
-			span.createdAt {{ reject.hour }} | {{ reject.date }}
+//.reasons.tabs.tight.paper.less
+//	a(href="#" ng-click="dEdit.extraDetails = 'support'" ng-class="dEdit.extraDetails === 'support' ? 'active' : ''")
+//		|בעד
+//	a(href="#" ng-click="dEdit.extraDetails = 'disucssion'" ng-class="dEdit.extraDetails === 'disucssion' ? 'active' : ''")
+//		|דיון
+//	a(href="#" ng-click="dEdit.extraDetails = 'reject'" ng-class="dEdit.extraDetails === 'reject' ? 'active' : ''")
+//		|נגד
+//
+//.supports.edgy.paper.step(
+//ng-show="dEdit.extraDetails === 'support'"
+//)
+//
+//	article.single-support(ng-repeat="support in dEdit.supports | orderBy: 'votes.for -votes.against'")
+//
+//		p {{ support.content }}
+//		.author
+//			img(ng-src="{{ support.author.avatar }}")
+//			span.displayName {{ support.author.displayName }}
+//			span.createdAt {{ support.hour }} | {{ support.date }}
+//
+//.discussion.edgy.paper.step(
+//ng-show="dEdit.extraDetails === 'discussion'"
+//)
+//
+//	article.single-comment(ng-repeat="comment in dEdit.comments | orderBy: 'votes.for -votes.against'")
+//
+//		p {{ comment.content }}
+//		.author
+//			img(ng-src="{{ comment.author.avatar }}")
+//			span.displayName {{ comment.author.displayName }}
+//			span.createdAt {{ comment.hour }} | {{ comment.date }}
+//
+//.rejects.edgy.paper.step(
+//ng-show="dEdit.extraDetails === 'reject'"
+//)
+//
+//	article.single-reject(ng-repeat="reject in dEdit.rejects | orderBy: 'votes.for -votes.against'")
+//
+//		p {{ reject.content }}
+//		.author
+//			img(ng-src="{{ reject.author.avatar }}")
+//			span.displayName {{ reject.author.displayName }}
+//			span.createdAt {{ reject.hour }} | {{ reject.date }}
