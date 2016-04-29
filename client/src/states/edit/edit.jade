@@ -12,19 +12,21 @@
 		span.displayName {{ dEdit.author.displayName }}
 		span.createdAt {{ dEdit.hour }} | {{ dEdit.date }}
 
-	p.description {{ dEdit.description }}
-
 .changes.paper
 	span(ng-repeat="change in dEdit.changes | orderBy: 'para'" ng-class="change.state") {{ change.content }}
 
-.action.tight.paper.less
-	button.big.for בעד {{ dEdit.votes.for }}
-	button.big.against נגד {{ dEdit.votes.against }}
+.desc.paper.less
+
+	p.description {{ dEdit.description }}
 
 	fa-sharing-buttons(
 	share-text="dEdit.shareText"
 	url="dEdit.currentUrl"
 	)
+
+.action.paper.full
+	button.big.for בעד {{ dEdit.votes.for }}
+	button.big.against נגד {{ dEdit.votes.against }}
 
 .reasons.tabs.tight.paper.less
 	a(href="#" ng-click="dEdit.extraDetails = 'support'" ng-class="dEdit.extraDetails === 'support' ? 'active' : ''")

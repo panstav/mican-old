@@ -6,13 +6,15 @@ state-edit
 	.draft-ref a
 		font-weight: bold
 
-	.paper.action
-		text-align: center
+	.desc.paper
+		@include clearFix
 
 	fa-sharing-buttons
 		display: block
 		text-align: right
-		margin-top: .95em
+
+	.paper.action
+		text-align: center
 
 	button
 		&.for, &.against
@@ -20,14 +22,5 @@ state-edit
 
 	@media (min-width: $tablet)
 
-		.paper.action
-			text-align: inherit
-
 		fa-sharing-buttons
 			float: left
-
-		button
-			&.for, &.against
-				width: auto
-				padding-right: 1.8em
-				padding-left: 1.8em
