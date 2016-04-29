@@ -7,6 +7,9 @@ state-draft
 			.para
 				position: relative
 
+				&:not(:last-of-type) p
+					margin-bottom: 2.5em
+
 				&:hover
 					button.fa
 						color: inherit
@@ -20,9 +23,6 @@ state-draft
 				button.fa
 					color: $uiGrey
 					margin-right: 0
-
-			p
-				margin-bottom: 2.5em
 
 		&.draft-comments, &.edit-suggestions, &.draft-history
 
