@@ -183,7 +183,7 @@ module.exports.init = () => {
 			saveUninitialized: false
 		};
 
-		if (process.env.MONGOHQ_URL && process.env.DATABASE_NAME){
+		if (process.env.MONGOHQ_URL){
 
 			const storeOptions = {
 				mongooseConnection: mongoose.connections[0],
