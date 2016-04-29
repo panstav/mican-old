@@ -4,20 +4,25 @@ state-draft
 
 		&.draft
 
-			p
+			.para
 				position: relative
-				margin-bottom: 2.5em
 
 				&:hover
-					.fa-edit
+					button.fa
 						color: inherit
 
-				.fa-edit
+				.actions
 					position: absolute
 					left: 0
 					bottom: -2em
 					direction: ltr
+
+				button.fa
 					color: $uiGrey
+					margin-right: 0
+
+			p
+				margin-bottom: 2.5em
 
 		&.draft-comments, &.edit-suggestions, &.draft-history
 
