@@ -27,7 +27,7 @@ function mem(store){
 			if (value !== undefined && value !== null) return store.set(key, value);
 
 			// otherwise cut the storage at that key
-			var temp = angular.copy(store.get(key));
+			var temp = options.scoped ? store.get(key) : angular.copy(store.get(key));
 			store.remove(key);
 
 			// optionaly puts it back to refresh (?) it
