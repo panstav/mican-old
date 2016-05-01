@@ -42,20 +42,30 @@ state-edit
 
 	.paper.discussion
 
-		.for .top-border
-			border: $defaultPadding/5 solid lighten($vote-for, 10%)
-		.against .top-border
-			border: $defaultPadding/5 solid lighten($vote-against, 10%)
+		$forBorder: $defaultPadding/5 solid lighten($vote-for, 10%)
+		$againstBorder: $defaultPadding/5 solid lighten($vote-against, 10%)
 
-		article
-			@include clearFix
-			padding: .5em
+		.top-border
+			display: none
+		@media (min-width: $tablet)
+			.top-border
+				display: block
+			.for .top-border
+				border-top: $forBorder
+			.against .top-border
+				border-top: $againstBorder
 
-			&:not(:last-of-type)
-				border-bottom: 1px solid $uiGrey
+		.for, .against
+			margin-bottom: 1em
 
-			p
-				margin-top: 0
+		.for
+			border-right: $forBorder
+		.against
+			border-right: $againstBorder
+		@media (min-width: $tablet)
+			.for, .against
+				border-right: 0
+				margin-bottom: 0
 
 		.no-arguments
 			text-align: center
@@ -75,7 +85,21 @@ state-edit
 			font-size: 1.2em
 			padding-right: .1em
 
-		@media (min-width: $mobile)
+		.argument
+			overflow: auto
+
+			.author
+				font-size: .8em
+
+		article
+			@include clearFix
+			padding: .5em
+			border-bottom: 1px solid $uiGrey
+
+			p
+				margin-top: 0
+
+		@media (min-width: $tablet)
 
 			.for, .against
 				box-sizing: border-box
@@ -83,8 +107,8 @@ state-edit
 				width: 50%
 				vertical-align: top
 
-			.against article
-				border-right: 1px solid $uiGrey
+			.for article:last-of-type
+				border-bottom: 0
 
 	.paper.edit-comments
 		article

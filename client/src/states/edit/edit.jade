@@ -39,8 +39,11 @@
 .discussion.edgy.paper
 
 	.for
+
 		.top-border
+
 		.no-arguments(ng-hide="dEdit.supports.length") אין טענות בעד עדיין
+
 		article(ng-repeat="support in dEdit.supports | orderBy: 'votes.for -votes.against'")
 
 			.rate-argument
@@ -48,15 +51,19 @@
 				span.score {{ support.votes.up - support.votes.down }}
 				button.transparent.tiny.fa.fa-chevron-down
 
-			p {{ support.content }}
-			.author
-				img(ng-src="{{ support.author.avatar }}")
-				span.displayName {{ support.author.displayName }}
-				span.createdAt {{ support.hour }} | {{ support.date }}
+			.argument
+				p {{ support.content }}
+				.author
+					img(ng-src="{{ support.author.avatar }}")
+					span.displayName {{ support.author.displayName }}
+					span.createdAt {{ support.hour }} | {{ support.date }}
 
 	.against
+
 		.top-border
+
 		.no-arguments(ng-hide="dEdit.rejects.length") אין טענות נגד עדיין
+
 		article(ng-repeat="reject in dEdit.rejects | orderBy: 'votes.for -votes.against'")
 
 			.rate-argument
@@ -64,11 +71,12 @@
 				span.score {{ support.votes.up - support.votes.down }}
 				button.transparent.tiny.fa.fa-chevron-down
 
-			p {{ reject.content }}
-			.author
-				img(ng-src="{{ reject.author.avatar }}")
-				span.displayName {{ reject.author.displayName }}
-				span.createdAt {{ reject.hour }} | {{ reject.date }}
+			.argument
+				p {{ reject.content }}
+				.author
+					img(ng-src="{{ reject.author.avatar }}")
+					span.displayName {{ reject.author.displayName }}
+					span.createdAt {{ reject.hour }} | {{ reject.date }}
 
 .edit-comments.paper.less(
 ng-show="dEdit.comments.length"
