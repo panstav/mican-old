@@ -82,7 +82,7 @@
 ng-show="dEdit.comments.length"
 )
 
-	h2 תגובות נוספות להצעת השינוי
+	h2 {{ dEdit.comments.length === 1 ? 'תגובה אחת נוספת' : dEdit.comments.length + ' תגובות נוספות' }} להצעת השינוי
 
 	article.single-comment(ng-repeat="comment in dEdit.comments | orderBy: '-createdAt'")
 
