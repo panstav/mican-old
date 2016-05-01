@@ -44,29 +44,13 @@
 
 		.no-arguments(ng-hide="dEdit.supports.length") אין טענות בעד עדיין
 
-		article(ng-repeat="support in dEdit.supports | orderBy: '+votes.down -votes.up' | limitTo: dEdit.limit.supports")
-
-			.rate-argument
-				button.transparent.tiny.fa.fa-chevron-up
-				span.score {{ support.votes.up - support.votes.down }}
-				button.transparent.tiny.fa.fa-chevron-down
-
-			.argument
-				p {{ support.content }}
-				.author
-					img(ng-src="{{ support.author.avatar }}")
-					span.displayName {{ support.author.displayName }}
-					span.createdAt {{ support.hour }} | {{ support.date }}
-
-				button.tiny.transparent.add-comment.fa.fa-plus(
-				title="הוסף תגובה לטיעון זה"
-				) הוסף תגובה
-
-				button.tiny.transparent.num-comments.fa(
-				ng-class="support.comments.length === 1 ? 'fa-comment-o' : 'fa-comments-o'"
-				title="הצג תגובות לטיעון זה"
-				ng-show="support.comments.length"
-				) {{ support.comments.length === 1 ? 'תגובה אחת' : support.comments.length + ' תגובות' }} לטיעון זה
+		argument.animate(
+		ng-repeat="support in dEdit.supports | orderBy: '+votes.down -votes.up' | limitTo: dEdit.limit.supports"
+		value="support"
+		with-comments-buttons="true"
+		vote="dEdit.vote"
+		comment="dEdit.comment"
+		)
 
 		.extra-arguments(ng-show="dEdit.limit.supports && dEdit.supports.length > 2")
 			a(
@@ -81,29 +65,13 @@
 
 		.no-arguments(ng-hide="dEdit.rejects.length") אין טענות נגד עדיין
 
-		article(ng-repeat="reject in dEdit.rejects | orderBy: '+votes.down -votes.up' | limitTo: dEdit.limit.rejects")
-
-			.rate-argument
-				button.transparent.tiny.fa.fa-chevron-up
-				span.score {{ reject.votes.up - reject.votes.down }}
-				button.transparent.tiny.fa.fa-chevron-down
-
-			.argument
-				p {{ reject.content }}
-				.author
-					img(ng-src="{{ reject.author.avatar }}")
-					span.displayName {{ reject.author.displayName }}
-					span.createdAt {{ reject.hour }} | {{ reject.date }}
-
-				button.tiny.transparent.add-comment.fa.fa-plus(
-				title="הוסף תגובה לטיעון זה"
-				) הוסף תגובה
-
-				button.tiny.transparent.num-comments.fa(
-				ng-class="reject.comments.length === 1 ? 'fa-comment-o' : 'fa-comments-o'"
-				title="הצג תגובות לטיעון זה"
-				ng-show="reject.comments.length"
-				) {{ reject.comments.length === 1 ? 'תגובה אחת' : reject.comments.length + ' תגובות' }} לטיעון זה
+		argument.animate(
+		ng-repeat="reject in dEdit.rejects | orderBy: '+votes.down -votes.up' | limitTo: dEdit.limit.rejects"
+		value="reject"
+		with-comments-buttons="true"
+		vote="dEdit.vote"
+		comment="dEdit.comment"
+		)
 
 		.extra-arguments(ng-show="dEdit.limit.rejects && dEdit.rejects.length > dEdit.limit.rejects")
 			a(

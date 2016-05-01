@@ -1,0 +1,33 @@
+$size: 7em
+
+&.ng-move
+	position: relative
+	top: $size
+
+	&.ng-move-active, &.ng-move-active + argument
+		transition: all .5s ease
+		top: 0
+
+	+ argument
+		position: relative
+		top: -$size
+
+&.ng-enter
+	position: relative
+	opacity: 0
+	top: $size/2
+
+	&.ng-enter-active
+		transition: all .5s ease
+		opacity: 1
+		top: 0
+
+&.ng-leave
+	position: relative
+	opacity: 1.0
+	top: $size/3
+
+	&.ng-leave-active
+		transition: all .5s ease
+		opacity: 0
+		top: 0

@@ -1,0 +1,31 @@
+.rate-argument
+	button.transparent.tiny.fa.fa-chevron-up(
+	ng-click="argCtrl.vote('up', argument.id)"
+	)
+	span.score {{ argument.votes.up - argument.votes.down }}
+	button.transparent.tiny.fa.fa-chevron-down(
+	ng-click="argCtrl.vote('down', argument.id)"
+	)
+
+.argument
+	p {{ argument.content }}
+	.author
+		img(ng-src="{{ argument.author.avatar }}")
+		span.displayName {{ argument.author.displayName }}
+		span.createdAt {{ argument.hour }} | {{ argument.date }}
+
+	.options(
+	in-if="withCommentsButtons"
+	)
+		button.tiny.transparent.add-comment.fa.fa-plus(
+		title="הוסף תגובה לטיעון זה"
+		ng-click="comment.add(argument.id)"
+		) הוסף תגובה
+
+		button.tiny.transparent.num-comments.fa(
+		ng-show="argument.comments.length"
+		ng-click="comment.show(argument.id)"
+		ng-class="argument.comments.length === 1 ? 'fa-comment-o' : 'fa-comments-o'"
+		title="הצג תגובות לטיעון זה"
+		) {{ argument.comments.length === 1 ? 'תגובה אחת' : argument.comments.length + ' תגובות' }} לטיעון זה
+
