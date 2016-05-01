@@ -5,7 +5,7 @@ state-edit
 			float: left
 
 	.author
-		margin-top: .5em
+		margin-bottom: .5em
 
 	.draft-ref a
 		font-weight: bold
@@ -72,6 +72,16 @@ state-edit
 			font-size: 2em
 			color: $explain
 
+		article
+			@include clearFix
+			padding: .5em
+
+			&:not(:last-of-type)
+				border-bottom: 1px solid $uiGrey
+
+			p
+				margin-top: 0
+
 		.rate-argument
 			float: right
 			width: 2.5em
@@ -86,18 +96,15 @@ state-edit
 			padding-right: .1em
 
 		.argument
-			overflow: auto
+			overflow: hidden
 
-			.author
+			.author, .num-comments, .add-comment
 				font-size: .8em
 
-		article
-			@include clearFix
-			padding: .5em
-			border-bottom: 1px solid $uiGrey
-
-			p
-				margin-top: 0
+		.num-comments, .add-comment
+			&:before
+				display: inline-block
+				margin-left: .5em
 
 		@media (min-width: $tablet)
 
@@ -106,6 +113,3 @@ state-edit
 				display: inline-block
 				width: 50%
 				vertical-align: top
-
-			.for article:last-of-type
-				border-bottom: 0

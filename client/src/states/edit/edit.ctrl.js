@@ -48,7 +48,23 @@ function controller(){
 					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg'
 				},
 				hour: '19:21',
-				date: '15.4.2015'
+				date: '15.4.2015',
+				comments: [
+					{
+						author: {
+							displayName: 'שם המחבר',
+							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
+						},
+						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
+					},
+					{
+						author: {
+							displayName: 'שם המחבר',
+							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
+						},
+						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
+					}
+				]
 			},
 			{
 				content: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים ',
@@ -61,7 +77,16 @@ function controller(){
 					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg'
 				},
 				hour: '19:21',
-				date: '15.4.2015'
+				date: '15.4.2015',
+				comments: [
+					{
+						author: {
+							displayName: 'שם המחבר',
+							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
+						},
+						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
+					}
+				]
 			}
 		],
 		rejects: [

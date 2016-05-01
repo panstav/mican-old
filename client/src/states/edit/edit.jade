@@ -58,6 +58,17 @@
 					span.displayName {{ support.author.displayName }}
 					span.createdAt {{ support.hour }} | {{ support.date }}
 
+				button.tiny.transparent.add-comment.fa.fa-plus(
+				title="הוסף תגובה לטיעון זה"
+				) הוסף תגובה
+
+				button.tiny.transparent.num-comments.fa(
+				ng-class="support.comments.length === 1 ? 'fa-comment-o' : 'fa-comments-o'"
+				title="הצג תגובות לטיעון זה"
+				ng-show="support.comments.length"
+				) {{ support.comments.length === 1 ? 'תגובה אחת' : support.comments.length + ' תגובות' }} לטיעון זה
+
+
 	.against
 
 		.top-border
@@ -68,7 +79,7 @@
 
 			.rate-argument
 				button.transparent.tiny.fa.fa-chevron-up
-				span.score {{ support.votes.up - support.votes.down }}
+				span.score {{ reject.votes.up - reject.votes.down }}
 				button.transparent.tiny.fa.fa-chevron-down
 
 			.argument
@@ -77,6 +88,16 @@
 					img(ng-src="{{ reject.author.avatar }}")
 					span.displayName {{ reject.author.displayName }}
 					span.createdAt {{ reject.hour }} | {{ reject.date }}
+
+				button.tiny.transparent.add-comment.fa.fa-plus(
+				title="הוסף תגובה לטיעון זה"
+				) הוסף תגובה
+
+				button.tiny.transparent.num-comments.fa(
+				ng-class="reject.comments.length === 1 ? 'fa-comment-o' : 'fa-comments-o'"
+				title="הצג תגובות לטיעון זה"
+				ng-show="reject.comments.length"
+				) {{ reject.comments.length === 1 ? 'תגובה אחת' : reject.comments.length + ' תגובות' }} לטיעון זה
 
 .edit-comments.paper.less(
 ng-show="dEdit.comments.length"
