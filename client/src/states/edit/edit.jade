@@ -13,7 +13,7 @@
 		span.createdAt {{ dEdit.hour }} | {{ dEdit.date }}
 
 .changes.paper
-	span(ng-repeat="change in dEdit.changes | orderBy: 'para'" ng-class="change.state") {{ change.content }}
+	span(ng-repeat="change in dEdit.changes | orderBy: '+para'" ng-class="change.state") {{ change.content }}
 
 .desc.paper.less
 
@@ -44,7 +44,7 @@
 
 		.no-arguments(ng-hide="dEdit.supports.length") אין טענות בעד עדיין
 
-		article(ng-repeat="support in dEdit.supports | orderBy: 'votes.for -votes.against'")
+		article(ng-repeat="support in dEdit.supports | orderBy: '+votes.down -votes.up' | limitTo: dEdit.limit.supports")
 
 			.rate-argument
 				button.transparent.tiny.fa.fa-chevron-up
@@ -68,6 +68,12 @@
 				ng-show="support.comments.length"
 				) {{ support.comments.length === 1 ? 'תגובה אחת' : support.comments.length + ' תגובות' }} לטיעון זה
 
+		.extra-arguments(ng-show="dEdit.limit.supports && dEdit.supports.length > 2")
+			a(
+			href="#"
+			ng-click="dEdit.removeLimit('supports')"
+			) הצג {{ dEdit.supports.length === dEdit.limit.supports+1 ? 'טיעון אחד נוסף' : dEdit.supports.length-dEdit.limit.supports + 'טיעונים נוספים' }}
+
 
 	.against
 
@@ -75,7 +81,7 @@
 
 		.no-arguments(ng-hide="dEdit.rejects.length") אין טענות נגד עדיין
 
-		article(ng-repeat="reject in dEdit.rejects | orderBy: 'votes.for -votes.against'")
+		article(ng-repeat="reject in dEdit.rejects | orderBy: '+votes.down -votes.up' | limitTo: dEdit.limit.rejects")
 
 			.rate-argument
 				button.transparent.tiny.fa.fa-chevron-up
@@ -98,6 +104,12 @@
 				title="הצג תגובות לטיעון זה"
 				ng-show="reject.comments.length"
 				) {{ reject.comments.length === 1 ? 'תגובה אחת' : reject.comments.length + ' תגובות' }} לטיעון זה
+
+		.extra-arguments(ng-show="dEdit.limit.rejects && dEdit.rejects.length > dEdit.limit.rejects")
+			a(
+			href="#"
+			ng-click="dEdit.removeLimit('rejects')"
+			) הצג {{ dEdit.rejects.length === dEdit.limit.rejects+1 ? 'טיעון אחד נוסף' : dEdit.rejects.length-dEdit.limit.rejects + 'טיעונים נוספים' }}
 
 .edit-comments.paper.less(
 ng-show="dEdit.comments.length"

@@ -4,6 +4,14 @@ function controller(){
 
 	const ctrl = this;
 
+	this.limit = {
+		supports: 2,
+		reject: 2
+	};
+	this.removeLimit = type => {
+		ctrl.limit[type] = undefined;
+	};
+
 	angular.extend(ctrl, {
 
 		id: '123',
@@ -38,10 +46,32 @@ function controller(){
 
 		supports: [
 			{
+				content: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים',
+				votes: {
+					up: 4,
+					down: 4
+				},
+				author: {
+					displayName: 'צ\'ובקה',
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg'
+				},
+				hour: '19:21',
+				date: '15.4.2015',
+				comments: [
+					{
+						author: {
+							displayName: 'שם המחבר',
+							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
+						},
+						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
+					}
+				]
+			},
+			{
 				content: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים ',
 				votes: {
-					up: 5,
-					down: 2
+					up: 4,
+					down: 3
 				},
 				author: {
 					displayName: 'צ\'ובקה',
@@ -63,14 +93,21 @@ function controller(){
 							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
 						},
 						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
+					},
+					{
+						author: {
+							displayName: 'שם המחבר',
+							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
+						},
+						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
 					}
 				]
 			},
 			{
-				content: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים ',
+				content: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים',
 				votes: {
-					up: 5,
-					down: 2
+					up: 6,
+					down: 4
 				},
 				author: {
 					displayName: 'צ\'ובקה',

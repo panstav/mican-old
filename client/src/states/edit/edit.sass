@@ -58,6 +58,12 @@ state-edit
 		.for, .against
 			margin-bottom: 1em
 
+			@media (min-width: $tablet)
+				box-sizing: border-box
+				display: inline-block
+				width: 50%
+				vertical-align: top
+
 		.for
 			border-right: $forBorder
 		.against
@@ -106,10 +112,7 @@ state-edit
 				display: inline-block
 				margin-left: .5em
 
-		@media (min-width: $tablet)
-
-			.for, .against
-				box-sizing: border-box
-				display: inline-block
-				width: 50%
-				vertical-align: top
+		.extra-arguments
+			text-align: center
+			padding: .5em 0 .8em
+			border-top: 1px solid $uiGrey
