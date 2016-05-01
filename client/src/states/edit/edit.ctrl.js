@@ -55,7 +55,9 @@ function controller(){
 							displayName: 'שם המחבר',
 							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
 						},
-						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
+						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן',
+						hour: '19:21',
+						date: '15.4.2015'
 					}
 				]
 			},
@@ -77,21 +79,27 @@ function controller(){
 							displayName: 'שם המחבר',
 							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
 						},
-						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
+						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן',
+						hour: '19:21',
+						date: '15.4.2015'
 					},
 					{
 						author: {
 							displayName: 'שם המחבר',
 							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
 						},
-						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
+						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן',
+						hour: '19:21',
+						date: '15.4.2015'
 					},
 					{
 						author: {
 							displayName: 'שם המחבר',
 							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
 						},
-						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
+						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן',
+						hour: '19:21',
+						date: '15.4.2015'
 					}
 				]
 			},
@@ -113,7 +121,9 @@ function controller(){
 							displayName: 'שם המחבר',
 							avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg'
 						},
-						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן'
+						content: 'כל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן',
+						hour: '19:21',
+						date: '15.4.2015'
 					}
 				]
 			}

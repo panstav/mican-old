@@ -48,8 +48,6 @@
 		ng-repeat="support in dEdit.supports | orderBy: '+votes.down -votes.up' | limitTo: dEdit.limit.supports"
 		value="support"
 		with-comments-buttons="true"
-		vote="dEdit.vote"
-		comment="dEdit.comment"
 		)
 
 		.extra-arguments(ng-show="dEdit.limit.supports && dEdit.supports.length > 2")

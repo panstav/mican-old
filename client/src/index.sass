@@ -71,68 +71,68 @@
 @import "states/homepage/modals/add-group"
 @import "states/single-group/modals/group-task"
 
-@import "components/argument/argument"
 @import "states/edit/edit"
+@import "states/edit/modals/argument-comments"
+@import "components/argument/argument"
 
 body
 	&.draft, &.draftEdit
 		header.userTopBar
 			display: none
 
-state-draft, state-edit
-
+button, a
 	[ng-click]
 		cursor: pointer
 
-	h1
-		font-size: 2em
-		font-weight: bold
+h1
+	font-size: 2em
+	font-weight: bold
 
-	p.description
-		color: $explain
+p.description
+	color: $explain
 
-	.author
-		span:first-child
-			margin-left: 1em
-		img
-			@include portrait(2em, white)
-			margin-left: .5em
-		.displayName
-			margin-left: .5em
-		span.createdAt
+.author
+	span:first-child
+		margin-left: 1em
+	img
+		@include portrait(2em, white)
+		margin-left: .5em
+	.displayName
+		margin-left: .5em
+	span.createdAt
+		display: inline-block
+
+article[class^="single"]
+	font-size: .85em
+
+.paper
+
+	&.changes
+		@include changes
+
+	&.tabs
+		text-align: center
+		padding-bottom: 0
+
+		a
+			text-decoration: none
 			display: inline-block
+			width: 33%
+			padding-top: .35em
+			padding-bottom: .5em
+			font-size: 1.3em
 
-	article[class^="single"]
-		font-size: .85em
+			@media (min-width: $mobile)
+				font-size: 1.5em
 
-	.paper
-
-		&.changes
-			@include changes
-
-		&.tabs
-			text-align: center
-			padding-bottom: 0
-
-			a
-				text-decoration: none
-				display: inline-block
-				width: 33%
-				padding-top: .35em
-				padding-bottom: .5em
-				font-size: 1.3em
-
-				@media (min-width: $mobile)
-					font-size: 1.5em
-
-				&.active
-					background-color: white
-
-			.counter
-				display: inline-block
+			&.active
 				background-color: white
-				border-radius: 2px
-				margin: -1px 0 0 .5em
-				padding: 0 .3em .2em
-				vertical-align: middle
-				font-size: .6em
+
+		.counter
+			display: inline-block
+			background-color: white
+			border-radius: 2px
+			margin: -1px 0 0 .5em
+			padding: 0 .3em .2em
+			vertical-align: middle
+			font-size: .6em

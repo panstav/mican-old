@@ -1,0 +1,28 @@
+.modal.argumentComments(
+modal-sizer, stop-propagation
+ng-controller="argumentCommentsCtrl as argComments"
+)
+
+	header
+		h2 תגובות לטיעון של {{ argComments.argument.author.displayName }}
+
+		.fa.fa-close(ng-click="modal.reset()")
+
+	main
+
+		argument(value="argComments.argument")
+
+		article.comment(ng-repeat="comment in argComments.argument.comments")
+			p {{ comment.content }}
+			.author
+				img(ng-src="{{ comment.author.avatar }}")
+				span.displayName {{ comment.author.displayName }}
+				span.createdAt {{ comment.hour }} | {{ comment.date }}
+
+
+	footer
+		span.validation(ng-show="argComments.showValidation") שימו לב לשדות שלא מולאו כשורה.
+		button.submit.silent(ng-click="argComments.send(newGroupSuggestionForm.$valid)") {{ modal.prompts.sendForm }}
+
+
+
