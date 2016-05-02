@@ -4,7 +4,7 @@ ng-controller="suggestionsListCtrl as sgstListCtrl"
 )
 
 	header
-		h2 {{ sgstListCtrl.suggestions.length === 1 ? 'הצעת שינוי אחת' : sgstListCtrl.suggestions.length + ' הצעות שינוי' }} לסעיף
+		h2 {{ sgstListCtrl.header }} לשינוי הסעיף
 
 		.fa.fa-close(ng-click="modal.reset()")
 
