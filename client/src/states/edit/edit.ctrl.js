@@ -33,7 +33,8 @@ function controller(){
 
 		votes: {
 			for: 38,
-			against: 0
+			against: 0,
+			userVoted: 'for'
 		},
 
 		supports: [

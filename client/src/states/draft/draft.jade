@@ -12,9 +12,9 @@
 
 	button.transparent.fa.fa-plus(
 	ng-click="draft.addParaBefore()"
-	title="הוסף פסקא נוספת כאן"
+	title="הוסף סעיף כאן"
 	)
-		span הוסף פסקא נוספת כאן
+		span הוסף סעיף כאן
 
 	.para(ng-repeat="paragraph in draft.content track by $index")
 
@@ -24,17 +24,16 @@
 
 			button.transparent.fa.fa-plus(
 			ng-click="draft.addParaAfter($index)"
-			title="הוסף פסקא נוספת כאן"
+			title="הוסף סעיף כאן"
 			)
-				span הוסף פסקא נוספת כאן
+				span.label הוסף סעיף כאן
 
 			button.transparent.fa.fa-edit(
-			ng-click="draft.showSuggestions()"
-			ng-attr-title="{{ draft.changesAtPara($index) ? 'הצג הצעות' : 'הוסף הצעת' }} שינוי לפסקא זו"
+			ng-click="draft.showSuggestions($index)"
+			ng-attr-title="{{ draft.changesAtPara($index).length ? 'הצג הצעות' : 'הוסף הצעת' }} שינוי לסעיף"
 			)
-				span
-					|{{ draft.changesAtPara($index) ? 'הצג הצעות' : 'הוסף הצעת' }} שינוי לפסקא זו
-					span(ng-show="draft.changesAtPara($index)") &nbsp;({{draft.changesAtPara($index)}})
+				span.label {{ draft.changesAtPara($index).length ? 'הצג הצעות' : 'הוסף הצעת' }} שינוי לסעיף
+				span(ng-show="draft.changesAtPara($index).length") ({{draft.changesAtPara($index).length}})
 
 .tabs.tight.paper.less
 	a(href="#" ng-click="draft.extraDetails = 'comments'" ng-class="draft.extraDetails === 'comments' ? 'active' : ''")
@@ -63,24 +62,10 @@ ng-show="draft.extraDetails === 'comments'"
 ng-show="draft.extraDetails === 'suggestions'"
 )
 
-	article.single-edit(ng-repeat="suggestion in draft.suggestions | orderBy: '-createdAt'")
-
-		h3
-			a(ui-sref="draftEdit({ editId: suggestion.id })") {{ suggestion.title }}
-
-		.author
-			img(ng-src="{{ suggestion.author.avatar }}")
-			span.displayName {{ suggestion.author.displayName }}
-			span.createdAt {{ suggestion.hour }} | {{ suggestion.date }}
-
-		p {{ suggestion.description }}
-
-		.changes
-			span(ng-repeat="change in suggestion.changes" ng-class="change.state") {{ change.content }}
-
-		.votes
-			span.for {{ suggestion.votes.for }} תומכים
-			span.against {{ suggestion.votes.against }} מתנגדים
+	edit-suggestion(
+	ng-repeat="suggestion in draft.suggestions | orderBy: '-createdAt'"
+	value="suggestion"
+	)
 
 .draft-history.edgy.paper.step(
 ng-show="draft.extraDetails === 'history'"

@@ -1,0 +1,24 @@
+.modal.suggestionsList(
+modal-sizer, stop-propagation
+ng-controller="suggestionsListCtrl as sgstListCtrl"
+)
+
+	header
+		h2 {{ sgstListCtrl.suggestions.length === 1 ? 'הצעת שינוי אחת' : sgstListCtrl.suggestions.length + ' הצעות שינוי' }} לסעיף
+
+		.fa.fa-close(ng-click="modal.reset()")
+
+	main
+
+		edit-suggestion(
+		ng-repeat="suggestion in sgstListCtrl.suggestions | orderBy: '-craetedAt'"
+		value="suggestion"
+		voting="buttons"
+		)
+
+	footer
+		span.validation(ng-show="sgstListCtrl.showValidation") שימו לב לשדות שלא מולאו כשורה.
+		button.submit.silent(ng-click="sgstListCtrl.send(newGroupSuggestionForm.$valid)") {{ modal.prompts.sendForm }}
+
+
+

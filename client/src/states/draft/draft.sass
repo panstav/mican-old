@@ -1,76 +1,58 @@
 state-draft
 
-	.paper
-		&.draft
+	.draft.paper
 
-			.para:not(:first-of-type)
-				p
-					margin-top: 1.5em
+		.para:not(:first-of-type)
+			p
+				margin-top: 1.5em
 
-			button
-				margin-top: 0
-				color: $explain
+		button
+			margin-top: 0
+			color: $explain
 
-				&:hover
-					color: inherit
+			&:hover
+				color: inherit
 
-				span
-					display: none
+			span
+				display: inline-block
+				margin-right: .5em
+
+			span.label
+				display: none
 
 				@media (min-width: $mobile)
-
-					&:before
-						margin-left: .5em
-
-					span
-						display: inline-block
-
-		&.draft-comments, &.edit-suggestions, &.draft-history
-
-			article
-				padding: 1em
-
-				&:not(:last-of-type)
-					border-bottom: 1px solid $uiGrey
-
-			.author
-				margin-top: 1em
-
-				img
-					@include portrait(2em, $tokenBorder)
-
-		&.edit-suggestions, &.draft-history
-
-			h3
-				font-size: 1.5em
-
-			.changes
-				@include changes
-
-		&.draft-comments
-
-			p
-				margin: 0
-
-		&.edit-suggestions
-
-			.votes
-				margin-top: 1em
-				text-align: center
-
-				span
 					display: inline-block
-					font-size: 1.2em
-					padding: .5em 2em
 
-				.for
-					color: $vote-for
-				.against
-					color: $vote-against
+	.draft-comments.paper, .draft-history.paper
 
-		&.draft-history
+		article
+			padding: 1em
 
-			.acceptedAt
-				font-size: 1rem
-				padding-top: 1em
-				color: $vote-for
+			&:not(:last-of-type)
+				border-bottom: 1px solid $uiGrey
+
+		.author
+			margin-top: 1em
+
+			img
+				@include portrait(2em, $tokenBorder)
+
+	.draft-history.paper
+
+		.title
+			font-size: 1.5em
+
+		.changes
+			@include changes
+
+	.draft-comments.paper
+
+		p
+			margin: 0
+
+	.draft-history.paper
+
+		.acceptedAt
+			font-size: 1rem
+			padding-top: 1em
+			color: $vote-for

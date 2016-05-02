@@ -74,6 +74,8 @@
 @import "states/edit/edit"
 @import "states/edit/modals/argument-comments"
 @import "components/argument/argument"
+@import "components/edit-suggestion/edit-suggestion"
+@import "components/voting-buttons/voting-buttons"
 
 body
 	&.draft, &.draftEdit
@@ -104,6 +106,12 @@ p.description
 
 article[class^="single"]
 	font-size: .85em
+
+edit-suggestion, history-commit
+	.title
+		font-size: 1.5em
+	.changes
+		@include changes
 
 .paper
 

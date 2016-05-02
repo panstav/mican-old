@@ -1,0 +1,23 @@
+a.title(ui-sref="draftEdit({ editId: suggestion.id })") {{ suggestion.title }}
+
+p {{ suggestion.description }}
+
+.author
+	img(ng-src="{{ suggestion.author.avatar }}")
+	span.displayName {{ suggestion.author.displayName }}
+	span.createdAt {{ suggestion.hour }} | {{ suggestion.date }}
+
+.changes
+	span(ng-repeat="change in suggestion.changes" ng-class="change.state") {{ change.content }}
+
+.voting
+
+	voting-buttons(
+	ng-if="voting === 'buttons'"
+	num-votes="suggestion.votes"
+	user-voted="suggestion.userVoted"
+	)
+
+	.votes(ng-if="voting === 'overview'")
+		span.for {{ suggestion.votes.for }} תומכים
+		span.against {{ suggestion.votes.against }} מתנגדים

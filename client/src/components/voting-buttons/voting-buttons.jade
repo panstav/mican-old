@@ -1,0 +1,25 @@
+button.big.for(
+ng-click="vtngButtonsCtrl.vote('for')"
+ng-class="userVoted === 'for' ? 'active' : ''"
+)
+
+	.fa.fa-fw(ng-class="'fa-thumbs' + (userVoted === 'for' ? '' : '-o') + '-up'")
+
+	| אני בעד&nbsp;
+
+	span.num-votes(
+	ng-show="dEdit.votes.for"
+	) ({{ numVotes.for }}+)
+
+button.big.against(
+ng-click="vtngButtonsCtrl.vote('against')"
+ng-class="userVoted === 'against' ? 'active' : ''"
+)
+
+	.fa.fa-fw(ng-class="'fa-thumbs' + (userVoted === 'against' ? '' : '-o') + '-down'")
+
+	| אני נגד&nbsp;
+
+	span.num-votes(
+	ng-show="numVotes.against"
+	) ({{ numVotes.against }}+)

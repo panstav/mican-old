@@ -1,0 +1,45 @@
+voting-buttons
+	display: block
+	text-align: center
+
+	modal &
+		margin: 1em 0 .5em
+
+	button
+		width: 90%
+		max-width: $mobile
+		margin-top: 0
+
+		&:before
+			margin-left: .5em
+
+		&.for, &.against
+			color: white
+		&.for
+			background-color: rgba($vote-for, .5)
+		&.against
+			background-color: rgba($vote-against, .5)
+
+		&.active
+			color: white
+
+			&.for
+				background-color: $vote-for
+			&.against
+				background-color: $vote-against
+
+
+		@media (min-width: $tablet)
+			width: 50%
+			margin: 0
+
+			&.for
+				border-radius: 0 2px 2px 0
+			&.against
+				border-radius: 2px 0 0 2px
+
+	.num-votes
+		font-size: .8em
+
+	[class^="fa-thumbs"]
+		vertical-align: middle

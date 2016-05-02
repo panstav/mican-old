@@ -1,6 +1,6 @@
-module.exports = [controller];
+module.exports = ['modal', controller];
 
-function controller(){
+function controller(modal){
 
 	const ctrl = this;
 
@@ -145,7 +145,46 @@ function controller(){
 				date: '01.03.15',
 				hour: '10:03'
 			},
+			{
+				id: '123',
+				title: 'כותרת הצעת שינוי אחרת',
+				description: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum.',
+				createdAt: new Date('03.01.2016'),
+				url: 'localhost:3000/edit/123',
 
+				changes: [
+					{
+						para: 1.1,
+						content: 'ודרך ציטוטים',
+						state: 'stay'
+					},{
+						para: 1.2,
+						content: ' של המילה',
+						state: 'remove'
+					},{
+						para: 1.3,
+						content: ' חדשים',
+						state: 'add'
+					},{
+						para: 1.4,
+						content: ' מתוך הספרות הקלאסית',
+						state: 'stay'
+					}
+
+				],
+
+				votes: {
+					for: 38,
+					against: 21
+				},
+
+				author: {
+					displayName: 'שם המחבר האחר',
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/mizko/128.jpg'
+				},
+				date: '01.03.15',
+				hour: '10:03'
+			},
 			{
 				id: '123',
 				title: 'כותרת הצעת שינוי',
@@ -154,15 +193,19 @@ function controller(){
 
 				changes: [
 					{
+						para: 3.1,
 						content: 'ודרך ציטוטים',
 						state: 'stay'
 					},{
+						para: 3.2,
 						content: ' של המילה',
 						state: 'remove'
 					},{
+						para: 3.3,
 						content: ' חדשים',
 						state: 'add'
 					},{
+						para: 3.4,
 						content: ' מתוך הספרות הקלאסית',
 						state: 'stay'
 					}
@@ -192,13 +235,17 @@ function controller(){
 
 	});
 
-	ctrl.changesAtPara = paraIndex => {
+	this.changesAtPara = paraIndex => {
 
 		const relevantChanges = ctrl.suggestions.filter(suggestion => {
 			return suggestion.changes.some(change => Math.floor(change.para) === paraIndex+1);
 		});
 
-		return relevantChanges.length;
-	}
+		return relevantChanges;
+	};
+
+	this.showSuggestions = paraIndex => {
+		modal.open('suggestions-list', { paraSuggestions: ctrl.changesAtPara(paraIndex) });
+	};
 
 }

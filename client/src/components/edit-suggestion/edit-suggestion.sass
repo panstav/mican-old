@@ -1,0 +1,33 @@
+edit-suggestion
+	display: block
+	padding: 1em 1.5em
+
+	modal &
+		padding: .5em
+
+	p, .author, .changes, .votes
+		font-size: .8em
+
+	&:not(:last-of-type)
+		border-bottom: 1px solid $uiGrey
+		margin-bottom: 1.5em
+
+	.author
+		margin-bottom: 1em
+
+		img
+			@include portrait(2em, $tokenBorder)
+
+	.votes
+		margin-top: 1em
+		text-align: center
+
+		span
+			display: inline-block
+			font-size: 1.2em
+			padding: .5em 2em
+
+	.for
+		color: $vote-for
+	.against
+		color: $vote-against

@@ -17,29 +17,6 @@ state-edit
 		display: block
 		text-align: right
 
-	.paper.action
-		text-align: center
-
-		button
-			width: 90%
-			max-width: $mobile
-			margin-top: 0
-
-			&:before
-				margin-left: .5em
-
-			@media (min-width: $tablet)
-				width: 50%
-				margin: 0
-
-				&.for
-					border-radius: 0 2px 2px 0
-				&.against
-					border-radius: 2px 0 0 2px
-
-		.num-votes
-			font-size: .8em
-
 	.paper.discussion
 
 		$forBorder: $defaultPadding/5 solid lighten($vote-for, 10%)

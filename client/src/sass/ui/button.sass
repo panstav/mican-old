@@ -32,6 +32,9 @@
 	&.fa
 		padding: .3em .7em .2em
 
+		&.fa-fw
+			margin-left: .3em
+
 	.fa
 		margin-left: .5em
 
@@ -70,12 +73,6 @@
 		@include playSilent($uiGrowth)
 	&.warn
 		@include playSilent($uiWarn)
-	&.for
-		@include playSilent($vote-for)
-		color: white
-	&.against
-		@include playSilent($vote-against)
-		color: white
 
 	&.develop
 		background-color: $mican
