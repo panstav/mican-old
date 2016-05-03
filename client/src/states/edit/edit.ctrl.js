@@ -231,6 +231,7 @@ function controller(){
 		ctrl.comments.push(newComment);
 
 		ctrl.newCommentPosted = true;
+
 	};
 
 	function numberOfComments(){

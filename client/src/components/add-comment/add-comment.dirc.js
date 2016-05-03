@@ -8,7 +8,8 @@ function directive(){
 		scope: {
 			content: '=',
 			send: '&',
-			buttonClass: '@'
+			buttonClass: '@',
+			textareaClass: '@'
 		},
 
 		restrict: 'E',

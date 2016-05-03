@@ -1,11 +1,12 @@
 label(for="new-comment") הוסף תגובתך:
 
 button(
-ng-class="buttonClass"
 ng-click="send()"
+ng-class="buttonClass"
 ) שלח!
 
 textarea(
 id="new-comment"
 ng-model="content"
+ng-class="textareaClass"
 )

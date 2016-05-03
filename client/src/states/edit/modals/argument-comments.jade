@@ -12,6 +12,13 @@ ng-controller="argumentCommentsCtrl as argComments"
 
 		argument(value="argComments.argument")
 
+		add-comment(
+		ng-hide="argComments.newCommentPosted"
+		content="argComments.newComment"
+		send="argComments.addComment()"
+		textarea-class="verbose"
+		)
+
 		article.comment(ng-repeat="comment in argComments.argument.comments")
 			p {{ comment.content }}
 			.author
