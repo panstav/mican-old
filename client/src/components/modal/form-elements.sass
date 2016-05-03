@@ -30,18 +30,25 @@
 		font-family : "Alef Hebrew", serif !important
 		padding-right: 1.75em
 
-[type="url"], [type="tel"], [type="text"], [type="email"], textarea, select
+[type="url"], [type="tel"], [type="text"], [type="email"], select, textarea
 	box-sizing: border-box
-
-	width: 100%
 	margin: .5em 0
+	width: 100%
 	padding: 4px
-
 	line-height: 1.5em
-	font-size: 20px
 
-textarea.verbose
-		font-size: 1rem
+[type="url"], [type="tel"], [type="text"], [type="email"], select
+	font-size: 1.2em
+
+textarea
+	max-height: 10em
+	height: 5em
+
+	&.verbose
+		resize: none
+		max-height: none
+		height: 15em
+
 
 .explain
 	margin: 0 0 15px 0
