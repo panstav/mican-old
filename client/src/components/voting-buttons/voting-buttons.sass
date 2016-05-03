@@ -17,16 +17,20 @@ voting-buttons
 			color: white
 		&.for
 			background-color: rgba($vote-for, .5)
+			border-color: rgba(darken($vote-for, 10%), .5)
 		&.against
 			background-color: rgba($vote-against, .5)
+			border-color: rgba(darken($vote-against, 10%), .5)
 
 		&.active
 			color: white
 
 			&.for
 				background-color: $vote-for
+				border-color: darken($vote-for, 10%)
 			&.against
 				background-color: $vote-against
+				border-color: darken($vote-against, 10%)
 
 
 		@media (min-width: $tablet)
