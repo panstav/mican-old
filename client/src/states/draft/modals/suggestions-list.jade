@@ -16,6 +16,17 @@ ng-controller="suggestionsListCtrl as sgstListCtrl"
 		voting="buttons"
 		)
 
+		.form.add-suggestion(
+		ng-form="addSuggestionForm"
+		ng-class="sgstListCtrl.showValidation ? 'showValidation' : ''"
+		)
+
+			h3 הסעיף בגרסא הנוכחית:
+
+			p {{ sgstListCtrl.paraData.content }}
+
+			textarea.verbose {{ sgstListCtrl.newPara.content }}
+
 	footer
 		span.validation(ng-show="sgstListCtrl.showValidation") שימו לב לשדות שלא מולאו כשורה.
 		button.submit.silent(ng-click="sgstListCtrl.send(newGroupSuggestionForm.$valid)") {{ modal.prompts.sendForm }}

@@ -4,17 +4,22 @@ function controller(mem){
 
 	const ctrl = this;
 
+	this.paraData = mem('paraData') || {};
 	this.suggestions = mem('paraSuggestions', null, { scoped: true }) || {};
 
-	this.header = numberOf(ctrl.suggestions);
+	this.header = addOrNumberOf();
 
-	function numberOf(suggestions){
+	this.newPara = {
+		content: ctrl.paraData.content
+	};
 
-		if (!suggestions.length) return 'אין הצעות';
+	function addOrNumberOf(){
 
-		if (suggestions.length === 1) return 'הצעה אחת';
+		if (!ctrl.suggestions.length) return 'הוסף הצעת';
 
-		return suggestions.length + ' הצעות';
+		if (ctrl.suggestions.length === 1) return 'הצעה אחת';
+
+		return ctrl.suggestions.length + ' הצעות';
 
 	}
 

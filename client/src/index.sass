@@ -73,6 +73,7 @@
 
 @import "states/edit/edit"
 @import "states/edit/modals/argument-comments"
+@import "states/draft/modals/suggestions-list"
 @import "components/argument/argument"
 @import "components/edit-suggestion/edit-suggestion"
 @import "components/voting-buttons/voting-buttons"
@@ -97,7 +98,9 @@ p.description
 	img, span:first-child, .displayName
 		margin-left: .5em
 	img
-		@include portrait(2em, white)
+		@include portrait(2em)
+		modal &
+			@include portrait(2em, $uiGrey)
 	span.createdAt
 		display: inline-block
 

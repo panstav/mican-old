@@ -6,6 +6,9 @@ function controller(modal){
 
 	angular.extend(ctrl, {
 
+		id: '123',
+		checksum: '123123rgergrhrth4564564564',
+
 		title: 'כותרת המסמך',
 		description: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן. תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן. תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים אחרים יכולים להכנס כאן.',
 		participants: 5,
@@ -244,8 +247,14 @@ function controller(modal){
 		return relevantChanges;
 	};
 
-	this.showSuggestions = paraIndex => {
-		modal.open('suggestions-list', { paraSuggestions: ctrl.changesAtPara(paraIndex) });
+	this.showSuggestionsList = paraIndex => {
+
+		modal.open('suggestions-list', { paraSuggestions: ctrl.changesAtPara(paraIndex), paraData: {
+			draftId: ctrl.draftId,
+			checksum: ctrl.checksum,
+			content: ctrl.content[paraIndex]
+		} });
+
 	};
 
 }

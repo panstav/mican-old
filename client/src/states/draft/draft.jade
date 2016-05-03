@@ -23,7 +23,7 @@
 		.actions
 
 			button.transparent.fa.fa-edit(
-			ng-click="draft.showSuggestions($index)"
+			ng-click="draft.showSuggestionsList($index)"
 			ng-attr-title="{{ draft.changesAtPara($index).length ? 'הצג הצעות' : 'הוסף הצעת' }} שינוי לסעיף"
 			)
 				span.label {{ draft.changesAtPara($index).length ? 'הצג הצעות' : 'הוסף הצעת' }} שינוי לסעיף

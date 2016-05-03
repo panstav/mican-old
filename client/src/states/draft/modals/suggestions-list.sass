@@ -1,9 +1,15 @@
 .modal.suggestionsList
 
-	argument
+	edit-suggestion:last-of-type
 		border-bottom: 1px solid $uiGrey
-		padding-bottom: 2em
 
-	article.comment
-		padding: 1em
-		font-size: .8em
+	.form.add-suggestion
+
+		&:not(:first-child)
+			margin-top: 2em
+
+		h3
+			font-size: 1.2em
+
+		p
+			font-size: .8em
