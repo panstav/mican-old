@@ -50,6 +50,12 @@
 ng-show="draft.extraDetails === 'comments'"
 )
 
+	add-comment(
+	ng-hide="draft.newCommentPosted"
+	content="draft.newComment"
+	send="draft.addComment()"
+	)
+
 	article.single-comment(ng-repeat="comment in draft.comments | orderBy: '-createdAt'")
 
 		p {{ comment.content }}
