@@ -228,13 +228,7 @@ function controller($scope, modal){
 				hour: '10:03'
 			}
 
-		],
-
-		counters: {
-			comments: 3,
-			suggestions: 3,
-			history: 3
-		}
+		]
 
 	});
 

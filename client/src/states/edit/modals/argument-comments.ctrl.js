@@ -6,6 +6,15 @@ function controller(mem){
 
 	this.argument = mem('editArgument', null, { scoped: true }) || {};
 
+	this.numberOfComments = () => {
+
+		if (!ctrl.argument.comments.length) return 'אין תגובות';
+
+		if (ctrl.argument.comments.length === 1) return 'תגובה אחת';
+
+		return ctrl.argument.comments.length + ' תגובות';
+	};
+
 	this.addComment = () => {
 
 		const newComment = {
@@ -23,6 +32,6 @@ function controller(mem){
 
 		ctrl.newCommentPosted = true;
 
-	}
+	};
 
 }

@@ -20,7 +20,6 @@ function controller(mem){
 		if (ctrl.suggestions.length === 1) return 'הצעה אחת';
 
 		return ctrl.suggestions.length + ' הצעות';
-
 	}
 
 }

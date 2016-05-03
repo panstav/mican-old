@@ -4,7 +4,7 @@ ng-controller="argumentCommentsCtrl as argComments"
 )
 
 	header
-		h2 תגובות לטיעון של {{ argComments.argument.author.displayName }}
+		h2 {{ argComments.numberOfComments() }} לטיעון של {{ argComments.argument.author.displayName }}
 
 		.fa.fa-close(ng-click="modal.reset()")
 

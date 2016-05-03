@@ -37,13 +37,13 @@
 
 .tabs.tight.paper.less
 	a(href="#" ng-click="draft.extraDetails = 'comments'" ng-class="draft.extraDetails === 'comments' ? 'active' : ''")
-		span.counter {{ draft.counters.comments }}
+		span.counter {{ draft.comments.length }}
 		|הערות
 	a(href="#" ng-click="draft.extraDetails = 'suggestions'" ng-class="draft.extraDetails === 'suggestions' ? 'active' : ''")
-		span.counter {{ draft.counters.suggestions }}
+		span.counter {{ draft.suggestions.length }}
 		|הצעות
 	a(href="#" ng-click="draft.extraDetails = 'history'" ng-class="draft.extraDetails === 'history' ? 'active' : ''")
-		span.counter {{ draft.counters.history }}
+		span.counter {{ draft.history.length }}
 		|שינויים
 
 .draft-comments.edgy.paper.step(

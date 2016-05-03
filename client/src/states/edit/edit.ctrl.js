@@ -214,7 +214,15 @@ function controller(){
 	};
 
 	// comments section
-	this.numberOfComments = numberOfComments();
+	this.numberOfComments = () => {
+
+		if (!ctrl.comments.length) return 'אין תגובות';
+
+		if (ctrl.comments.length === 1) return 'תגובה אחת';
+
+		return ctrl.comments.length + ' תגובות';
+	};
+
 	this.addComment = () => {
 
 		const newComment = {
@@ -233,14 +241,5 @@ function controller(){
 		ctrl.newCommentPosted = true;
 
 	};
-
-	function numberOfComments(){
-
-		if (!ctrl.comments.length) return 'אין תגובות';
-
-		if (ctrl.comments.length === 1) return 'תגובה אחת';
-
-		return ctrl.comments.length + ' תגובות';
-	}
 
 }
