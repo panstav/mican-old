@@ -1,18 +1,13 @@
-module.exports = ['mem', controller];
+module.exports = ['mem', 'numberOf', controller];
 
-function controller(mem){
+function controller(mem, numberOf){
 
 	const ctrl = this;
 
 	this.argument = mem('editArgument', null, { scoped: true }) || {};
 
-	this.numberOfComments = () => {
-
-		if (!ctrl.argument.comments.length) return 'אין תגובות';
-
-		if (ctrl.argument.comments.length === 1) return 'תגובה אחת';
-
-		return ctrl.argument.comments.length + ' תגובות';
+	this.numberOfComments = function(){
+		return numberOf({ singular: 'תגובה אחת', plural: 'תגובות' }, ctrl.argument.comments, 'הוסף תגובה');
 	};
 
 	this.addComment = () => {

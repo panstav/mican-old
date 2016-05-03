@@ -24,16 +24,14 @@
 
 			button.transparent.fa.fa-edit(
 			ng-click="draft.showSuggestionsList($index)"
-			ng-attr-title="{{ draft.changesAtPara($index).length ? 'הצג הצעות' : 'הוסף הצעת' }} שינוי לסעיף"
+			ng-attr-title="{{ draft.numberOfSuggestions($index) }} לשינוי בסעיף"
 			)
-				span.label {{ draft.changesAtPara($index).length ? 'הצג הצעות' : 'הוסף הצעת' }} שינוי לסעיף
-				span(ng-show="draft.changesAtPara($index).length") ({{draft.changesAtPara($index).length}})
+				span {{ draft.numberOfSuggestions($index) }} לשינוי בסעיף
 
 			button.transparent.fa.fa-plus(
 			ng-click="draft.addParaAfter($index)"
 			title="הוסף סעיף כאן"
-			)
-				span.label הוסף סעיף כאן
+			) הוסף סעיף כאן
 
 .tabs.tight.paper.less
 	a(href="#" ng-click="draft.extraDetails = 'comments'" ng-class="draft.extraDetails === 'comments' ? 'active' : ''")

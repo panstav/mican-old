@@ -1,6 +1,6 @@
-module.exports = ['$scope', 'modal', controller];
+module.exports = ['$scope', 'modal', 'numberOf', controller];
 
-function controller($scope, modal){
+function controller($scope, modal, numberOf){
 
 	const ctrl = this;
 
@@ -232,7 +232,11 @@ function controller($scope, modal){
 
 	});
 
-	this.changesAtPara = paraIndex => {
+	this.numberOfSuggestions = function(paraIndex){
+		return numberOf({ singular: 'הצעה אחת', plural: 'הצעות' }, ctrl.changesAtPara(paraIndex), 'הוסף הצעה')
+	};
+
+	this.changesAtPara = function(paraIndex){
 
 		const relevantChanges = ctrl.suggestions.filter(suggestion => {
 			return suggestion.changes.some(change => Math.floor(change.para) === paraIndex+1);
@@ -267,6 +271,6 @@ function controller($scope, modal){
 		ctrl.comments.push(newComment);
 
 		ctrl.newCommentPosted = true;
-	}
+	};
 
 }

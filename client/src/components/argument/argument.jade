@@ -17,15 +17,10 @@
 	.options(
 	ng-if="withCommentsButtons"
 	)
-		button.tiny.transparent.add-comment.fa.fa-plus(
-		title="הוסף תגובה לטיעון זה"
-		ng-click="argCtrl.addComment(argument.id)"
-		) הוסף תגובה
 
 		button.tiny.transparent.num-comments.fa(
-		ng-show="argument.comments.length"
-		ng-click="argCtrl.showComments(argument.id)"
+		ng-click="argCtrl.showComments()"
 		ng-class="argument.comments.length === 1 ? 'fa-comment-o' : 'fa-comments-o'"
-		title="הצג תגובות לטיעון זה"
-		) {{ argument.comments.length === 1 ? 'תגובה אחת' : argument.comments.length + ' תגובות' }} לטיעון זה
+		title="הצג והוסף תגובות לטיעון זה"
+		) {{ argCtrl.numberOfComments() }} לטיעון
 

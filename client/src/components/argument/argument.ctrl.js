@@ -1,6 +1,6 @@
-module.exports = ['$scope', 'modal', controller];
+module.exports = ['$scope', 'modal', 'numberOf', controller];
 
-function controller($scope, modal){
+function controller($scope, modal, numberOf){
 
 	const ctrl = this;
 
@@ -8,14 +8,12 @@ function controller($scope, modal){
 		$scope.argument.votes[direction]++;
 	};
 
-	this.addComment = () => {
-		modal.open('add-argument-comment', { editArgument: $scope.argument });
+	this.numberOfComments = function(){
+		return numberOf({ singular: 'תגובה אחת', plural: 'תגובות' }, $scope.argument.comments, 'הוסף תגובה');
 	};
 
 	this.showComments = () => {
 		modal.open('argument-comments', { editArgument: $scope.argument });
 	};
-
-
 
 }
