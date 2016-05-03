@@ -10,7 +10,7 @@
 
 .draft.paper
 
-	button.transparent.fa.fa-plus(
+	button.transparent.squat.fa.fa-plus(
 	ng-click="draft.addParaBefore()"
 	title="הוסף סעיף כאן"
 	)
@@ -22,13 +22,13 @@
 
 		.actions
 
-			button.transparent.fa.fa-edit(
+			button.transparent.squat.fa.fa-edit(
 			ng-click="draft.showSuggestionsList($index)"
 			ng-attr-title="{{ draft.numberOfSuggestions($index) }} לשינוי בסעיף"
 			)
 				span {{ draft.numberOfSuggestions($index) }} לשינוי בסעיף
 
-			button.transparent.fa.fa-plus(
+			button.transparent.squat.fa.fa-plus(
 			ng-click="draft.addParaAfter($index)"
 			title="הוסף סעיף כאן"
 			) הוסף סעיף כאן
