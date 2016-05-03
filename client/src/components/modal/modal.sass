@@ -1,3 +1,28 @@
+$maxWidth: $mobile / 3 * 4
+
+.modal
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+
+	width: 100%
+	height: 100%
+
+	@media (min-width: $maxWidth + 51px) and (min-height: $mobile)
+		max-width: $maxWidth
+		height: 80%
+
+	margin: auto
+	background-color: white
+
+	box-shadow: $heavyShadow
+	text-align: right
+	color: #444444
+
+	@import "header-main-footer"
+
 .modalHolder
 
 	z-index: $topMost
@@ -14,27 +39,3 @@
 
 	body[step="loaded"] &
 		background-color: rgba(0, 0, 0, 0.8)
-
-.modal
-	position: absolute
-	top: 0
-	left: 0
-	right: 0
-	bottom: 0
-
-	width: 100%
-	height: 100%
-
-	@media (min-width: $mobile+1)
-		max-width: 600px
-	@media (min-width: $mobile+1) and (min-height: 600px)
-		height: 80%
-
-	margin: auto
-	background-color: white
-
-	box-shadow: $heavyShadow
-	text-align: right
-	color: #444444
-
-	@import "header-main-footer"
