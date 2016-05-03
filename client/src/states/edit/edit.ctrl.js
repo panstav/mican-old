@@ -213,4 +213,33 @@ function controller(){
 		ctrl.limit[type] = undefined;
 	};
 
+	// comments section
+	this.numberOfComments = numberOfComments();
+	this.addComment = () => {
+
+		const newComment = {
+			content: ctrl.newComment,
+			author: {
+				displayName: 'שם המחבר',
+				avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/nuraika/128.jpg'
+			},
+			date: '08.07.16',
+			hour: '17:14',
+			createdAt: new Date('07.08.16')
+		};
+
+		ctrl.comments.push(newComment);
+
+		ctrl.newCommentPosted = true;
+	};
+
+	function numberOfComments(){
+
+		if (!ctrl.comments.length) return 'אין תגובות';
+
+		if (ctrl.comments.length === 1) return 'תגובה אחת';
+
+		return ctrl.comments.length + ' תגובות';
+	}
+
 }

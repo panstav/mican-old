@@ -7,7 +7,7 @@ function controller(mem){
 	this.paraData = mem('paraData') || {};
 	this.suggestions = mem('paraSuggestions', null, { scoped: true }) || {};
 
-	this.header = addOrNumberOf();
+	this.numberOfSuggestions = addOrNumberOf();
 
 	this.newPara = {
 		content: ctrl.paraData.content

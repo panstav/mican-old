@@ -72,11 +72,16 @@
 			ng-click="dEdit.removeLimit('rejects')"
 			) הצג {{ dEdit.rejects.length === dEdit.limit.rejects+1 ? 'טיעון אחד נוסף' : dEdit.rejects.length-dEdit.limit.rejects + 'טיעונים נוספים' }}
 
-.edit-comments.paper.less(
-ng-show="dEdit.comments.length"
-)
+.edit-comments.paper.less
 
-	h2 {{ dEdit.comments.length === 1 ? 'תגובה אחת נוספת' : dEdit.comments.length + ' תגובות נוספות' }} להצעת השינוי
+	h2 {{ dEdit.numberOfComments }} להצעת השינוי
+
+	add-comment(
+	ng-hide="dEdit.newCommentPosted"
+	content="dEdit.newComment"
+	send="dEdit.addComment()"
+	button-class="white"
+	)
 
 	article.single-comment(ng-repeat="comment in dEdit.comments | orderBy: '-createdAt'")
 
