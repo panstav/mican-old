@@ -1,6 +1,6 @@
-button.big.for(
+button.for(
 ng-click="vtngButtonsCtrl.vote('for')"
-ng-class="userVoted === 'for' ? 'active' : ''"
+ng-class="vtngButtonsCtrl.buttonClasses('for')"
 )
 
 	.fa.fa-fw(ng-class="'fa-thumbs' + (userVoted === 'for' ? '' : '-o') + '-up'")
@@ -11,9 +11,9 @@ ng-class="userVoted === 'for' ? 'active' : ''"
 	ng-show="dEdit.votes.for"
 	) ({{ numVotes.for }}+)
 
-button.big.against(
+button.against(
 ng-click="vtngButtonsCtrl.vote('against')"
-ng-class="userVoted === 'against' ? 'active' : ''"
+ng-class="vtngButtonsCtrl.buttonClasses('against')"
 )
 
 	.fa.fa-fw(ng-class="'fa-thumbs' + (userVoted === 'against' ? '' : '-o') + '-down'")

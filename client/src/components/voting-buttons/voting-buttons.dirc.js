@@ -8,7 +8,8 @@ function directive(){
 
 		scope: {
 			numVotes: '=',
-			userVoted: '='
+			userVoted: '=',
+			buttonClasses: '@'
 		},
 
 		restrict: 'E',

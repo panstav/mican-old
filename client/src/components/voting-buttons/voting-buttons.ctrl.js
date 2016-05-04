@@ -8,4 +8,8 @@ function controller($scope){
 		$scope.userVoted = vote;
 	};
 
+	this.buttonClasses = buttonType => {
+		return `${ $scope.userVoted === buttonType ? 'active ' : '' }${ $scope.buttonClasses }`;
+	}
+
 }

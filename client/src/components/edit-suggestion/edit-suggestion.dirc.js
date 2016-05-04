@@ -7,7 +7,8 @@ function directive(){
 
 		scope: {
 			suggestion: '=value',
-			voting: '@'
+			voting: '@',
+			buttonClasses: '@'
 		},
 
 		restrict: 'E',
