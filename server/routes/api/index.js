@@ -11,9 +11,14 @@ var sendMail =    require('../../services/email');
 var normalizeID = require('../../helpers/normalize-id');
 var urls =        require('../../helpers/urls');
 
+const _ = require('lodash');
+const diff = require('diff');
+
 module.exports = function(router){
 
 	router.get('/recall', recallUser);
+
+	router.post('/delta', getDelta);
 
 	router.post('/add-to-newsletter', addToNewsletter);
 
@@ -120,6 +125,35 @@ function recallUser(req, res){
 
 		res.json({ user: userObj });
 	}
+}
+
+function getDelta(req, res, next){
+
+	const from = req.body.from;
+	const to = req.body.to;
+
+	if (!from || !to) return next({ status: 400, statusText: 'Both original and new text are required for a delta.' });
+	if (typeof(from) !== 'string' || typeof(to) !== 'string') return next({ status: 400, statusText: 'Both original and new text need to be strings' });
+
+	res.json(diff.diffChars(from, to).map(parseChange).map((item, index) => _.extend(item, { index })));
+
+	function parseChange(change){
+
+		const newChange = { para: req.body.paraIndex };
+
+		if (change.added){
+			newChange.state = 'add';
+		} else if (change.removed){
+			newChange.state = 'remove';
+		} else {
+			newChange.state = 'stay';
+		}
+
+		newChange.content = change.value;
+
+		return newChange;
+	}
+
 }
 
 function numPendingGroups(req, res){

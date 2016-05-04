@@ -63,6 +63,7 @@
     "connect-mongo": "1.1.0",
     "connect-mongostore": "0.1.4",
     "connect-multiparty": "1.2.5",
+    "diff": "2.2.2",
     "express": "4.12.4",
     "express-enrouten": "1.2.1",
     "express-session": "1.13.0",

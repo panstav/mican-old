@@ -5,11 +5,15 @@
 
 	.form.add-suggestion
 
-		&:not(:first-child)
-			margin-top: 2em
-
-		h3
+		a
 			font-size: 1.2em
+			color: darken($uiGrey, 10%)
+
+			&.active
+				color: inherit
+
+		&:not(:first-child) h3
+			margin-top: 2em
 
 		p
 			font-size: .8em

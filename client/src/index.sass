@@ -76,6 +76,7 @@
 @import "states/edit/edit"
 @import "states/edit/modals/argument-comments"
 @import "states/draft/modals/suggestions-list"
+@import "components/loader/loader"
 @import "components/argument/argument"
 @import "components/edit-suggestion/edit-suggestion"
 @import "components/voting-buttons/voting-buttons"
@@ -87,7 +88,7 @@ body
 			display: none
 
 button, a
-	[ng-click]
+	&[ng-click]
 		cursor: pointer
 
 h1
@@ -110,7 +111,7 @@ p.description
 article[class^="single"]
 	font-size: .85em
 
-edit-suggestion, history-commit
+edit-suggestion, history-commit, .form.add-suggestion
 
 	.title
 		font-size: 1.5em

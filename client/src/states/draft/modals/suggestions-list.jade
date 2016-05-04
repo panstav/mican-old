@@ -21,11 +21,36 @@ ng-controller="suggestionsListCtrl as sgstListCtrl"
 		ng-class="sgstListCtrl.showValidation ? 'showValidation' : ''"
 		)
 
-			h3 הסעיף בגרסא הנוכחית:
+			h3 הוסף הצעת שינוי משלך
 
-			p {{ sgstListCtrl.paraData.content }}
+			a(
+			ng-click="sgstListCtrl.extraDetails = 'original'"
+			ng-class="sgstListCtrl.extraDetails === 'original' ? 'active' : ''"
+			) הגרסה המקורית
 
-			textarea.verbose {{ sgstListCtrl.newPara.content }}
+			span(ng-show="sgstListCtrl.newChanges.length || sgstListCtrl.loadingDelta")
+				|&nbsp;|&nbsp;
+
+			a(
+			ng-show="sgstListCtrl.newChanges.length"
+			ng-click="sgstListCtrl.extraDetails = 'delta'"
+			ng-class="sgstListCtrl.extraDetails === 'delta' ? 'active' : ''"
+			) השינויים שביצעת
+
+			loader(ng-show="sgstListCtrl.loadingDelta")
+
+			p.changes(ng-show="sgstListCtrl.extraDetails === 'original'") {{ sgstListCtrl.paraData.content }}
+
+			p.changes(ng-show="sgstListCtrl.extraDetails === 'delta'")
+				span(
+				ng-repeat="change in sgstListCtrl.newChanges | orderBy: '+index'"
+				ng-class="change.state + (change.content.length && !change.content.trim().length ? ' space' : '')"
+				) {{ change.content }}
+
+			textarea.verbose(
+			ng-model="sgstListCtrl.newPara.content"
+			ng-change="sgstListCtrl.updateDelta()"
+			)
 
 	footer
 		span.validation(ng-show="sgstListCtrl.showValidation") שימו לב לשדות שלא מולאו כשורה.

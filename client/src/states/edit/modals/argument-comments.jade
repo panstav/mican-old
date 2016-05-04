@@ -24,7 +24,7 @@ ng-controller="argumentCommentsCtrl as argComments"
 		content="argComments.newComment"
 		send="argComments.addComment()"
 		)
-		
+
 	footer
 		span.validation(ng-show="argComments.showValidation") שימו לב לשדות שלא מולאו כשורה.
 		button.submit.silent(ng-click="argComments.send(newGroupSuggestionForm.$valid)") {{ modal.prompts.sendForm }}
