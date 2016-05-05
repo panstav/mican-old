@@ -87,13 +87,20 @@ body
 		header.userTopBar
 			display: none
 
+h1
+	font-size: 2em
+	font-weight: bold
+
 button, a
 	&[ng-click]
 		cursor: pointer
 
-h1
-	font-size: 2em
-	font-weight: bold
+.inline-tabs a
+	font-size: 1.2em
+	color: darken($uiGrey, 20%)
+
+	&.active
+		color: inherit
 
 p.description
 	color: $explain

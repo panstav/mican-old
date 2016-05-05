@@ -23,21 +23,22 @@ ng-controller="suggestionsListCtrl as sgstListCtrl"
 
 			h3 הוסף הצעת שינוי משלך
 
-			a(
-			ng-click="sgstListCtrl.extraDetails = 'original'"
-			ng-class="sgstListCtrl.extraDetails === 'original' ? 'active' : ''"
-			) הגרסה המקורית
+			.inline-tabs
+				a(
+				ng-click="sgstListCtrl.extraDetails = 'original'"
+				ng-class="sgstListCtrl.extraDetails === 'original' ? 'active' : ''"
+				) הגרסה המקורית
 
-			span(ng-show="sgstListCtrl.newChanges.length || sgstListCtrl.loadingDelta")
-				|&nbsp;|&nbsp;
+				span(ng-show="sgstListCtrl.newChanges.length || sgstListCtrl.loadingDelta")
+					|&nbsp;|&nbsp;
 
-			a(
-			ng-show="sgstListCtrl.newChanges.length"
-			ng-click="sgstListCtrl.extraDetails = 'delta'"
-			ng-class="sgstListCtrl.extraDetails === 'delta' ? 'active' : ''"
-			) השינויים שביצעת
+				a(
+				ng-show="sgstListCtrl.newChanges.length"
+				ng-click="sgstListCtrl.extraDetails = 'delta'"
+				ng-class="sgstListCtrl.extraDetails === 'delta' ? 'active' : ''"
+				) השינויים שביצעת
 
-			loader(ng-show="sgstListCtrl.loadingDelta")
+				loader(ng-show="sgstListCtrl.loadingDelta")
 
 			p.changes(ng-show="sgstListCtrl.extraDetails === 'original'") {{ sgstListCtrl.paraData.content }}
 

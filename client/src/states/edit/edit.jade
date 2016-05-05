@@ -12,8 +12,30 @@
 		span.displayName {{ dEdit.author.displayName }}
 		span.createdAt {{ dEdit.hour }} | {{ dEdit.date }}
 
-.changes.paper
-	span(ng-repeat="change in dEdit.changes | orderBy: '+para'" ng-class="change.state") {{ change.content }}
+.paper.less
+
+	.inline-tabs
+
+		a(
+		ng-click="dEdit.hideContext()"
+		ng-class="!dEdit.showingContext ? 'active' : ''"
+		) השינויים עצמם
+
+		span &nbsp;|&nbsp;
+
+		a(
+		ng-click="dEdit.showContext()"
+		ng-class="dEdit.showingContext ? 'active' : ''"
+		) כל הטיוטה בצירוף השינויים
+
+.changes.paper.step
+
+	p(ng-repeat="para in dEdit.contextParas.before") {{ para }}
+
+	p(ng-class="dEdit.showingContext ? 'changes-view' : ''")
+		span(ng-repeat="change in dEdit.changes | orderBy: '+para'" ng-class="change.state") {{ change.content }}
+
+	p(ng-repeat="para in dEdit.contextParas.after") {{ para }}
 
 .desc.paper.less
 
