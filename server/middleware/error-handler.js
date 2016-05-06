@@ -1,6 +1,11 @@
+const optional = require('optional');
+const sfx = optional('sfx') || { basso: function(){} };
+
 var log = require('../services/log');
 
 module.exports = function(err, req, res, next){
+
+	if (process.env.NODE_ENV !== 'test' && err) sfx.basso();
 
 	if (process.env.NODE_ENV === 'production' || process.env.DEBUG){
 		log.error({ err: err, req: req }, 'Express Error Handler');

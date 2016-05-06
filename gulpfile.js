@@ -1,19 +1,21 @@
 'use strict';
 
-var path = require('path');
+const path = require('path');
 
-var common = require('./common');
-var db = require('./server/services/db');
-var packageJson = require('./package.json');
+const common = require('./common');
+const db = require('./server/services/db');
+const packageJson = require('./package.json');
 
-var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
+const gulp = require('gulp');
+const plugins = require('gulp-load-plugins')();
+const optional = require('optional');
+const sfx = optional('sfx') || { pop: function(){} };
 
-var webpack = require('webpack');
-var StringReplacePlugin = require('string-replace-webpack-plugin');
+const webpack = require('webpack');
+const StringReplacePlugin = require('string-replace-webpack-plugin');
 
-var autoprefixer = require('autoprefixer');
-var usefulString = require('useful-string');
+const autoprefixer = require('autoprefixer');
+const usefulString = require('useful-string');
 
 //-=======================================================---
 //------------------ Micro Tasks
@@ -71,6 +73,10 @@ gulp.task('nodemon', () => {
 				}
 			}
 	);
+});
+
+gulp.task('finished', () => {
+	if (!process.env.TEST) sfx.pop();
 });
 
 //-=======================================================---
@@ -390,8 +396,8 @@ gulp.task('js', done => {
 
 gulp.task('build', plugins.sequence('prep-public-dir', ['font-awesome', 'polimap'], ['sass-to-css', 'jade-to-html'], 'construct-html-head', 'js'));
 
-gulp.task('local', plugins.sequence('clean', 'load-env', 'build'));
+gulp.task('local', plugins.sequence('clean', 'load-env', 'build', 'finished'));
 
 gulp.task('remote', plugins.sequence('clean', 'define-revision', 'build'));
 
-gulp.task('production-like', plugins.sequence('load-env', 'remote'));
+gulp.task('production-like', plugins.sequence('load-env', 'remote', 'finished'));

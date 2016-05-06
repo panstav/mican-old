@@ -38,8 +38,8 @@
     "remote-build": "NODE_ENV=production node_modules/.bin/gulp remote && node_modules/.bin/snyk protect",
     "heroku-postbuild": "npm run remote-build && node_modules/.bin/snyk protect",
     "test": "npm run test-production && npm run test-local",
-    "test-production": "NODE_ENV=production node_modules/.bin/gulp production-like && npm run mocha",
-    "test-local": "node_modules/.bin/gulp local && npm run mocha",
+    "test-production": "TEST=true NODE_ENV=production node_modules/.bin/gulp production-like && npm run mocha",
+    "test-local": "TEST=true node_modules/.bin/gulp local && npm run mocha",
     "mocha": "LOCAL=true node_modules/.bin/mocha"
   },
   "dependencies": {
@@ -127,6 +127,7 @@
     "is-online": "5.0.1",
     "mocha": "2.1.0",
     "pre-git": "3.3.0",
+    "sfx": "0.1.1",
     "stats-webpack-plugin": "0.2.2",
     "supertest": "0.15.0"
   },
