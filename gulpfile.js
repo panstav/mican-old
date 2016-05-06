@@ -115,18 +115,9 @@ gulp.task('jade-to-html', () => {
 	};
 
 	return gulp.src('client/src/**/*.jade')
-		.pipe(plugins.data(jsonDataCollector))
 		.pipe(plugins.jade(jadeOptions))
 		.pipe(plugins.rename(partialsRenamer))
 		.pipe(gulp.dest('public/partials'));
-
-	function jsonDataCollector(file){
-		var filename = path.basename(file.path, '.jade');
-
-		if (filename !== 'index') return {};
-
-		return require('./client/src/' + filename + '.json');
-	}
 
 	function partialsRenamer(path){
 
@@ -291,6 +282,12 @@ gulp.task('js', done => {
 
 		var replacerOptions = StringReplacePlugin.replace(
 			{ replacements: [
+
+				{
+					// inject facebook app id to be used from client side
+					pattern: /PRODUCTION/,
+					replacement: () => process.env.NODE_ENV === 'production'
+				},
 
 				{
 					// inject facebook app id to be used from client side

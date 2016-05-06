@@ -1,4 +1,4 @@
-var states = {
+module.exports = {
 
 	homepage: {
 
@@ -146,18 +146,3 @@ var states = {
 	}
 
 };
-
-module.exports = ['$stateProvider', '$locationProvider', '$urlRouterProvider', registerStates];
-
-function registerStates($stateProvider, $locationProvider, $urlRouterProvider){
-
-	$locationProvider.html5Mode(true);
-
-	// register every state
-	for (var stateName in states){
-		$stateProvider.state(stateName, states[stateName]);
-	}
-
-	// fallback to homepage
-	$urlRouterProvider.otherwise("/");
-}
