@@ -233,7 +233,7 @@ function controller($scope, modal, numberOf){
 	});
 
 	this.numberOfSuggestions = function(paraIndex){
-		return numberOf({ singular: 'הצעה אחת', plural: 'הצעות' }, ctrl.changesAtPara(paraIndex), 'הוסף הצעה')
+		return numberOf({ singular: 'הצעה אחת', plural: 'הצעות' }, ctrl.changesAtPara(paraIndex))
 	};
 
 	this.changesAtPara = function(paraIndex){
