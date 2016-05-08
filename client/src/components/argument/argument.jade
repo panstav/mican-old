@@ -1,4 +1,6 @@
-.rate-argument
+.rate-argument(
+ng-if="withVotingButtons"
+)
 	button.transparent.tiny.fa.fa-chevron-up(
 	ng-click="argCtrl.vote('up', argument.id)"
 	)

@@ -8,6 +8,7 @@ function directive(){
 
 		scope: {
 			argument: '=value',
+			withVotingButtons: '=',
 			withCommentsButtons: '@'
 		},
 

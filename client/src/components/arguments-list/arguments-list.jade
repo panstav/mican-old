@@ -1,0 +1,17 @@
+.top-border
+
+.no-arguments(ng-hide="arguments.length") אין טענות נגד עדיין
+
+argument.animate(
+ng-repeat="argument in arguments | orderBy: '+votes.down -votes.up' | limitTo: limit"
+value="argument"
+with-voting-buttons="withVotingButtons"
+with-comments-buttons="withCommentsButtons"
+)
+
+.extra-arguments(ng-show="withShowMoreArguments && limit && arguments.length > limit")
+	a(
+	href="#"
+	ng-click="argsListCtrl.removeLimit()"
+	) הצג {{ arguments.length === (limit+1) ? 'טיעון אחד נוסף' : (arguments.length - limit) + 'טיעונים נוספים' }}
+

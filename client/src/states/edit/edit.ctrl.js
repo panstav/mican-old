@@ -233,12 +233,6 @@ function controller(){
 	this.shareText = `"${ctrl.title}" - הצעת שינוי מאת ${ctrl.author.displayName}`;
 	this.currentUrl = `localhost:3000/edit/${ctrl.id}`;
 
-	// limiting numbers of arguments shown
-	this.limit = { supports: 2, reject: 2 };
-	this.removeLimit = type => {
-		ctrl.limit[type] = undefined;
-	};
-
 	// comments section
 	this.numberOfComments = () => {
 

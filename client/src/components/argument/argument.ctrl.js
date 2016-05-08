@@ -4,7 +4,9 @@ function controller($scope, modal, numberOf){
 
 	const ctrl = this;
 
-	this.vote = (direction) => {
+	console.log($scope);
+
+	this.vote = direction => {
 		$scope.argument.votes[direction]++;
 	};
 
