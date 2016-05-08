@@ -1,14 +1,14 @@
-a.title(ui-sref="draftEdit({ editId: suggestion.id })") {{ suggestion.title }}
-
-p {{ suggestion.description }}
-
 .author
 	img(ng-src="{{ suggestion.author.avatar }}")
 	span.displayName {{ suggestion.author.displayName }}
 	span.createdAt {{ suggestion.hour }} | {{ suggestion.date }}
 
+a.title(ui-sref="draftEdit({ editId: suggestion.id })") {{ suggestion.title }}
+
 .changes
 	span(ng-repeat="change in suggestion.changes" ng-class="change.state") {{ change.content }}
+
+p {{ suggestion.description }}
 
 .voting
 

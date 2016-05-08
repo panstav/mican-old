@@ -5,15 +5,20 @@ edit-suggestion
 	modal &
 		padding: .5em
 
-	p, .author, .changes, .votes
-		font-size: .8em
-
 	&:not(:last-of-type)
 		border-bottom: 1px solid $uiGrey
 		margin-bottom: 1.5em
 
-	.author
+	.title
+		display: inline-block
 		margin-bottom: 1em
+
+	p, .author, .changes, .votes
+		font-size: .8em
+
+	.author
+		float: left
+		margin-top: .3em
 
 		img
 			@include portrait(2em, $tokenBorder)
