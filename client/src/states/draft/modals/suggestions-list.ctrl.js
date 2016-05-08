@@ -17,12 +17,11 @@ function controller(mem, calcDelta, numberOf){
 		calcDelta(ctrl.paraData.content, ctrl.newPara.content)
 			.then(delta => { ctrl.newChanges = delta; })
 			.catch(console.log.bind(console))
-			.finally(() => { ctrl.loadingDelta = false; console.log('loading off'); });
+			.finally(() => { ctrl.loadingDelta = false; });
 	}, 1500);
 
 	this.updateDelta = () => {
 		ctrl.loadingDelta = true;
-		console.log('loading on');
 
 		debouncedDeltaFetch();
 	};

@@ -20,9 +20,6 @@ module.exports = (settings, callback) => {
 
 	inlineCss(parseTemplate(settings.subject, settings.template, settings.templateArgs), { url: common.domain })
 		.then(html => {
-			
-			console.log('Sending');
-			console.log('\n', typeof html, 'html', html, '\n');
 
 			const transmissionBody = {
 				recipients: [{ address: settings.recipient }],
@@ -35,6 +32,7 @@ module.exports = (settings, callback) => {
 			};
 
 			emailer.transmissions.send({ transmissionBody }, callback);
+			
 		});
 
 };
