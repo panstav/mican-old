@@ -26,14 +26,18 @@
 		a(
 		ng-click="dEdit.showContext()"
 		ng-class="dEdit.showingContext ? 'active' : ''"
-		) כל הטיוטה בצירוף השינויים
+		) הטיוטה בצירוף השינויים
 
 .changes.paper.step
 
 	p(ng-repeat="para in dEdit.contextParas.before") {{ para }}
 
 	p(ng-class="dEdit.showingContext ? 'changes-view' : ''")
-		span(ng-repeat="change in dEdit.changes | orderBy: '+para'" ng-class="change.state") {{ change.content }}
+		span(
+		ng-repeat="change in dEdit.changes | orderBy: '+para'"
+		ng-show="change.state !== 'remove' || !dEdit.showingContext"
+		ng-class="dEdit.showingContext ? '' : change.state"
+		) {{ change.content }}
 
 	p(ng-repeat="para in dEdit.contextParas.after") {{ para }}
 
