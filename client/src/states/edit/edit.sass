@@ -1,9 +1,5 @@
 state-edit
 
-	@media (min-width: $tablet)
-		fa-sharing-buttons
-			float: left
-
 	.author
 		margin-bottom: .5em
 
@@ -15,12 +11,26 @@ state-edit
 		border-bottom: 1px solid $uiGrey
 		border-top: 1px solid $uiGrey
 
-	.paper.desc
-		@include clearFix
+	.paper
+		&.desc, &.sharing
+			@include clearFix
+
+	span.auto-acceptance
+		display: inline-block
+		margin-top: .55em
+
+		.num
+			border-radius: 2px
+			margin: 0 0.5em
+			padding: 0.2em 0.3em
+			background-color: white
 
 	fa-sharing-buttons
 		display: block
 		text-align: right
+
+		@media (min-width: $tablet)
+			float: left
 
 	.paper.discussion
 

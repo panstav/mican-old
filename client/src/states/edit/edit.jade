@@ -43,20 +43,29 @@
 
 .desc.paper.less
 
+	h2 נימוק
+
 	p.description {{ dEdit.description }}
 
-	fa-sharing-buttons(
-	share-text="dEdit.shareText"
-	url="dEdit.currentUrl"
-	)
-
-.action.edgy.paper.less.step
+.voting.edgy.paper.less.step
 
 	voting-buttons(
 	num-votes="dEdit.votes"
 	user-voted="dEdit.userVoted"
 	button-classes="big"
 	)
+
+.sharing.paper.less
+
+	fa-sharing-buttons(
+	share-text="dEdit.shareText"
+	url="dEdit.currentUrl"
+	)
+
+	span.auto-acceptance
+		|ההצעה תתקבל בעוד
+		span.num {{ dEdit.supportVotesTillAcceptance }}
+		|הצבעות תמיכה.
 
 .discussion.edgy.paper
 

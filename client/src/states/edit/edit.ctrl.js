@@ -40,6 +40,8 @@ function controller(){
 			userVoted: 'for'
 		},
 
+		supportVotesTillAcceptance: 7,
+
 		supports: [
 			{
 				content: 'תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים תיאור המסמך, סיבותיו, מטרותיו וכל מיני פרטים רלוונטיים',
