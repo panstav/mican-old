@@ -24,12 +24,6 @@
 
 .draft.paper
 
-	button.transparent.squat.fa.fa-plus(
-	ng-click="draft.addParaBefore()"
-	title="הוסף סעיף כאן"
-	)
-		span הוסף סעיף כאן
-
 	.para(ng-repeat="paragraph in draft.content track by $index")
 
 		p {{ paragraph }}
@@ -42,10 +36,11 @@
 			)
 				span {{ draft.numberOfSuggestions($index) }} לשינוי בסעיף / הוסף הצעה
 
-			button.transparent.squat.fa.fa-plus(
-			ng-click="draft.addParaAfter($index)"
-			title="הוסף סעיף כאן"
-			) הוסף סעיף כאן
+	button.transparent.squat.fa.fa-plus(
+	ng-click="draft.addParaAfter()"
+	title="הוסף סעיף"
+	)
+		span הוסף סעיף
 
 .tabs.tight.paper.less
 	a(href="#" ng-click="draft.extraDetails = 'comments'" ng-class="draft.extraDetails === 'comments' ? 'active' : ''")
