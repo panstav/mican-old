@@ -106,13 +106,13 @@ p.description
 	color: $explain
 
 .author
-	img, span:first-child, .displayName
+	img, span:first-child, .displayName, .by
 		margin-left: .5em
 	img
 		@include portrait(2em)
 		modal &
 			@include portrait(2em, $uiGrey)
-	span.createdAt
+	.displayName, .createdAt
 		display: inline-block
 
 article[class^="single"]

@@ -4,9 +4,23 @@
 	p.description {{ draft.description }}
 
 	.author
+		span.createdAt נוצר ב- {{ draft.hour }} | {{ draft.date }},
+		span.by על ידי:
 		img(ng-src="{{ draft.author.avatar }}")
 		span.displayName {{ draft.author.displayName }}
-		span.createdAt {{ draft.hour }} | {{ draft.date }}
+
+		.contributors(ng-show="draft.contributors.length")
+
+			span עוד השתתפו בעריכה:
+
+			.contributor(ng-repeat="author in draft.contributors | limitTo: draft.limits.contributors")
+				img(ng-src="{{ author.avatar }}")
+				span.displayName {{ author.displayName }}
+
+			button.transparent(
+			ng-show="draft.limits.contributors && draft.contributors.length > draft.limits.contributors"
+			ng-click="draft.limits.contributors = null"
+			) הצג את כל המשתתפים
 
 .draft.paper
 

@@ -14,7 +14,7 @@ function service(){
 
 		if (num === 1) return str.singular;
 
-		return `${num} ${str.plural}`;
+		return str.plural.indexOf('#') ? str.plural.replace('#', num) : `${num} ${str.plural}`;
 	};
 
 }

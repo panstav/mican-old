@@ -14,6 +14,7 @@ function controller($scope, modal, numberOf){
 		participants: 5,
 
 		author: {
+			id: 12,
 			displayName: 'שם המחבר',
 			avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/suprb/128.jpg'
 		},
@@ -66,7 +67,7 @@ function controller($scope, modal, numberOf){
 			{
 				title: 'כותרת הצעת שינוי',
 				description: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum. אבל רובם עברו שינויים בצורה זו או אחרת.',
-				updatedAt: new Date('02.05.2016'),
+				updatedAt: new Date('02.05.2017'),
 
 				changes: [
 					{
@@ -76,7 +77,8 @@ function controller($scope, modal, numberOf){
 				],
 
 				author: {
-					displayName: 'שם המחבר',
+					id: 123,
+					displayName: 'מחבר ראשון',
 					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/minipunk/128.jpg'
 				},
 				date: '05.02.2016',
@@ -97,7 +99,31 @@ function controller($scope, modal, numberOf){
 				],
 
 				author: {
-					displayName: 'שם המחבר',
+					id: 1234,
+					displayName: 'מחבר שלישי',
+					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/minipunk/128.jpg'
+				},
+
+				date: '05.02.15',
+				hour: '10:03'
+			},
+
+			{
+				title: 'כותרת הצעת שינוי שנייה',
+				description: 'תיאור קצר יותר של הצעת השינוי',
+				updatedAt: new Date('02.05.2016'),
+
+				changes: [
+					{
+						para: 1,
+						content: 'יש המון גרסאות זמינות לפסקאות של Lorem Ipsum. ',
+						state: 'remove'
+					}
+				],
+
+				author: {
+					id: 12345,
+					displayName: 'מחבר שני',
 					avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/minipunk/128.jpg'
 				},
 
@@ -232,6 +258,13 @@ function controller($scope, modal, numberOf){
 
 	});
 
+	// calc # contributors
+	this.contributors = this.history.sort((a, b) => a.updatedAt < b.updatedAt).reduce(uniqueContributors, []);
+
+	this.limits = {
+		contributors: 10
+	};
+
 	this.numberOfSuggestions = function(paraIndex){
 		return numberOf({ singular: 'הצעה אחת', plural: 'הצעות' }, ctrl.changesAtPara(paraIndex))
 	};
@@ -272,5 +305,13 @@ function controller($scope, modal, numberOf){
 
 		ctrl.newCommentPosted = true;
 	};
+
+	function uniqueContributors(accumulator, commit){
+		if (accumulator.filter(author => author.id === commit.author.id).length) return accumulator;
+
+		accumulator.push(commit.author);
+
+		return accumulator;
+	}
 
 }
