@@ -5,7 +5,7 @@ function controller($scope){
 	const ctrl = this;
 
 	this.vote = vote => {
-		$scope.userVoted = vote;
+		$scope.userVoted = $scope.userVoted === vote ? null : vote;
 	};
 
 	this.buttonClasses = buttonType => {
