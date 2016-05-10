@@ -5,7 +5,7 @@ ng-class="vtngButtonsCtrl.buttonClasses('for')"
 
 	.fa.fa-fw(ng-class="'fa-thumbs' + (userVoted === 'for' ? '' : '-o') + '-up'")
 
-	| אני בעד&nbsp;
+	| בעד&nbsp;
 
 	span.num-votes(
 	ng-show="dEdit.votes.for"
@@ -18,7 +18,7 @@ ng-class="vtngButtonsCtrl.buttonClasses('against')"
 
 	.fa.fa-fw(ng-class="'fa-thumbs' + (userVoted === 'against' ? '' : '-o') + '-down'")
 
-	| אני נגד&nbsp;
+	| נגד&nbsp;
 
 	span.num-votes(
 	ng-show="numVotes.against"
