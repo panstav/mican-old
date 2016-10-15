@@ -52,6 +52,7 @@ module.exports.init = () => {
 
 	// enforce https on production environment
 	if (process.env.NODE_ENV === 'production' && process.env.SECURE){
+		server.get(`/.well-known/acme-challenge/:key`, acmeVerification);
 		server.use(enforce.HTTPS({ trustProtoHeader: true }));
 		server.use(HSTS({ expiryDate: '24/01/2017' }));
 	}
@@ -114,6 +115,12 @@ module.exports.init = () => {
 	server.use(fourOhFour);
 
 	return server;
+
+	function acmeVerification(req, res){
+		const key = req.params.key;
+		if (key === process.env.ACME_KEY_WWW && req.subdomains.indexOf('www') > -1) return res.send(process.env.ACME_VALUE_WWW);
+		if (key === process.env.ACME_KEY) return res.send(process.env.ACME_VALUE);
+	}
 
 	function HSTS(options){
 		return (req, res, next) => {
