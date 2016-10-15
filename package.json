@@ -18,19 +18,6 @@
   "bugs": {
     "url": "https://github.com/panstav/mican/issues"
   },
-  "config": {
-    "pre-git": {
-      "pre-commit": "npm run mocha",
-      "post-commit": "git st",
-      "post-merge": "git recap",
-      "pre-push": [
-        "npm test",
-        "node_modules/.bin/snyk test"
-      ],
-      "post-push": "git gc",
-      "commit-msg": []
-    }
-  },
   "scripts": {
     "start": "node . | node_modules/.bin/bunyan --color",
     "debug": "LOCAL=true DEBUG=true SHOW_SRC=true node . | node_modules/.bin/bunyan --color",
