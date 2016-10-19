@@ -1,3 +1,7 @@
+//////////////////////////////////////////////////////
+// This file purposely ignores snapshooter's errors //
+//////////////////////////////////////////////////////
+
 var fs =            require('fs');
 var path =          require('path');
 
@@ -26,7 +30,7 @@ module.exports = function(req, res, next){
 
 	fetchSnapshot(req.path, function(err, results){
 		if (err){
-			log.error(err);
+			// log.error(err);
 
 			return res.status(500).end();
 		}
